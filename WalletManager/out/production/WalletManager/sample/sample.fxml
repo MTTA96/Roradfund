@@ -27,7 +27,7 @@
                                             <children>
                                                 <BorderPane layoutX="6.0" prefHeight="225.0" prefWidth="760.0" AnchorPane.bottomAnchor="315.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                                                     <center>
-                                                        <TextArea prefWidth="760.0" BorderPane.alignment="CENTER">
+                                                        <TextArea fx:id="txtaAddresses" prefWidth="760.0" BorderPane.alignment="CENTER">
                                                             <opaqueInsets>
                                                                 <Insets />
                                                             </opaqueInsets>
@@ -52,7 +52,7 @@
                                           </AnchorPane>
                                        </bottom>
                                                 </BorderPane>
-                                                <TableView layoutX="200.0" layoutY="257.0" prefHeight="294.0" prefWidth="760.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="257.0">
+                                                <TableView fx:id="tbvResults" layoutX="200.0" layoutY="257.0" prefHeight="294.0" prefWidth="760.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="257.0">
                                                     <columns>
                                                         <TableColumn prefWidth="380.0" text="Address" />
                                                         <TableColumn prefWidth="378.0" text="Balance" />
