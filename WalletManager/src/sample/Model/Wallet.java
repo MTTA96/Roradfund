@@ -73,31 +73,37 @@ public class Wallet {
         ServicesImp servicesImp = RetrofitClient.getClient(ServerUrl.ServerUrl).create(ServicesImp.class);
 
         servicesImp.getBalanceByAddress(address, "freekey").enqueue(new Callback<Wallet>() {
+
             @Override
             public void onResponse(Call<Wallet> call, Response<Wallet> response) {
-                Log.getLog("Request: ", call.request().toString(), 0);
+
+                System.out.print("Request: " + call.request().toString() + "\n");
+
+                // Handle errors
                 if(!response.isSuccessful()) {
-                    Log.getLog("Get balance: ", response.message(), 0);
+                    System.out.print("Get balance: Error from server - " + response.message() + "\n");
                     requestBalanceByAddressCallBack.balanceByAddressCallBack(SupportKeys.FAILED_CODE, null);
                     return;
                 }
 
                 if (response.body().error  != null ) {
-                    Log.getLog("Get balance: ", response.body().error.getMessage(), 0);
-                    requestBalanceByAddressCallBack.balanceByAddressCallBack(SupportKeys.SUCCESS_CODE, null);
+                    System.out.print("Get balance: " + response.body().error.getMessage() + "\n");
+                    requestBalanceByAddressCallBack.balanceByAddressCallBack(SupportKeys.FAILED_CODE, response.body());
                     return;
                 }
 
-                Log.getLog("Get balance: ", String.valueOf(response.body().eTH.getBalance()), 0);
-                requestBalanceByAddressCallBack.balanceByAddressCallBack(SupportKeys.SUCCESS_CODE, String.valueOf(response.body().eTH.getBalance()));
+                // Success
+                System.out.print("Get balance: " + String.valueOf(response.body().eTH.getBalance()) + "\n");
+                requestBalanceByAddressCallBack.balanceByAddressCallBack(SupportKeys.SUCCESS_CODE, response.body());
 
             }
 
             @Override
             public void onFailure(Call<Wallet> call, Throwable throwable) {
-                Log.getLog("Get balance: ", throwable.getLocalizedMessage(), 0);
+                System.out.print("Get balance: " + throwable.getLocalizedMessage() + "\n");
                 requestBalanceByAddressCallBack.balanceByAddressCallBack(SupportKeys.FAILED_CODE, null);
             }
+
         });
 
     }
