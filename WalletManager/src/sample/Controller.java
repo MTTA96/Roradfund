@@ -9,9 +9,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sample.Interface.RequestBalanceByAddressCallBack;
 import sample.Model.Balance;
+import sample.Model.EtherScan.WalletEtherScan;
 import sample.Model.Wallet;
 import sample.Util.SupportKeys;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -24,11 +26,11 @@ public class Controller implements RequestBalanceByAddressCallBack {
     @FXML
     private Button check, stop;
     @FXML
-    private TableView<Balance> tbvResults;
+    private TableView<WalletEtherScan> tbvResults;
     @FXML
-    private TableColumn<Balance, String> addressCol, balanceCol;
+    private TableColumn<WalletEtherScan, String> addressCol, balanceCol;
 
-    private final ObservableList<Balance> data = FXCollections.observableArrayList();
+    private final ObservableList<WalletEtherScan> data = FXCollections.observableArrayList();
     private String[] addressList;
     private int countWallet = 0;
 
@@ -44,10 +46,10 @@ public class Controller implements RequestBalanceByAddressCallBack {
         updateCountingLabel(countWallet);
 
         addressCol.setCellValueFactory(
-                new PropertyValueFactory<Balance,String>("address")
+                new PropertyValueFactory<WalletEtherScan,String>("account")
         );
         balanceCol.setCellValueFactory(
-                new PropertyValueFactory<Balance, String>("balance")
+                new PropertyValueFactory<WalletEtherScan, String>("balance")
         );
 
         Wallet wallet = new Wallet();
@@ -56,19 +58,28 @@ public class Controller implements RequestBalanceByAddressCallBack {
 
             addressList = txtaAddresses.getText().split("\n");
 
+
             Timer timer = new Timer();
 
             timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
                         if (countWallet < addressList.length) {
-                            wallet.checkBalance(addressList[countWallet], Controller.this);
-                            countWallet += 1;
+                            String addressesString = "";
+
+                            for (int i = countWallet; i <= (countWallet + 20 < addressList.length ? countWallet + 20 : countWallet + (addressList.length - countWallet) - 1); i++) {
+                                if (i != countWallet && i%20 == 0)
+                                    addressesString += addressList[i];
+                                else
+                                    addressesString += addressList[i] + ",";
+                            }
+                            countWallet += countWallet + 20 < addressList.length ? 20 : addressList.length - countWallet;
+                            wallet.checkBalance(addressesString, Controller.this);
                         } else {
                             this.cancel();
                         }
                     }
-                },0, 6000);
+                },0, 5000);
 
         }
 
@@ -95,27 +106,30 @@ public class Controller implements RequestBalanceByAddressCallBack {
     /** HANDLE RESULTS */
 
     @Override
-    public void balanceByAddressCallBack(int errorCode, Wallet wallet) {
+    public void balanceByAddressCallBack(int errorCode, ArrayList<WalletEtherScan> wallet) {
 
-        updateCountingLabel(countWallet);
+        if (wallet != null) {
+            updateCountingLabel(countWallet);
+        }
 
         updateBalanceCol(wallet);
 
     }
 
-    private void updateBalanceCol(Wallet wallet) {
-        String address;
-        String balance;
+    private void updateBalanceCol(ArrayList<WalletEtherScan> walletList) {
+//        String address;
+//        String balance;
+//
+//        if (wallet == null) {
+//            address = addressList[countWallet];
+//            balance = "Error!";
+//        } else {
+//            address = wallet.getAddress() != null ? wallet.getAddress():"Error!";
+//            balance = wallet.getETH().getBalance()!= null ? String.valueOf(wallet.getETH().getBalance()):"Error!";
+//        }
 
-        if (wallet == null) {
-            address = addressList[countWallet];
-            balance = "Error!";
-        } else {
-            address = wallet.getAddress() != null ? wallet.getAddress():"Error!";
-            balance = wallet.getETH().getBalance()!= null ? String.valueOf(wallet.getETH().getBalance()):"Error!";
-        }
-
-        data.add(new Balance(address, balance));
+//        data.add(walletList);
+        data.addAll(walletList);
         tbvResults.setItems(data);
     }
 
