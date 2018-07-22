@@ -67,12 +67,15 @@ public class Controller implements RequestBalanceByAddressCallBack {
                         if (countWallet < addressList.length) {
                             String addressesString = "";
 
-                            for (int i = countWallet; i <= (countWallet + 20 < addressList.length ? countWallet + 20 : countWallet + (addressList.length - countWallet) - 1); i++) {
-                                if (i != countWallet && i%20 == 0)
+                            int calculatedCounting = (countWallet + 20 < addressList.length ? countWallet + 20 : countWallet + (addressList.length - countWallet));
+
+                            for (int i = countWallet; i < calculatedCounting; i++) {
+                                if (i == calculatedCounting - 1)
                                     addressesString += addressList[i];
                                 else
                                     addressesString += addressList[i] + ",";
                             }
+
                             countWallet += countWallet + 20 < addressList.length ? 20 : addressList.length - countWallet;
                             wallet.checkBalance(addressesString, Controller.this);
                         } else {
@@ -129,6 +132,12 @@ public class Controller implements RequestBalanceByAddressCallBack {
 //        }
 
 //        data.add(walletList);
+        if (walletList == null) {
+            walletList = new ArrayList<>();
+            WalletEtherScan errorWallet = new WalletEtherScan();
+            errorWallet.setAccount("Error!");
+            walletList.add(errorWallet);
+        }
         data.addAll(walletList);
         tbvResults.setItems(data);
     }

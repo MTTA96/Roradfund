@@ -129,7 +129,101 @@
   
   <!-- Modules -->
   
-  <import file="${basedir}/module_walletmanager.xml"/>
+  
+  <!-- Module WalletManager -->
+  
+  <dirname property="module.walletmanager.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.walletmanager" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.walletmanager" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.walletmanager" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.walletmanager" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="walletmanager.output.dir" value="${module.walletmanager.basedir}/out/production/WalletManager"/>
+  <property name="walletmanager.testoutput.dir" value="${module.walletmanager.basedir}/out/test/WalletManager"/>
+  
+  <path id="walletmanager.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="walletmanager.module.production.classpath">
+    <path refid="${module.jdk.classpath.walletmanager}"/>
+    <path refid="library.com.google.code.gson:gson:2.8.5.classpath"/>
+    <path refid="library.com.squareup.retrofit2:retrofit:2.2.0.classpath"/>
+    <path refid="library.com.squareup.retrofit2:converter-gson:2.4.0.classpath"/>
+    <path refid="library.com.squareup.okhttp3:logging-interceptor:3.3.0.classpath"/>
+  </path>
+  
+  <path id="walletmanager.runtime.production.module.classpath">
+    <pathelement location="${walletmanager.output.dir}"/>
+    <path refid="library.com.google.code.gson:gson:2.8.5.classpath"/>
+    <path refid="library.com.squareup.retrofit2:retrofit:2.2.0.classpath"/>
+    <path refid="library.com.squareup.retrofit2:converter-gson:2.4.0.classpath"/>
+    <path refid="library.com.squareup.okhttp3:logging-interceptor:3.3.0.classpath"/>
+  </path>
+  
+  <path id="walletmanager.module.classpath">
+    <path refid="${module.jdk.classpath.walletmanager}"/>
+    <pathelement location="${walletmanager.output.dir}"/>
+    <path refid="library.com.google.code.gson:gson:2.8.5.classpath"/>
+    <path refid="library.com.squareup.retrofit2:retrofit:2.2.0.classpath"/>
+    <path refid="library.com.squareup.retrofit2:converter-gson:2.4.0.classpath"/>
+    <path refid="library.com.squareup.okhttp3:logging-interceptor:3.3.0.classpath"/>
+  </path>
+  
+  <path id="walletmanager.runtime.module.classpath">
+    <pathelement location="${walletmanager.testoutput.dir}"/>
+    <pathelement location="${walletmanager.output.dir}"/>
+    <path refid="library.com.google.code.gson:gson:2.8.5.classpath"/>
+    <path refid="library.com.squareup.retrofit2:retrofit:2.2.0.classpath"/>
+    <path refid="library.com.squareup.retrofit2:converter-gson:2.4.0.classpath"/>
+    <path refid="library.com.squareup.okhttp3:logging-interceptor:3.3.0.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.walletmanager">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.walletmanager">
+    <patternset refid="excluded.from.module.walletmanager"/>
+  </patternset>
+  
+  <path id="walletmanager.module.sourcepath">
+    <dirset dir="${module.walletmanager.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.walletmanager" depends="compile.module.walletmanager.production,compile.module.walletmanager.tests" description="Compile module WalletManager"/>
+  
+  <target name="compile.module.walletmanager.production" depends="register.custom.compilers" description="Compile module WalletManager; production classes">
+    <mkdir dir="${walletmanager.output.dir}"/>
+    <javac2 destdir="${walletmanager.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.walletmanager}/javac">
+      <compilerarg line="${compiler.args.walletmanager}"/>
+      <bootclasspath refid="walletmanager.module.bootclasspath"/>
+      <classpath refid="walletmanager.module.production.classpath"/>
+      <src refid="walletmanager.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.walletmanager"/>
+    </javac2>
+    
+    <copy todir="${walletmanager.output.dir}">
+      <fileset dir="${module.walletmanager.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.walletmanager.tests" depends="register.custom.compilers,compile.module.walletmanager.production" description="compile module WalletManager; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.walletmanager" description="cleanup module">
+    <delete dir="${walletmanager.output.dir}"/>
+    <delete dir="${walletmanager.testoutput.dir}"/>
+  </target>
   
   <target name="init" description="Build initialization">
     <!-- Perform any build initialization in this target -->
