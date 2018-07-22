@@ -8,10 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sample.Interface.RequestBalanceByAddressCallBack;
-import sample.Model.Balance;
-import sample.Model.EtherScan.WalletEtherScan;
 import sample.Model.Wallet;
-import sample.Util.SupportKeys;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -26,13 +23,29 @@ public class Controller implements RequestBalanceByAddressCallBack {
     @FXML
     private Button check, stop;
     @FXML
-    private TableView<WalletEtherScan> tbvResults;
+    private TableView<Wallet> tbvResults;
     @FXML
-    private TableColumn<WalletEtherScan, String> addressCol, balanceCol;
+    private TableColumn<Wallet, String> addressCol, balanceCol;
+    @FXML
+    private TableColumn<Integer, Integer> serialCol;
 
-    private final ObservableList<WalletEtherScan> data = FXCollections.observableArrayList();
+    private final ObservableList<Wallet> data = FXCollections.observableArrayList();
     private String[] addressList;
     private int countWallet = 0;
+
+    //0x3750fC1505ba9a4cA3907b94Cda8e5758d31F3aD
+
+    /** CONFIG */
+
+    private void configColumns() {
+
+        //serialCol.setCellValueFactory(new PropertyValueFactory<Integer, Integer>(""));
+
+        addressCol.setCellValueFactory(new PropertyValueFactory<Wallet,String>("account"));
+
+        balanceCol.setCellValueFactory(new PropertyValueFactory<Wallet, String>("balance"));
+
+    }
 
     /** ACTIONS */
 
@@ -42,22 +55,17 @@ public class Controller implements RequestBalanceByAddressCallBack {
         data.clear();
         tbvResults.setItems(data);
 
-        //0x3750fC1505ba9a4cA3907b94Cda8e5758d31F3aD
         updateCountingLabel(countWallet);
 
-        addressCol.setCellValueFactory(
-                new PropertyValueFactory<WalletEtherScan,String>("account")
-        );
-        balanceCol.setCellValueFactory(
-                new PropertyValueFactory<WalletEtherScan, String>("balance")
-        );
+        configColumns();
+
+        // Prepare data
 
         Wallet wallet = new Wallet();
 
         if (!txtaAddresses.getText().isEmpty()) {
 
             addressList = txtaAddresses.getText().split("\n");
-
 
             Timer timer = new Timer();
 
@@ -106,10 +114,11 @@ public class Controller implements RequestBalanceByAddressCallBack {
             }
         });
     }
+
     /** HANDLE RESULTS */
 
     @Override
-    public void balanceByAddressCallBack(int errorCode, ArrayList<WalletEtherScan> wallet) {
+    public void balanceByAddressCallBack(int errorCode, ArrayList<Wallet> wallet) {
 
         if (wallet != null) {
             updateCountingLabel(countWallet);
@@ -119,7 +128,7 @@ public class Controller implements RequestBalanceByAddressCallBack {
 
     }
 
-    private void updateBalanceCol(ArrayList<WalletEtherScan> walletList) {
+    private void updateBalanceCol(ArrayList<Wallet> walletList) {
 //        String address;
 //        String balance;
 //
@@ -134,7 +143,7 @@ public class Controller implements RequestBalanceByAddressCallBack {
 //        data.add(walletList);
         if (walletList == null) {
             walletList = new ArrayList<>();
-            WalletEtherScan errorWallet = new WalletEtherScan();
+            Wallet errorWallet = new Wallet();
             errorWallet.setAccount("Error!");
             walletList.add(errorWallet);
         }

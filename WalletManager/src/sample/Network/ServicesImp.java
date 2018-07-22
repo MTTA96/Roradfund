@@ -1,10 +1,7 @@
 package sample.Network;
 
-import java.util.ArrayList;
-
 import retrofit2.Call;
 import retrofit2.http.*;
-import sample.Model.Wallet;
 import sample.Network.EtherScan.BaseResponse;
 import sample.Util.ServerUrl;
 
