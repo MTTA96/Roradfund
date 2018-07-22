@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="WalletManager.jnlp">
+  <information>
+    <title>WalletManager</title>
+    <vendor>Unknown</vendor>
+    <description>WalletManager</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="WalletManager.jar" size="15629" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="800" height="600" main-class="sample.Main"  name="WalletManager" />
+  <update check="background"/>
+</jnlp>

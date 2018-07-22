@@ -48,7 +48,7 @@ public class Wallet {
 
     /** ----- METHOD ----- */
 
-    public void checkBalance(String address, RequestBalanceByAddressCallBack requestBalanceByAddressCallBack) {
+    public static void checkBalance(String address, RequestBalanceByAddressCallBack requestBalanceByAddressCallBack) {
 
         ServicesImp servicesImp = RetrofitClient.getClient(ServerUrl.ServerUrl).create(ServicesImp.class);
 
