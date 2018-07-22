@@ -14,12 +14,21 @@ import sample.Util.SupportKeys;
 
 public class Wallet {
 
+    private int serial;
     @SerializedName("account")
     @Expose
     private String account;
     @SerializedName("balance")
     @Expose
     private String balance;
+
+    public int getSerial() {
+        return serial;
+    }
+
+    public void setSerial(int serial) {
+        this.serial = serial;
+    }
 
     public String getAccount() {
         return account;

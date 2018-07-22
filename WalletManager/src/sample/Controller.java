@@ -27,7 +27,7 @@ public class Controller implements RequestBalanceByAddressCallBack {
     @FXML
     private TableColumn<Wallet, String> addressCol, balanceCol;
     @FXML
-    private TableColumn<Integer, Integer> serialCol;
+    private TableColumn<Wallet, Integer> serialCol;
 
     private final ObservableList<Wallet> data = FXCollections.observableArrayList();
     private String[] addressList;
@@ -39,7 +39,7 @@ public class Controller implements RequestBalanceByAddressCallBack {
 
     private void configColumns() {
 
-        //serialCol.setCellValueFactory(new PropertyValueFactory<Integer, Integer>(""));
+        serialCol.setCellValueFactory(new PropertyValueFactory<Wallet, Integer>("serial"));
 
         addressCol.setCellValueFactory(new PropertyValueFactory<Wallet,String>("account"));
 
@@ -147,6 +147,11 @@ public class Controller implements RequestBalanceByAddressCallBack {
             errorWallet.setAccount("Error!");
             walletList.add(errorWallet);
         }
+
+        for (int i = 0; i < walletList.size(); i++) {
+            walletList.get(i).setSerial( ( countWallet - (walletList.size()-i) ) + 1 );
+        }
+
         data.addAll(walletList);
         tbvResults.setItems(data);
     }
