@@ -18,35 +18,35 @@
   <path id="walletmanager.module.production.classpath">
     <path refid="${module.jdk.classpath.walletmanager}"/>
     <path refid="library.com.google.code.gson:gson:2.8.5.classpath"/>
-    <path refid="library.com.squareup.retrofit2:retrofit:2.2.0.classpath"/>
     <path refid="library.com.squareup.retrofit2:converter-gson:2.4.0.classpath"/>
     <path refid="library.com.squareup.okhttp3:logging-interceptor:3.3.0.classpath"/>
+    <path refid="library.com.squareup.retrofit2:retrofit:2.4.0.classpath"/>
   </path>
   
   <path id="walletmanager.runtime.production.module.classpath">
     <pathelement location="${walletmanager.output.dir}"/>
     <path refid="library.com.google.code.gson:gson:2.8.5.classpath"/>
-    <path refid="library.com.squareup.retrofit2:retrofit:2.2.0.classpath"/>
     <path refid="library.com.squareup.retrofit2:converter-gson:2.4.0.classpath"/>
     <path refid="library.com.squareup.okhttp3:logging-interceptor:3.3.0.classpath"/>
+    <path refid="library.com.squareup.retrofit2:retrofit:2.4.0.classpath"/>
   </path>
   
   <path id="walletmanager.module.classpath">
     <path refid="${module.jdk.classpath.walletmanager}"/>
     <pathelement location="${walletmanager.output.dir}"/>
     <path refid="library.com.google.code.gson:gson:2.8.5.classpath"/>
-    <path refid="library.com.squareup.retrofit2:retrofit:2.2.0.classpath"/>
     <path refid="library.com.squareup.retrofit2:converter-gson:2.4.0.classpath"/>
     <path refid="library.com.squareup.okhttp3:logging-interceptor:3.3.0.classpath"/>
+    <path refid="library.com.squareup.retrofit2:retrofit:2.4.0.classpath"/>
   </path>
   
   <path id="walletmanager.runtime.module.classpath">
     <pathelement location="${walletmanager.testoutput.dir}"/>
     <pathelement location="${walletmanager.output.dir}"/>
     <path refid="library.com.google.code.gson:gson:2.8.5.classpath"/>
-    <path refid="library.com.squareup.retrofit2:retrofit:2.2.0.classpath"/>
     <path refid="library.com.squareup.retrofit2:converter-gson:2.4.0.classpath"/>
     <path refid="library.com.squareup.okhttp3:logging-interceptor:3.3.0.classpath"/>
+    <path refid="library.com.squareup.retrofit2:retrofit:2.4.0.classpath"/>
   </path>
   
   

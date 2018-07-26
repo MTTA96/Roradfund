@@ -16,6 +16,9 @@
     <root id="root">
       <element id="archive" name="WalletManager.jar">
         <element id="module-output" name="WalletManager" />
+        <element id="library" level="project" name="com.google.code.gson:gson:2.8.5" />
+        <element id="library" level="project" name="com.squareup.okhttp3:logging-interceptor:3.3.0" />
+        <element id="library" level="project" name="com.squareup.retrofit2:converter-gson:2.4.0" />
       </element>
     </root>
   </artifact>

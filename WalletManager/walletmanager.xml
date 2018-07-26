@@ -107,10 +107,10 @@
     <pathelement location="${path.variable.maven_repository}/com/squareup/retrofit2/retrofit/2.4.0/retrofit-2.4.0.jar"/>
   </path>
   
-  <path id="library.com.squareup.retrofit2:retrofit:2.2.0.classpath">
-    <pathelement location="${path.variable.maven_repository}/com/squareup/okhttp3/okhttp/3.6.0/okhttp-3.6.0.jar"/>
-    <pathelement location="${path.variable.maven_repository}/com/squareup/okio/okio/1.11.0/okio-1.11.0.jar"/>
-    <pathelement location="${path.variable.maven_repository}/com/squareup/retrofit2/retrofit/2.2.0/retrofit-2.2.0.jar"/>
+  <path id="library.com.squareup.retrofit2:retrofit:2.4.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/squareup/okhttp3/okhttp/3.10.0/okhttp-3.10.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/com/squareup/okio/okio/1.14.0/okio-1.14.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/com/squareup/retrofit2/retrofit/2.4.0/retrofit-2.4.0.jar"/>
   </path>
   <!-- Register Custom Compiler Taskdefs -->
   <property name="javac2.home" value="${idea.home}/lib"/>
@@ -129,109 +129,69 @@
   
   <!-- Modules -->
   
-  
-  <!-- Module WalletManager -->
-  
-  <dirname property="module.walletmanager.basedir" file="${ant.file}"/>
-  
-  
-  <property name="module.jdk.home.walletmanager" value="${project.jdk.home}"/>
-  <property name="module.jdk.bin.walletmanager" value="${project.jdk.bin}"/>
-  <property name="module.jdk.classpath.walletmanager" value="${project.jdk.classpath}"/>
-  
-  <property name="compiler.args.walletmanager" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
-  
-  <property name="walletmanager.output.dir" value="${module.walletmanager.basedir}/out/production/WalletManager"/>
-  <property name="walletmanager.testoutput.dir" value="${module.walletmanager.basedir}/out/test/WalletManager"/>
-  
-  <path id="walletmanager.module.bootclasspath">
-    <!-- Paths to be included in compilation bootclasspath -->
-  </path>
-  
-  <path id="walletmanager.module.production.classpath">
-    <path refid="${module.jdk.classpath.walletmanager}"/>
-    <path refid="library.com.google.code.gson:gson:2.8.5.classpath"/>
-    <path refid="library.com.squareup.retrofit2:retrofit:2.2.0.classpath"/>
-    <path refid="library.com.squareup.retrofit2:converter-gson:2.4.0.classpath"/>
-    <path refid="library.com.squareup.okhttp3:logging-interceptor:3.3.0.classpath"/>
-  </path>
-  
-  <path id="walletmanager.runtime.production.module.classpath">
-    <pathelement location="${walletmanager.output.dir}"/>
-    <path refid="library.com.google.code.gson:gson:2.8.5.classpath"/>
-    <path refid="library.com.squareup.retrofit2:retrofit:2.2.0.classpath"/>
-    <path refid="library.com.squareup.retrofit2:converter-gson:2.4.0.classpath"/>
-    <path refid="library.com.squareup.okhttp3:logging-interceptor:3.3.0.classpath"/>
-  </path>
-  
-  <path id="walletmanager.module.classpath">
-    <path refid="${module.jdk.classpath.walletmanager}"/>
-    <pathelement location="${walletmanager.output.dir}"/>
-    <path refid="library.com.google.code.gson:gson:2.8.5.classpath"/>
-    <path refid="library.com.squareup.retrofit2:retrofit:2.2.0.classpath"/>
-    <path refid="library.com.squareup.retrofit2:converter-gson:2.4.0.classpath"/>
-    <path refid="library.com.squareup.okhttp3:logging-interceptor:3.3.0.classpath"/>
-  </path>
-  
-  <path id="walletmanager.runtime.module.classpath">
-    <pathelement location="${walletmanager.testoutput.dir}"/>
-    <pathelement location="${walletmanager.output.dir}"/>
-    <path refid="library.com.google.code.gson:gson:2.8.5.classpath"/>
-    <path refid="library.com.squareup.retrofit2:retrofit:2.2.0.classpath"/>
-    <path refid="library.com.squareup.retrofit2:converter-gson:2.4.0.classpath"/>
-    <path refid="library.com.squareup.okhttp3:logging-interceptor:3.3.0.classpath"/>
-  </path>
-  
-  
-  <patternset id="excluded.from.module.walletmanager">
-    <patternset refid="ignored.files"/>
-  </patternset>
-  
-  <patternset id="excluded.from.compilation.walletmanager">
-    <patternset refid="excluded.from.module.walletmanager"/>
-  </patternset>
-  
-  <path id="walletmanager.module.sourcepath">
-    <dirset dir="${module.walletmanager.basedir}">
-      <include name="src"/>
-    </dirset>
-  </path>
-  
-  
-  <target name="compile.module.walletmanager" depends="compile.module.walletmanager.production,compile.module.walletmanager.tests" description="Compile module WalletManager"/>
-  
-  <target name="compile.module.walletmanager.production" depends="register.custom.compilers" description="Compile module WalletManager; production classes">
-    <mkdir dir="${walletmanager.output.dir}"/>
-    <javac2 destdir="${walletmanager.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.walletmanager}/javac">
-      <compilerarg line="${compiler.args.walletmanager}"/>
-      <bootclasspath refid="walletmanager.module.bootclasspath"/>
-      <classpath refid="walletmanager.module.production.classpath"/>
-      <src refid="walletmanager.module.sourcepath"/>
-      <patternset refid="excluded.from.compilation.walletmanager"/>
-    </javac2>
-    
-    <copy todir="${walletmanager.output.dir}">
-      <fileset dir="${module.walletmanager.basedir}/src">
-        <patternset refid="compiler.resources"/>
-        <type type="file"/>
-      </fileset>
-    </copy>
-  </target>
-  
-  <target name="compile.module.walletmanager.tests" depends="register.custom.compilers,compile.module.walletmanager.production" description="compile module WalletManager; test classes" unless="skip.tests"/>
-  
-  <target name="clean.module.walletmanager" description="cleanup module">
-    <delete dir="${walletmanager.output.dir}"/>
-    <delete dir="${walletmanager.testoutput.dir}"/>
-  </target>
+  <import file="${basedir}/module_walletmanager.xml"/>
   
   <target name="init" description="Build initialization">
     <!-- Perform any build initialization in this target -->
   </target>
   
-  <target name="clean" depends="clean.module.walletmanager" description="cleanup all"/>
+  <target name="clean" depends="clean.module.walletmanager, clean.artifact.walletmanager" description="cleanup all"/>
   
   <target name="build.modules" depends="init, clean, compile.module.walletmanager" description="build all modules"/>
   
-  <target name="all" depends="build.modules" description="build all"/>
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.walletmanager" value="${basedir}/out/artifacts/WalletManager"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+    <property name="artifact.temp.output.WalletManager" value="${artifacts.temp.dir}/WalletManager.jar"/>
+    <taskdef resource="com/sun/javafx/tools/ant/antlib.xml" uri="javafx:com.sun.javafx.tools.ant" classpath="${jdk.home.1.8}/lib/ant-javafx.jar"/>
+  </target>
+  
+  <target name="clean.artifact.walletmanager" description="clean WalletManager artifact output">
+    <delete dir="${artifact.output.walletmanager}"/>
+  </target>
+  
+  <target name="artifact.walletmanager" depends="init.artifacts, compile.module.walletmanager" description="Build &#39;WalletManager&#39; artifact" xmlns:fx="javafx:com.sun.javafx.tools.ant">
+    <mkdir dir="${artifact.output.walletmanager}"/>
+    <copy todir="${artifact.temp.output.WalletManager}">
+      <fileset dir="${walletmanager.output.dir}"/>
+    </copy>
+    <fx:fileset id="all_but_WalletManager" dir="${artifact.temp.output.WalletManager}" includes="**/*.jar">
+      <exclude name="WalletManager.jar"/>
+    </fx:fileset>
+    <fx:fileset id="all_WalletManager" dir="${artifact.temp.output.WalletManager}" includes="**/*.jar"/>
+    <fx:application id="WalletManager_id" name="WalletManager" mainClass="sample.Main" version="0.0"/>
+    <fx:jar destfile="${artifact.temp.output.WalletManager}/WalletManager.jar">
+      <fx:application refid="WalletManager_id"/>
+      <fileset dir="${artifact.temp.output.WalletManager}" excludes="**/*.jar"/>
+      <fx:resources>
+        <fx:fileset refid="all_but_WalletManager"/>
+      </fx:resources>
+      <manifest>
+        <attribute name="Implementation-Title" value=""/>
+        <attribute name="Implementation-Version" value="0.0"/>
+        <attribute name="Implementation-Vendor" value=""/>
+      </manifest>
+    </fx:jar>
+    <fx:deploy width="800" height="600" updatemode="background" outdir="${artifact.temp.output.WalletManager}/deploy" outfile="WalletManager">
+      <fx:application refid="WalletManager_id"/>
+      <fx:resources>
+        <fx:fileset refid="all_WalletManager"/>
+      </fx:resources>
+    </fx:deploy>
+    <copy todir="${artifact.output.walletmanager}">
+      <fileset dir="${artifact.temp.output.WalletManager}/deploy"/>
+    </copy>
+    <delete includeemptydirs="true">
+      <fileset dir="${artifact.temp.output.WalletManager}"/>
+    </delete>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.walletmanager" description="Build all artifacts">
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
 </project>

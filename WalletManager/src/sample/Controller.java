@@ -98,7 +98,7 @@ public class Controller implements RequestBalanceByAddressCallBack {
             data.clear();
             tbvResults.setItems(data);
             btnCheck.setText("Dừng");
-            
+
             configColumns();
 
             addressList = txtaAddresses.getText().split("\n");

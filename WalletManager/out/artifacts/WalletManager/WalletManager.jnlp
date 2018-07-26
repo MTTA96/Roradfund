@@ -8,7 +8,16 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="WalletManager.jar" size="15629" download="eager" />
+    <jar href="WalletManager.jar" size="18491" download="eager" />
+    <jar href="converter-gson-2.4.0.jar" size="6202" download="eager" />
+    <jar href="gson-2.8.2.jar" size="232932" download="eager" />
+    <jar href="gson-2.8.5.jar" size="241622" download="eager" />
+    <jar href="logging-interceptor-3.3.0.jar" size="8043" download="eager" />
+    <jar href="okhttp-3.10.0.jar" size="412117" download="eager" />
+    <jar href="okhttp-3.3.0.jar" size="343528" download="eager" />
+    <jar href="okio-1.14.0.jar" size="85756" download="eager" />
+    <jar href="okio-1.8.0.jar" size="72016" download="eager" />
+    <jar href="retrofit-2.4.0.jar" size="91002" download="eager" />
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="sample.Main"  name="WalletManager" />
   <update check="background"/>
