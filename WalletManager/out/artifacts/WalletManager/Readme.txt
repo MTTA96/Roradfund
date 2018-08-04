@@ -1,9 +1,0 @@
-Note: 
-1. Run WalletManager.jar
-2. Can check 20 wallets/5s
-3. Input format:
-
-Happy case:
-0xca4a867680a0717a549b9528F99E06D0E4DfE302
-0xaD98a62ca7e4d3659E4B6acF42f7EE2299419890
-0x9542d13876b23e347D3fe455C4a6CF4172EFf5F4

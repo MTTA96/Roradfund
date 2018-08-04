@@ -11,5 +11,8 @@
     <orderEntry type="library" name="com.squareup.retrofit2:converter-gson:2.4.0" level="project" />
     <orderEntry type="library" name="com.squareup.okhttp3:logging-interceptor:3.3.0" level="project" />
     <orderEntry type="library" name="com.squareup.retrofit2:retrofit:2.4.0" level="project" />
+    <orderEntry type="library" name="org.apache.poi:poi:3.17" level="project" />
+    <orderEntry type="library" name="org.apache.poi:poi-ooxml:3.17" level="project" />
+    <orderEntry type="library" name="org.apache.poi:poi-scratchpad:3.17" level="project" />
   </component>
 </module>

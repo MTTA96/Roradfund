@@ -12,6 +12,8 @@ import sample.Network.ServicesImp;
 import sample.Util.ServerUrl;
 import sample.Util.SupportKeys;
 
+import java.util.ArrayList;
+
 public class Wallet {
 
     private int serial;
@@ -39,7 +41,7 @@ public class Wallet {
     }
 
     public String getBalance() {
-        return String.valueOf(Double.valueOf(balance)/1000000000000000000d);
+        return String.valueOf(Double.valueOf(balance)/100000000000000000d);
     }
 
     public void setBalance(String balance) {
@@ -47,6 +49,20 @@ public class Wallet {
     }
 
     /** ----- METHOD ----- */
+
+    public static Double sum(ArrayList<Wallet> walletList) {
+
+        Double sum = 0d;
+
+        for (Wallet wallet: walletList) {
+            sum += Double.valueOf(wallet.getBalance());
+        }
+
+        return sum;
+
+    }
+
+    /** ----- API SERVICES ----- */
 
     public static void checkBalance(String address, RequestBalanceByAddressCallBack requestBalanceByAddressCallBack) {
 

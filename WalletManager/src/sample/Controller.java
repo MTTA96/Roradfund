@@ -7,21 +7,34 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import sample.Interface.RequestBalanceByAddressCallBack;
 import sample.Model.Wallet;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.spi.FileTypeDetector;
+import java.util.*;
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class Controller implements RequestBalanceByAddressCallBack {
 
+    /**
+     * ----- VIEW -----
+     */
+
     @FXML
-    private Label lblCountedWallet;
+    private TextField txfFilePath;
     @FXML
-    private TextArea txtaAddresses;
+    private Label lblCountedWallet, lblSum;
     @FXML
-    private Button btnCheck;
+    private Button btnOpenResFile, btnCheck;
     @FXML
     private TableView<Wallet> tbvResults;
     @FXML
@@ -29,29 +42,51 @@ public class Controller implements RequestBalanceByAddressCallBack {
     @FXML
     private TableColumn<Wallet, Integer> serialCol;
 
+    /**
+     * ----- PROPS -----
+     */
+
     private final ObservableList<Wallet> data = FXCollections.observableArrayList();
-    private String[] addressList;
+    private ArrayList<String> addressList = new ArrayList<>();
     private int countWallet = 0;
     private int showedWallets = 0;
     private Timer timer = new Timer();
+    private Double sum = 0d;
     private boolean isChecking = false;
     private boolean isStopped = false;
 
     //0x3750fC1505ba9a4cA3907b94Cda8e5758d31F3aD
 
-    /** CONFIG */
+    /**
+     * CONFIG
+     */
 
     private void configColumns() {
 
         serialCol.setCellValueFactory(new PropertyValueFactory<Wallet, Integer>("serial"));
 
-        addressCol.setCellValueFactory(new PropertyValueFactory<Wallet,String>("account"));
+        addressCol.setCellValueFactory(new PropertyValueFactory<Wallet, String>("account"));
 
         balanceCol.setCellValueFactory(new PropertyValueFactory<Wallet, String>("balance"));
 
     }
 
-    /** ACTIONS */
+    /**
+     * ----- ACTIONS -----
+     */
+
+    @FXML
+    void openResourceFile(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Chọn file");
+        //fileChooser.showOpenDialog(null);
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+            txfFilePath.setText(file.getPath());
+            handleFile(file);
+        }
+
+    }
 
     @FXML
     void checkBalance(ActionEvent event) {
@@ -65,30 +100,16 @@ public class Controller implements RequestBalanceByAddressCallBack {
 
     @FXML
     void delete(ActionEvent event) {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                timer.cancel();
-            }
-        });
-        txtaAddresses.clear();
-        btnCheck.setText("Bắt đầu");
-        lblCountedWallet.setText("Kết quả");
-        isChecking = false;
-        isStopped = true;
-        addressList = null;
-        countWallet = 0;
-        showedWallets = 0;
-        data.clear();
-        tbvResults.setItems(data);
+
+        resetState();
+
     }
 
     private void start() {
 
         // Prepare data
 
-        if (!txtaAddresses.getText().isEmpty()) {
-
+        if (addressList.size() != 0) {
 
             System.out.print("Start\n");
 
@@ -99,11 +120,10 @@ public class Controller implements RequestBalanceByAddressCallBack {
             tbvResults.setItems(data);
             btnCheck.setText("Dừng");
 
+            lblCountedWallet.setText(countWallet + "/" + addressList.size());
+            lblSum.setText(String.valueOf(sum));
+
             configColumns();
-
-            addressList = txtaAddresses.getText().split("\n");
-
-            updateCountingLabel(countWallet);
 
             callAPICheckBalance();
 
@@ -122,8 +142,7 @@ public class Controller implements RequestBalanceByAddressCallBack {
                     System.out.print("Stop\n");
                     timer.cancel();
                     timer = null;
-                }
-                else {
+                } else {
                     System.out.print("Continue\n");
                     callAPICheckBalance();
                 }
@@ -131,6 +150,120 @@ public class Controller implements RequestBalanceByAddressCallBack {
                 isStopped = !isStopped;
             }
         });
+
+    }
+
+    private void handleFile(File file) {
+
+        resetState();
+
+        try {
+            String fileType = Files.probeContentType(file.toPath());
+
+            switch (fileType) {
+                // Word
+                case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+                    handleWord(file);
+                    break;
+
+                // Excel
+                case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
+                    break;
+
+                // Text
+                case "text/plain":
+                    handleTxt(file);
+                    break;
+
+                default:
+                    System.out.print("Failed!");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    //alert.setTitle("File type warning!!!");
+                    alert.setHeaderText("File type warning!!!");
+                    alert.setContentText("Only handle excel, word or text file");
+
+                    alert.showAndWait();
+                    break;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void handleWord(File file) {
+
+        try {
+
+            // Prepare file
+
+            FileInputStream fis = new FileInputStream(file.getAbsolutePath());
+
+            XWPFDocument document = new XWPFDocument(fis);
+
+            List<XWPFParagraph> paragraphs = document.getParagraphs();
+
+            System.out.println("Total no of paragraph " + paragraphs.size());
+
+            // Handle wallet list
+
+            for (XWPFParagraph para : paragraphs) {
+
+                if (!para.getText().isEmpty()) {
+                    addressList.add(para.getText());
+                }
+
+            }
+            lblCountedWallet.setText(String.valueOf(addressList.size()));
+
+            fis.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+    }
+
+    private void handleTxt(File file) {
+
+        try (Scanner scanner = new Scanner(file)) {
+            int i = 0;
+            while (scanner.hasNext()) {
+                String walletAddress = scanner.next();
+                //System.out.println(walletAddress);
+                addressList.add(walletAddress);
+                i++;
+            }
+
+            lblCountedWallet.setText(String.valueOf(i));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void resetState() {
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                timer.cancel();
+            }
+        });
+
+        btnCheck.setText("Bắt đầu");
+        lblCountedWallet.setText("");
+        lblSum.setText("");
+        isChecking = false;
+        isStopped = true;
+        addressList.clear();
+        countWallet = 0;
+        showedWallets = 0;
+        sum = 0d;
+        data.clear();
+        tbvResults.setItems(data);
 
     }
 
@@ -144,23 +277,23 @@ public class Controller implements RequestBalanceByAddressCallBack {
 
                 // If reach the last wallet then cancel request
 
-                if (countWallet < addressList.length) {
+                if (countWallet < addressList.size()) {
 
                     // Format address list
 
                     String addressesString = "";
 
-                    int calculatedCounting = (countWallet + 20 < addressList.length ? countWallet + 20 : countWallet + (addressList.length - countWallet));
+                    int calculatedCounting = (countWallet + 20 < addressList.size() ? countWallet + 20 : countWallet + (addressList.size() - countWallet));
 
                     for (int i = countWallet; i < calculatedCounting; i++) {
                         if (i == calculatedCounting - 1)
-                            addressesString += addressList[i];
+                            addressesString += addressList.get(i);
                         else
-                            addressesString += addressList[i] + ",";
+                            addressesString += addressList.get(i) + ",";
                     }
 
                     showedWallets = countWallet;
-                    countWallet += countWallet + 20 < addressList.length ? 20 : addressList.length - countWallet;
+                    countWallet += countWallet + 20 < addressList.size() ? 20 : addressList.size() - countWallet;
 
                     // Call API
                     Wallet.checkBalance(addressesString, Controller.this);
@@ -170,20 +303,23 @@ public class Controller implements RequestBalanceByAddressCallBack {
                 }
 
             }
-        },0, 5000);
+        }, 0, 5000);
 
     }
 
-    private void updateCountingLabel(int countedWallet) {
+    private void updateCountingLabel() {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                lblCountedWallet.setText("Kết quả: " + countedWallet + "/" + addressList.length);
+                lblCountedWallet.setText(countWallet + "/" + addressList.size());
+                lblSum.setText(String.valueOf(sum));
             }
         });
     }
 
-    /** HANDLE RESULTS */
+    /**
+     * ----- HANDLE RESULTS -----
+     */
 
     @Override
     public void balanceByAddressCallBack(int errorCode, ArrayList<Wallet> wallet) {
@@ -192,10 +328,6 @@ public class Controller implements RequestBalanceByAddressCallBack {
             System.out.print("Stop plzzz");
             countWallet = showedWallets;
             return;
-        }
-
-        if (wallet != null) {
-            updateCountingLabel(countWallet);
         }
 
         updateBalanceCol(wallet);
@@ -212,12 +344,12 @@ public class Controller implements RequestBalanceByAddressCallBack {
         }
 
         for (int i = 0; i < walletList.size(); i++) {
-            walletList.get(i).setSerial( ( countWallet - (walletList.size()-i) ) + 1 );
+            walletList.get(i).setSerial((countWallet - (walletList.size() - i)) + 1);
         }
 
         // Handle when finish checking
 
-        if (countWallet == addressList.length) {
+        if (countWallet == addressList.size()) {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
@@ -229,8 +361,13 @@ public class Controller implements RequestBalanceByAddressCallBack {
             isStopped = true;
         }
 
+        sum += Wallet.sum(walletList);
+        System.out.print(sum);
         data.addAll(walletList);
+
+        // Update UI
         tbvResults.setItems(data);
+        updateCountingLabel();
 
     }
 
