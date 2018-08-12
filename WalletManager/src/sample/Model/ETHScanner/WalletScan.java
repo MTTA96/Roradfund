@@ -8,13 +8,13 @@ import retrofit2.Response;
 import sample.Interface.RequestBalanceByAddressCallBack;
 import sample.Network.EtherScan.BaseResponse;
 import sample.Network.RetrofitClient;
-import sample.Network.ServicesImp;
+import sample.Network.EtherScan.EthScanServicesImp;
 import sample.Util.ServerUrl;
 import sample.Util.SupportKeys;
 
 import java.util.ArrayList;
 
-public class Wallet {
+public class WalletScan {
 
     private int serial;
     @SerializedName("account")
@@ -50,12 +50,12 @@ public class Wallet {
 
     /** ----- METHOD ----- */
 
-    public static Double sum(ArrayList<Wallet> walletList) {
+    public static Double sum(ArrayList<WalletScan> walletScanList) {
 
         Double sum = 0d;
 
-        for (Wallet wallet: walletList) {
-            sum += Double.valueOf(wallet.getBalance());
+        for (WalletScan walletScan : walletScanList) {
+            sum += Double.valueOf(walletScan.getBalance());
         }
 
         return sum;
@@ -66,9 +66,9 @@ public class Wallet {
 
     public static void checkBalance(String address, RequestBalanceByAddressCallBack requestBalanceByAddressCallBack) {
 
-        ServicesImp servicesImp = RetrofitClient.getClient(ServerUrl.ServerUrl).create(ServicesImp.class);
+        EthScanServicesImp ethScanServicesImp = RetrofitClient.getEtherScanClient(ServerUrl.ServerUrl).create(EthScanServicesImp.class);
 
-        servicesImp.getBalanceByAddress("account", "balancemulti", address, "latest", SupportKeys.etherscanAPIKey).enqueue(new Callback<BaseResponse>() {
+        ethScanServicesImp.getBalanceByAddress("account", "balancemulti", address, "latest", SupportKeys.etherscanAPIKey).enqueue(new Callback<BaseResponse>() {
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
 

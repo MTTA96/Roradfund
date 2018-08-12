@@ -9,7 +9,7 @@ public class Token {
     private TokenInfo tokenInfo;
     @SerializedName("balance")
     @Expose
-    private Integer balance;
+    private Double balance;
     @SerializedName("totalIn")
     @Expose
     private Integer totalIn;
@@ -25,11 +25,11 @@ public class Token {
         this.tokenInfo = tokenInfo;
     }
 
-    public Integer getBalance() {
+    public Double getBalance() {
         return balance;
     }
 
-    public void setBalance(Integer balance) {
+    public void setBalance(Double balance) {
         this.balance = balance;
     }
 

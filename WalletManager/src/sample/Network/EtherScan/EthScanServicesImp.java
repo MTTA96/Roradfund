@@ -1,4 +1,4 @@
-package sample.Network;
+package sample.Network.EtherScan;
 
 import retrofit2.Call;
 import retrofit2.http.*;
@@ -9,13 +9,13 @@ import sample.Util.ServerUrl;
  * Created by zzzzz on 5/22/2018.
  */
 
-public interface ServicesImp {
+public interface EthScanServicesImp {
 
     /** Get wallet  */
 
     /** Get subject list */
 //    @GET(ServerUrl.GET_BALANCE_BY_ADDRESS_URL + "{address}")
-//    Call<Wallet> getBalanceByAddress(@Path(value="address", encoded=true) String address, @Query("apiKey") String apiKey);
+//    Call<WalletScan> getBalanceByAddress(@Path(value="address", encoded=true) String address, @Query("apiKey") String apiKey);
 
     @GET(ServerUrl.GET_BALANCE_BY_ADDRESS_URL)
     Call<BaseResponse> getBalanceByAddress(@Query("module") String module,

@@ -2,7 +2,7 @@ package sample.Network.EtherScan;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import sample.Model.ETHScanner.Wallet;
+import sample.Model.ETHScanner.WalletScan;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ public class BaseResponse {
     private String message;
     @SerializedName("result")
     @Expose
-    private ArrayList<Wallet> result = null;
+    private ArrayList<WalletScan> result = null;
 
     public String getStatus() {
         return status;
@@ -35,11 +35,11 @@ public class BaseResponse {
         this.message = message;
     }
 
-    public ArrayList<Wallet> getResult() {
+    public ArrayList<WalletScan> getResult() {
         return result;
     }
 
-    public void setResult(ArrayList<Wallet> result) {
+    public void setResult(ArrayList<WalletScan> result) {
         this.result = result;
     }
 

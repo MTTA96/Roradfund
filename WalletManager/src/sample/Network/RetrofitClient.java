@@ -8,9 +8,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class RetrofitClient {
-    private static Retrofit retrofitEtherScan = null;
 
-    public static Retrofit getClient(String baseUrl) {
+    private static Retrofit retrofitEtherScan = null;
+    private static Retrofit retrofitEtherplorer = null;
+
+    public static Retrofit getEtherScanClient(String baseUrl) {
 
         if (retrofitEtherScan==null) {
 
@@ -22,6 +24,21 @@ public class RetrofitClient {
         }
 
         return retrofitEtherScan;
+
+    }
+
+    public static Retrofit getEtherplorerClient(String baseUrl) {
+
+        if (retrofitEtherScan == null) {
+
+            retrofitEtherplorer = new Retrofit.Builder()
+                    .baseUrl(baseUrl)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+        }
+
+        return retrofitEtherplorer;
 
     }
 

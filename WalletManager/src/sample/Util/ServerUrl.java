@@ -17,7 +17,7 @@ public class ServerUrl {
 
     /** ----- ETH PLORER ----- */
 
-    public static final String EthUrl = "https://api.etherscan.io/";
-    public static final String GET_ADDRESS_INFO = "getAddressInfo/";
+    public static final String EthplorerUrl = "http://api.ethplorer.io/";
+    public static final String GET_ADDRESS_INFO = EthplorerUrl + "getAddressInfo/";
 
 }
