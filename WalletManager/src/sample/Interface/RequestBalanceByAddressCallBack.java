@@ -1,6 +1,6 @@
 package sample.Interface;
 
-import sample.Model.Wallet;
+import sample.Model.ETHScanner.Wallet;
 
 import java.util.ArrayList;
 

@@ -15,4 +15,9 @@ public class ServerUrl {
     public static final String ServerUrl = "https://api.etherscan.io/";
     public static final String GET_BALANCE_BY_ADDRESS_URL = ServerUrl + "api/";
 
+    /** ----- ETH PLORER ----- */
+
+    public static final String EthUrl = "https://api.etherscan.io/";
+    public static final String GET_ADDRESS_INFO = "getAddressInfo/";
+
 }

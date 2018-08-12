@@ -1,4 +1,4 @@
-package sample.Model;
+package sample.Model.ETHScanner;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

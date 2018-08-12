@@ -2,7 +2,7 @@ package sample.Network.EtherScan;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import sample.Model.Wallet;
+import sample.Model.ETHScanner.Wallet;
 
 import java.util.ArrayList;
 

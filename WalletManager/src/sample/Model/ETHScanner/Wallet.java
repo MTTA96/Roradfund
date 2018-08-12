@@ -1,4 +1,4 @@
-package sample.Model;
+package sample.Model.ETHScanner;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -68,7 +68,7 @@ public class Wallet {
 
         ServicesImp servicesImp = RetrofitClient.getClient(ServerUrl.ServerUrl).create(ServicesImp.class);
 
-        servicesImp.getBalanceByAddress("account", "balancemulti", address, "latest", "A2YM3RHX37AVY5G5312XD2QS9N76FDV4Z3").enqueue(new Callback<BaseResponse>() {
+        servicesImp.getBalanceByAddress("account", "balancemulti", address, "latest", SupportKeys.etherscanAPIKey).enqueue(new Callback<BaseResponse>() {
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
 

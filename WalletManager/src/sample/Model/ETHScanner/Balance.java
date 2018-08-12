@@ -1,4 +1,4 @@
-package sample.Model;
+package sample.Model.ETHScanner;
 
 import javafx.beans.property.SimpleStringProperty;
 

@@ -11,15 +11,13 @@ import javafx.stage.FileChooser;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import sample.Interface.RequestBalanceByAddressCallBack;
-import sample.Model.Wallet;
+import sample.Model.ETHScanner.Wallet;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.spi.FileTypeDetector;
 import java.util.*;
 import java.util.Timer;
 
