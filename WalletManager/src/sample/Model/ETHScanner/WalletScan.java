@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class WalletScan {
 
     private int serial;
+    private String tokenAmount;
     @SerializedName("account")
     @Expose
     private String account;
@@ -24,12 +25,29 @@ public class WalletScan {
     @Expose
     private String balance;
 
+    public WalletScan() {}
+
+    public WalletScan(int serial, String account, String tokenAmount, String balance) {
+        this.serial = serial;
+        this.account = account;
+        this.tokenAmount = tokenAmount;
+        this.balance = balance;
+    }
+
     public int getSerial() {
         return serial;
     }
 
     public void setSerial(int serial) {
         this.serial = serial;
+    }
+
+    public String getTokenAmount() {
+        return tokenAmount;
+    }
+
+    public void setTokenAmount(String tokenAmount) {
+        this.tokenAmount = tokenAmount;
     }
 
     public String getAccount() {
@@ -41,7 +59,7 @@ public class WalletScan {
     }
 
     public String getBalance() {
-        return String.valueOf(Double.valueOf(balance)/100000000000000000d);
+        return String.valueOf(Double.valueOf(balance)/1000000000000000000d);
     }
 
     public void setBalance(String balance) {

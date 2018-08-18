@@ -106,7 +106,7 @@
                                                                 <columns>
                                                       <TableColumn fx:id="serialCol" editable="false" maxWidth="750.0" minWidth="50.0" prefWidth="50.0" sortable="false" text="STT" />
                                                                     <TableColumn fx:id="addressCol" editable="false" minWidth="100.0" prefWidth="100.0" sortable="false" text="Địa chỉ" />
-                                                      <TableColumn fx:id="balanceCol1" editable="false" minWidth="50.0" prefWidth="100.0" sortable="false" text="Token" />
+                                                      <TableColumn fx:id="colTokenAmountDetails" editable="false" minWidth="50.0" prefWidth="100.0" sortable="false" text="Token" />
                                                                     <TableColumn fx:id="balanceCol" editable="false" minWidth="50.0" prefWidth="100.0" sortable="false" text="ETH" />
                                                                 </columns>
                                                                 <columnResizePolicy>

@@ -50,7 +50,7 @@ public class TableWalletEthplorer {
     }
 
     public Double getSum() {
-        return sum;
+        return sum/1000000000000000000d;
     }
 
     public void setSum(Double sum) {

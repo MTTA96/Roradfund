@@ -1,4 +1,4 @@
-package sample.Model;
+package sample.Model.Symbol;
 
 import sample.Model.Ethplorer.WalletETHplorer;
 
