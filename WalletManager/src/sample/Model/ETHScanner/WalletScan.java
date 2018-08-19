@@ -43,7 +43,7 @@ public class WalletScan {
     }
 
     public String getTokenAmount() {
-        return tokenAmount;
+        return String.valueOf(Double.valueOf(tokenAmount)/1000000000000000000d);
     }
 
     public void setTokenAmount(String tokenAmount) {

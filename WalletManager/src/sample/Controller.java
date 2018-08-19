@@ -4,9 +4,12 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseButton;
 import javafx.stage.FileChooser;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -124,8 +127,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
                         if (symbolList.getSymbolName().equals(clickedRow.getSymbol())) {
 
                             int count = 1;
-                            for (Token token :
-                                    symbolList.getTokenList()) {
+                            for (Token token : symbolList.getTokenList()) {
                                 data.add(new WalletScan(count, token.getTokenInfo().getAddress(), token.getBalance().toString(), String.valueOf(0)));
                                 count += 1;
                             }
@@ -135,8 +137,44 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
 
                 }
             });
+            stop();
             return row;
         });
+
+
+        /** Copy row's content */
+
+        tbvBalanceResults.getSelectionModel().setCellSelectionEnabled(true);
+        tbvBalanceResults.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        MenuItem item = new MenuItem("Copy");
+        item.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ObservableList<TablePosition> posList = tbvBalanceResults.getSelectionModel().getSelectedCells();
+                int old_r = -1;
+                StringBuilder clipboardString = new StringBuilder();
+                for (TablePosition p : posList) {
+                    int r = p.getRow();
+                    int c = p.getColumn();
+                    Object cell = tbvBalanceResults.getColumns().get(c).getCellData(r);
+                    if (cell == null)
+                        cell = "";
+                    if (old_r == r)
+                        clipboardString.append('\t');
+                    else if (old_r != -1)
+                        clipboardString.append('\n');
+                    clipboardString.append(cell);
+                    old_r = r;
+                }
+                final ClipboardContent content = new ClipboardContent();
+                content.putString(clipboardString.toString());
+                Clipboard.getSystemClipboard().setContent(content);
+            }
+        });
+        ContextMenu menu = new ContextMenu();
+        menu.getItems().add(item);
+        tbvBalanceResults.setContextMenu(menu);
 
     }
 
@@ -387,42 +425,6 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
         tbvTotalResults.setItems(dataResults);
 
     }
-//    private void updateBalanceCol(ArrayList<WalletScan> walletScanList) {
-//
-//        if (walletScanList == null) {
-//            walletScanList = new ArrayList<>();
-//            WalletScan errorWalletScan = new WalletScan();
-//            errorWalletScan.setAccount("Error!");
-//            walletScanList.add(errorWalletScan);
-//        }
-//
-//        for (int i = 0; i < walletScanList.size(); i++) {
-//            walletScanList.get(i).setSerial((countWallet - (walletScanList.size() - i)) + 1);
-//        }
-//
-//        // Handle when finish checking
-//
-//        if (countWallet == addressList.size()) {
-//            Platform.runLater(new Runnable() {
-//                @Override
-//                public void run() {
-//                    System.out.print("Finish\n");
-//                    btnCheck.setText("Bắt đầu");
-//                }
-//            });
-//            isChecking = false;
-//            isStopped = true;
-//        }
-//
-//        sum += WalletScan.sum(walletScanList);
-//        System.out.print(sum);
-//        data.addAll(walletScanList);
-//
-//        // Update UI
-//        tbvBalanceResults.setItems(data);
-//        updateCountingLabel();
-//
-//    }
 
     private void updateBalanceCol(WalletETHplorer wallet) {
 
