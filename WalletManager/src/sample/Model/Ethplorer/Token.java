@@ -4,6 +4,8 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Token {
+
+    private String walletAddress;
     @SerializedName("tokenInfo")
     @Expose
     private TokenInfo tokenInfo;
@@ -16,6 +18,14 @@ public class Token {
     @SerializedName("totalOut")
     @Expose
     private Integer totalOut;
+
+    public String getWalletAddress() {
+        return walletAddress;
+    }
+
+    public void setWalletAddress(String walletAddress) {
+        this.walletAddress = walletAddress;
+    }
 
     public TokenInfo getTokenInfo() {
         return tokenInfo;

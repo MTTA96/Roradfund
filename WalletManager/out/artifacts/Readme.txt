@@ -1,19 +1,16 @@
-ver 1.0.0
+ver 2.0.0
 
 *** Release note:
 .Fix:
-1. Detect white space in list.
+
 
 .Update:
-1. Calculate sum.
-2. Get wallet address from file (txt, docx).
-3. Change UI from vertical to horizontal.
+1. Check 1 wallet / 6 secs.
+2. Check token.
 
 *** Incoming:
-1. Open file from path.
-2. Handle excel.
-3. Trading.
+
 
 *** Infomation: 
 1. Run WalletManager.jar
-2. Can check 20 wallets/5s
+2. Can check 1 wallet/6s

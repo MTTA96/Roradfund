@@ -17,6 +17,8 @@ import java.util.ArrayList;
 public class WalletScan {
 
     private int serial;
+    @SerializedName("tokenAmount")
+    @Expose
     private String tokenAmount;
     @SerializedName("account")
     @Expose
@@ -43,7 +45,14 @@ public class WalletScan {
     }
 
     public String getTokenAmount() {
-        return String.valueOf(Double.valueOf(tokenAmount)/1000000000000000000d);
+
+        if (Double.valueOf(tokenAmount) < 1000000000) {
+
+            return tokenAmount;
+        }
+
+        return String.valueOf(Double.valueOf(tokenAmount != null ? tokenAmount : String.valueOf(0.0))/1000000000000000000d);
+
     }
 
     public void setTokenAmount(String tokenAmount) {

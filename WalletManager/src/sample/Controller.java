@@ -16,10 +16,9 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import sample.Interface.RequestWalletEthplorerInfoCallBack;
 import sample.Model.ETHScanner.WalletScan;
-import sample.Model.Ethplorer.TableWalletEthplorer;
+import sample.Model.MainTableModel;
 import sample.Model.Ethplorer.Token;
 import sample.Model.Ethplorer.WalletETHplorer;
-import sample.Model.Symbol.Symbol;
 import sample.Model.Symbol.SymbolList;
 
 import java.io.File;
@@ -32,9 +31,7 @@ import java.util.Timer;
 
 public class Controller implements RequestWalletEthplorerInfoCallBack {
 
-    /**
-     * ----- VIEW -----
-     */
+    /** ----- VIEW ----- */
 
     @FXML
     private TextField txfFilePath;
@@ -44,38 +41,29 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
     private Button btnOpenResFile, btnCheck;
 
     @FXML
-    private TableView<TableWalletEthplorer> tbvTotalResults;
+    private TableView<MainTableModel> tbvMain;
     @FXML
-    private TableColumn<TableWalletEthplorer, Integer> colSerialResult;
+    private TableColumn<MainTableModel, Integer> colSerialMain, colNumberOfTokenMain, colNumberOfWalletMain;
     @FXML
-    private TableColumn<TableWalletEthplorer, String> colSymbolTokenResult;
+    private TableColumn<MainTableModel, String> colSymbolTokenMain, colTokenNameMain;
     @FXML
-    private TableColumn<TableWalletEthplorer, String> colTokenNameResult;
-    @FXML
-    private TableColumn<TableWalletEthplorer, Integer> colNumberOfTokenResult;
-    @FXML
-    private TableColumn<TableWalletEthplorer, Integer> colNumberOfWalletResult;
-    @FXML
-    private TableColumn<TableWalletEthplorer, Double> colSumResult;
+    private TableColumn<MainTableModel, Double> colTotalMain;
 
     @FXML
-    private TableView<WalletScan> tbvBalanceResults;
+    private TableView<WalletScan> tbvDetails;
     @FXML
-    private TableColumn<WalletScan, String> addressCol, balanceCol, colTokenAmountDetails;
+    private TableColumn<WalletScan, String> colAddressDetails, colBalanceDetails, colTokenAmountDetails;
     @FXML
-    private TableColumn<WalletScan, Integer> serialCol;
+    private TableColumn<WalletScan, Integer> colSerialDetails;
 
-    /**
-     * ----- PROPS -----
-     */
+    /** ----- PROPS ----- */
 
-    private WalletETHplorer ethplorerWallet;
     private final ObservableList<WalletScan> data = FXCollections.observableArrayList();
-    private final ObservableList<TableWalletEthplorer> dataResults = FXCollections.observableArrayList();
+    private final ObservableList<MainTableModel> dataResults = FXCollections.observableArrayList();
     private ArrayList<String> addressList = new ArrayList<>();
+    private ArrayList<WalletScan> walletList = new ArrayList<>();
     private ArrayList<SymbolList> symbolLists = new ArrayList<>();
     private Timer timer = new Timer();
-    private Timer timerResults = new Timer();
 
     /** Supported props */
 
@@ -87,77 +75,83 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
 
     //0x3750fC1505ba9a4cA3907b94Cda8e5758d31F3aD
 
-    /**
-     * CONFIG
-     */
+
+    /** ----- CONFIG ----- */
 
     private void configColumns() {
 
-        /** Result cols */
+        /** Main cols */
 
-        colSerialResult.setCellValueFactory(new PropertyValueFactory<TableWalletEthplorer, Integer>("serial"));
-        colSymbolTokenResult.setCellValueFactory(new PropertyValueFactory<TableWalletEthplorer, String>("symbol"));
-        colTokenNameResult.setCellValueFactory(new PropertyValueFactory<TableWalletEthplorer, String>("tokenName"));
-        colNumberOfTokenResult.setCellValueFactory(new PropertyValueFactory<TableWalletEthplorer, Integer>("numberOfToken"));
-        colNumberOfWalletResult.setCellValueFactory(new PropertyValueFactory<TableWalletEthplorer, Integer>("numberOfWallet"));
-        colSumResult.setCellValueFactory(new PropertyValueFactory<TableWalletEthplorer, Double>("sum"));
+        colSerialMain.setCellValueFactory(new PropertyValueFactory<MainTableModel, Integer>("serial"));
+        colSymbolTokenMain.setCellValueFactory(new PropertyValueFactory<MainTableModel, String>("symbol"));
+        colTokenNameMain.setCellValueFactory(new PropertyValueFactory<MainTableModel, String>("tokenName"));
+        colNumberOfTokenMain.setCellValueFactory(new PropertyValueFactory<MainTableModel, Integer>("numberOfToken"));
+        colNumberOfWalletMain.setCellValueFactory(new PropertyValueFactory<MainTableModel, Integer>("numberOfWallet"));
+        colTotalMain.setCellValueFactory(new PropertyValueFactory<MainTableModel, Double>("sum"));
 
         /** Details cols */
 
-        serialCol.setCellValueFactory(new PropertyValueFactory<WalletScan, Integer>("serial"));
-        addressCol.setCellValueFactory(new PropertyValueFactory<WalletScan, String>("account"));
+        colSerialDetails.setCellValueFactory(new PropertyValueFactory<WalletScan, Integer>("serial"));
+        colAddressDetails.setCellValueFactory(new PropertyValueFactory<WalletScan, String>("account"));
         colTokenAmountDetails.setCellValueFactory(new PropertyValueFactory<WalletScan, String>("tokenAmount"));
-        balanceCol.setCellValueFactory(new PropertyValueFactory<WalletScan, String>("balance"));
+        colBalanceDetails.setCellValueFactory(new PropertyValueFactory<WalletScan, String>("balance"));
 
         /** Action */
 
-        tbvTotalResults.setRowFactory(tv -> {
-            TableRow<TableWalletEthplorer> row = new TableRow<>();
+        tbvMain.setRowFactory(tv -> {
+            TableRow<MainTableModel> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (!row.isEmpty() && event.getButton()==MouseButton.PRIMARY && event.getClickCount() == 2) {
 
-                    TableWalletEthplorer clickedRow = row.getItem();
-                    System.out.print(clickedRow);
+                    MainTableModel rowData = row.getItem();
+                    System.out.print(rowData);
 
                     data.removeAll();
-                    tbvBalanceResults.getItems().clear();
-//                    balanceCol.
-                    for (SymbolList symbolList :
-                            symbolLists) {
-                        if (symbolList.getSymbolName().equals(clickedRow.getSymbol())) {
+                    tbvDetails.getItems().clear();
 
-                            int count = 1;
-                            for (Token token : symbolList.getTokenList()) {
-                                data.add(new WalletScan(count, token.getTokenInfo().getAddress(), token.getBalance().toString(), String.valueOf(0)));
-                                count += 1;
-                            }
-                            tbvBalanceResults.setItems(data);
+                    if (rowData.getSymbol().equals("All")) {
+                        int count = 1;
+                        for (WalletScan wallet : walletList) {
+                            data.add(new WalletScan(count, wallet.getAccount(), wallet.getTokenAmount(), wallet.getBalance()));
+                            count += 1;
                         }
-                    }
+                        tbvDetails.setItems(data);
+                    } else
+                        for (SymbolList symbolList : symbolLists) {
+                            if (symbolList.getSymbolName().equals(rowData.getSymbol())) {
+
+                                int count = 1;
+                                for (Token token : symbolList.getTokenList()) {
+                                    data.add(new WalletScan(count, token.getWalletAddress(), token.getBalance().toString(), String.valueOf(0)));
+                                    count += 1;
+                                }
+                                tbvDetails.setItems(data);
+
+                            }
+                        }
 
                 }
             });
-            stop();
             return row;
         });
 
 
         /** Copy row's content */
 
-        tbvBalanceResults.getSelectionModel().setCellSelectionEnabled(true);
-        tbvBalanceResults.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        tbvDetails.getSelectionModel().setCellSelectionEnabled(true);
+        tbvDetails.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         MenuItem item = new MenuItem("Copy");
         item.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                ObservableList<TablePosition> posList = tbvBalanceResults.getSelectionModel().getSelectedCells();
+                ObservableList<TablePosition> posList = tbvDetails.getSelectionModel().getSelectedCells();
                 int old_r = -1;
                 StringBuilder clipboardString = new StringBuilder();
                 for (TablePosition p : posList) {
                     int r = p.getRow();
                     int c = p.getColumn();
-                    Object cell = tbvBalanceResults.getColumns().get(c).getCellData(r);
+                    Object cell = tbvDetails.getColumns().get(c).getCellData(r);
                     if (cell == null)
                         cell = "";
                     if (old_r == r)
@@ -174,16 +168,16 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
         });
         ContextMenu menu = new ContextMenu();
         menu.getItems().add(item);
-        tbvBalanceResults.setContextMenu(menu);
+        tbvDetails.setContextMenu(menu);
 
     }
 
-    /**
-     * ----- ACTIONS -----
-     */
+
+    /** ----- ACTIONS ----- */
 
     @FXML
     void openResourceFile(ActionEvent event) {
+
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Chọn file");
         //fileChooser.showOpenDialog(null);
@@ -220,19 +214,24 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
 
             System.out.print("Start\n");
 
+            // Reset props
+
             isChecking = true;
             isStopped = false;
             countWallet = 0;
             data.clear();
-            tbvBalanceResults.setItems(data);
-            btnCheck.setText("Dừng");
+            tbvDetails.setItems(data);
 
+            //  UI
+
+            btnCheck.setText("Dừng");
             lblCountedWallet.setText(countWallet + "/" + addressList.size());
             lblSum.setText(String.valueOf(sum));
 
             configColumns();
 
-            //callAPICheckBalance();
+            // Request data
+
             callAPIGetWalletInfo();
 
         }
@@ -261,6 +260,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
         });
 
     }
+
 
     /** ----- SUPPORTED FUNC ----- */
 
@@ -364,35 +364,30 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
             }
         });
 
-        btnCheck.setText("Bắt đầu");
-        lblCountedWallet.setText("");
-        lblSum.setText("");
+        // Reset props
+
         isChecking = false;
         isStopped = true;
-        addressList.clear();
         countWallet = 0;
         showedWallets = 0;
         sum = 0d;
+        walletList.clear();
+        addressList.clear();
+        symbolLists.clear();
         data.clear();
-        tbvBalanceResults.setItems(data);
+
+        // Reset UI
+
+        btnCheck.setText("Bắt đầu");
+        //txfFilePath.setText("");
+        lblCountedWallet.setText("");
+        lblSum.setText("");
+        tbvMain.getItems().clear();
+        tbvDetails.getItems().clear();
 
     }
 
     private int existedSymbol(String symbol) {
-
-//        for (Symbol symbol1 : symbolList.getTokenList()) {
-//            if (symbol1.getSymbol().equals(symbol)) {
-//                return true;
-//            }
-//        }
-
-//        //int i = -1;
-//        for (SymbolList symbolList: symbolList) {
-//            i+=1;
-//            if (symbolList.getSymbolName().equals(symbol)) {
-//                return i;
-//            }
-//        }
 
         for (int i = 0; i < symbolLists.size(); i++) {
             if (symbolLists.get(i).getSymbolName().equals(symbol)) {
@@ -404,29 +399,22 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
 
     }
 
-    private void setUpDataResultTable(TableWalletEthplorer tableWalletEthplorer, List<Token> tokenList, Token token) {
+    private void setUpData(WalletETHplorer wallet, Token token, int symbolIndex) {
 
+        // Set up props
+
+        token.setWalletAddress(wallet.getAddress());
         SymbolList symbolList = new SymbolList();
         symbolList.setSymbolName(token.getTokenInfo().getSymbol());
+        symbolList.setTokenName(token.getTokenInfo().getName());
         symbolList.setTotal(token.getBalance());
-        symbolList.getTokenList().addAll(tokenList);
+        symbolList.getTokenList().add(token);
 
         this.symbolLists.add(symbolList);
 
-        // Prepare table data
-
-        tableWalletEthplorer.setSymbol(symbolList.getSymbolName());
-        tableWalletEthplorer.setSum(symbolList.getTotal());
-        tableWalletEthplorer.setNumberOfWallet(symbolLists.get(0).getTokenList().size());
-
-        dataResults.add(tableWalletEthplorer);
-
-        // Update UI
-        tbvTotalResults.setItems(dataResults);
-
     }
 
-    private void updateBalanceCol(WalletETHplorer wallet) {
+    private void updateDetailsTable(WalletETHplorer wallet) {
 
         WalletScan walletScan = new WalletScan();
 
@@ -435,8 +423,10 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
         } else {
             walletScan.setSerial(countWallet);
             walletScan.setAccount(wallet.getAddress().isEmpty() ? "Không thể lấy địa chỉ" : wallet.getAddress());
+            walletScan.setTokenAmount(String.valueOf(wallet.getTokens() != null ? wallet.getTokens().size() : 0));
             walletScan.setBalance(wallet.getETH().getBalance().toString());
         }
+
 
         // Handle when finish checking
 
@@ -453,56 +443,84 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
         }
 
         sum += Double.parseDouble(walletScan.getBalance());
-        System.out.print(sum);
+
+        walletList.add(walletScan);
         data.add(walletScan);
 
         // Update UI
-        tbvBalanceResults.setItems(data);
+        tbvDetails.setItems(data);
         updateCountingLabel();
 
     }
 
-    private void updateResultCols(WalletETHplorer wallet) {
-
-        TableWalletEthplorer tableWalletEthplorer = new TableWalletEthplorer();
-        tableWalletEthplorer.setSerial(symbolLists.size());
-
-        int symbolIndex = -1;
+    private void updateMainTable(WalletETHplorer wallet) {
 
         if (wallet.getTokens() != null) {
 
             // Check symbol
+
             if (symbolLists.size() == 0) {
 
-                for (int i = 0; i < wallet.getTokens().size(); i++) {
-
-                    Token token = wallet.getTokens().get(i);
-
-                    setUpDataResultTable(tableWalletEthplorer, wallet.getTokens(), token);
-
+                for (Token token : wallet.getTokens()) {
+                    setUpData(wallet, token, 0);
                 }
 
-                return;
-            }
+            } else {
 
-            for (int i = 0; i < wallet.getTokens().size(); i++) {
+                // Check if symbol has been existed in the list before adding to the list
 
-                Token token = wallet.getTokens().get(i);
+                int symbolIndex = -1;
 
-                // Check if symbol isn't existed in the list then add to the list
+                for (Token token : wallet.getTokens()) {
 
-                symbolIndex = existedSymbol(wallet.getTokens().get(i).getTokenInfo().getSymbol());
-                if (symbolIndex == -1) {
+                    symbolIndex = existedSymbol(token.getTokenInfo().getSymbol());
 
-                    setUpDataResultTable(tableWalletEthplorer, wallet.getTokens(), token);
+                    if (symbolIndex == -1)
+                        setUpData(wallet, token, symbolIndex);
+                    else {
+                        // Add all token address to the list
+                        token.setWalletAddress(wallet.getAddress());
+                        symbolLists.get(symbolIndex).getTokenList().add(token);
+                    }
 
-                } else {
-
-                    // Add all token address to the list
-                    symbolLists.get(symbolIndex).getTokenList().addAll(wallet.getTokens());
                 }
+            }
+
+            // Prepare main table data
+
+            int count = 1;
+            dataResults.clear();
+            tbvMain.getItems().clear();
+            MainTableModel mainTableModel;
+
+            mainTableModel = new MainTableModel();
+            mainTableModel.setSerial(count);
+            mainTableModel.setSymbol("All");
+            mainTableModel.setTokenName("");
+            mainTableModel.setSum(0.0);
+            mainTableModel.setNumberOfToken(symbolLists.size());
+            mainTableModel.setNumberOfWallet(addressList.size());
+
+            dataResults.add(mainTableModel);
+            count += 1;
+
+            for (SymbolList symbolList : symbolLists) {
+
+                mainTableModel = new MainTableModel();
+                mainTableModel.setSerial(count);
+                mainTableModel.setSymbol(symbolList.getSymbolName());
+                mainTableModel.setTokenName(symbolList.getTokenName());
+                mainTableModel.setSum(symbolList.getTotal());
+                mainTableModel.setNumberOfWallet(symbolList.getTokenList().size());
+
+                dataResults.add(mainTableModel);
+                count += 1;
 
             }
+
+            // Update UI
+
+            tbvMain.setItems(dataResults);
 
         }
 
@@ -522,17 +540,46 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
 
     }
 
+    private void updateCountingLabel() {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                lblCountedWallet.setText(countWallet + "/" + addressList.size());
+                lblSum.setText(String.valueOf(sum));
+            }
+        });
+    }
+
+
     /** ----- API SERVICES ----- */
 
     private void callAPIGetWalletInfo() {
 
-        // If reach the last wallet then cancel request
+        // Send request immediately if list is empty
+
+        if (countWallet == 0) {
+
+            // Format address list
+
+            String address = addressList.get(countWallet);
+            countWallet += 1;
+            //countWallet += countWallet + 1 < addressList.size() ? 1 : addressList.size() - countWallet;
+
+            // Call API
+            WalletETHplorer.getWalletInfo(address, Controller.this);
+
+            return;
+
+        }
 
         timer = new Timer();
 
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
+
+                // If reach the last wallet then cancel request
+
                 if (countWallet < addressList.size()) {
 
                     // Format address list
@@ -545,77 +592,13 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
                     WalletETHplorer.getWalletInfo(address, Controller.this);
 
                 }
+
             }
         }, 6000);
 
     }
 
-//    private void callAPICheckBalance() {
-//
-//        timer = new Timer();
-//
-//        timer.schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//
-//                // If reach the last wallet then cancel request
-//
-//                if (countWallet < addressList.size()) {
-//
-//                    // Format address list
-//
-//                    String addressesString = "";
-//
-//                    int calculatedCounting = (countWallet + 20 < addressList.size() ? countWallet + 20 : countWallet + (addressList.size() - countWallet));
-//
-//                    for (int i = countWallet; i < calculatedCounting; i++) {
-//                        if (i == calculatedCounting - 1)
-//                            addressesString += addressList.get(i);
-//                        else
-//                            addressesString += addressList.get(i) + ",";
-//                    }
-//
-//                    showedWallets = countWallet;
-//                    countWallet += countWallet + 20 < addressList.size() ? 20 : addressList.size() - countWallet;
-//
-//                    // Call API
-//                    WalletScan.checkBalance(addressesString, Controller.this);
-//
-//                } else {
-//                    this.cancel();
-//                }
-//
-//            }
-//        }, 0, 5000);
-//
-//    }
-
-    private void updateCountingLabel() {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                lblCountedWallet.setText(countWallet + "/" + addressList.size());
-                lblSum.setText(String.valueOf(sum));
-            }
-        });
-    }
-
-    /**
-     * ----- HANDLE RESULTS -----
-     */
-
-//    @Override
-//    public void balanceByAddressCallBack(int errorCode, ArrayList<WalletScan> walletScan) {
-//
-//        if (isStopped) {
-//            System.out.print("Stop plzzz");
-//            countWallet = showedWallets;
-//            return;
-//        }
-//
-//        updateBalanceCol(walletScan);
-//
-//    }
+    /** ----- HANDLE RESULTS ----- */
 
     @Override
     public void walletInfoCallBack(int errorCode, WalletETHplorer wallet) {
@@ -626,8 +609,8 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
             return;
         }
 
-        updateBalanceCol(wallet);
-        updateResultCols(wallet);
+        updateDetailsTable(wallet);
+        updateMainTable(wallet);
         callAPIGetWalletInfo();
 
     }

@@ -7,13 +7,15 @@ import java.util.ArrayList;
 public class SymbolList {
 
     private String symbolName;
+    private String tokenName;
     private Double total = 0d;
     private ArrayList<Token> tokenList = new ArrayList();
 
     public SymbolList() {}
 
-    public SymbolList(String symbolName, Double total, ArrayList<Token> tokenList) {
+    public SymbolList(String symbolName, String tokenName, Double total, ArrayList<Token> tokenList) {
         this.symbolName = symbolName;
+        this.tokenName = tokenName;
         this.total = total;
         this.tokenList = tokenList;
     }
@@ -26,12 +28,26 @@ public class SymbolList {
         this.symbolName = symbolName;
     }
 
+    public String getTokenName() {
+        return tokenName;
+    }
+
+    public void setTokenName(String tokenName) {
+        this.tokenName = tokenName;
+    }
+
     public Double getTotal() {
-        return total;
+
+        this.total = 0d;
+        for (Token token : tokenList) {
+            total += token.getBalance();
+        }
+
+        return total/1000000000000000000d;
     }
 
     public void setTotal(Double total) {
-        this.total += total;
+        this.total = total;
     }
 
     public ArrayList<Token> getTokenList() {
