@@ -430,7 +430,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
 
         // Handle when finish checking
 
-        if (countWallet > addressList.size()) {
+        if (countWallet == addressList.size()) {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
@@ -488,7 +488,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
 
             // Prepare main table data
 
-            int count = 1;
+            int count = 0;
             dataResults.clear();
             tbvMain.getItems().clear();
             MainTableModel mainTableModel;
@@ -594,7 +594,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
                 }
 
             }
-        }, 6000);
+        }, 4000);
 
     }
 
