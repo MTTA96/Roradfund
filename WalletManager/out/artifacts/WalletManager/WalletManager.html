@@ -1,49 +1,43 @@
-<html>
-    <head>
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <SCRIPT src="https://java.com/js/dtjava.js"></SCRIPT><script>
+<html><head>
+  <SCRIPT src="http://java.com/js/dtjava.js"></SCRIPT>
+<script>
     function launchApplication(jnlpfile) {
         dtjava.launch(            {
                 url : 'WalletManager.jnlp'
             },
             {
-                javafx : '10.0.2+'
+                javafx : '8.0+'
             },
             {}
         );
         return false;
     }
-</script><script>
-    function javafxEmbedsample() {
+</script>
+
+<script>
+    function javafxEmbedWalletManager_id() {
         dtjava.embed(
             {
-                id : 'sample',
+                id : 'WalletManager_id',
                 url : 'WalletManager.jnlp',
                 placeholder : 'javafx-app-placeholder',
                 width : '800',
                 height : '600'
             },
             {
-                javafx : '10.0.2+'
+                javafx : '8.0+'
             },
             {}
         );
     }
-    
-            <!-- Embed FX application into web page once page is loaded -->
-    dtjava.addOnloadCallback(javafxEmbedsample);
+    <!-- Embed FX application into web page once page is loaded -->
+    dtjava.addOnloadCallback(javafxEmbedWalletManager_id);
 </script>
-    </head>
-    <body>
-        <h2>
-            Test page for <b>Main</b>
-        </h2>
-        <b>Webstart:</b><a href="WalletManager.jnlp" onclick="return launchApplication('WalletManager.jnlp');">click to launch this app as webstart</a>
-        <br>
-        <hr>
-        <br>
-        
-        <!-- Applet will be inserted here -->
-        <div id="javafx-app-placeholder"></div>
-    </body>
-</html>
+
+</head><body>
+<h2>Test page for <b>WalletManager</b></h2>
+  <b>Webstart:</b> <a href='WalletManager.jnlp' onclick="return launchApplication('WalletManager.jnlp');">click to launch this app as webstart</a><br><hr><br>
+
+  <!-- Applet will be inserted here -->
+  <div id='javafx-app-placeholder'></div>
+</body></html>
