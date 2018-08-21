@@ -43,6 +43,10 @@ public class SymbolList {
             total += token.getBalance();
         }
 
+        if (total < 10000000000d) {
+            return total;
+        }
+
         return total/1000000000000000000d;
     }
 

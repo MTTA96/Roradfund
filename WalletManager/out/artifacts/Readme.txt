@@ -5,8 +5,8 @@ ver 2.0.0
 
 
 .Update:
-1. Check 1 wallet / 6 secs.
-2. Check token.
+1. Check 1 wallet / 4 secs.
+2. Check token: TYCOON.
 
 *** Incoming:
 
