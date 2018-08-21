@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="WalletManager.jar" size="35652" download="eager" />
+    <jar href="WalletManager.jar" size="35684" download="eager" />
     <jar href="commons-codec-1.10.jar" size="284184" download="eager" />
     <jar href="commons-collections4-4.1.jar" size="751238" download="eager" />
     <jar href="converter-gson-2.4.0.jar" size="6202" download="eager" />
