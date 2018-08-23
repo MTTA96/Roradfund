@@ -72,6 +72,8 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
     private Double sum = 0d;
     private boolean isChecking = false;
     private boolean isStopped = false;
+    
+    private long delayTime = 6000;
 
     //0x3750fC1505ba9a4cA3907b94Cda8e5758d31F3aD
 
@@ -594,7 +596,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
                 }
 
             }
-        }, 4000);
+        }, delayTime);
 
     }
 
