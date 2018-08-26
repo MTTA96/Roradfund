@@ -36,6 +36,10 @@ public class Token {
     }
 
     public Double getBalance() {
+        if (balance >=
+                1000000000000000000000d) {
+            return balance/1000000000000000000d;
+        }
         return balance;
     }
 

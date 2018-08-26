@@ -32,6 +32,7 @@ import sample.Model.MainTableModel;
 import sample.Model.Ethplorer.Token;
 import sample.Model.Ethplorer.WalletETHplorer;
 import sample.Model.Symbol.SymbolList;
+import sample.Util.SupportKeys;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -526,7 +527,10 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
                 mainTableModel.setSerial(count);
                 mainTableModel.setSymbol(symbolList.getSymbolName());
                 mainTableModel.setTokenName(symbolList.getTokenName());
-                mainTableModel.setSum(symbolList.getTotal());
+                BigDecimal bg = new BigDecimal(String.valueOf(symbolList.getTotal()));
+                Formatter fmt = new Formatter();
+                fmt.format("%." + bg.scale() + "f", bg);
+                mainTableModel.setSum(Double.valueOf(fmt.toString()));
                 mainTableModel.setNumberOfWallet(symbolList.getTokenList().size());
 
                 dataResults.add(mainTableModel);
@@ -621,6 +625,12 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
 
     @Override
     public void walletInfoCallBack(int errorCode, WalletETHplorer wallet) {
+
+        if (errorCode == SupportKeys.FAILED_CODE) {
+            countWallet -= 1;
+            callAPIGetWalletInfo();
+            return;
+        }
 
         if (isStopped) {
             System.out.print("Stop plzzz");

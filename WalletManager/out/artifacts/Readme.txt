@@ -2,11 +2,12 @@ ver 2.0.0
 
 *** Release note:
 .Fix:
+1. Check token: iRide.
 
 
 .Update:
-1. Check 1 wallet / 4 secs.
-2. Check token: TYCOON.
+1. Check 1 wallet/6 secs.
+2. Update eth balance
 
 *** Incoming:
 
