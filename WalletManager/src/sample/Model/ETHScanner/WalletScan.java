@@ -12,7 +12,9 @@ import sample.Network.EtherScan.EthScanServicesImp;
 import sample.Util.ServerUrl;
 import sample.Util.SupportKeys;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Formatter;
 
 public class WalletScan {
 
@@ -68,7 +70,11 @@ public class WalletScan {
     }
 
     public String getBalance() {
-        return String.valueOf(Double.valueOf(balance)/1000000000000000000d);
+        BigDecimal bg = new BigDecimal(balance);
+        Formatter fmt = new Formatter();
+        fmt.format("%." + bg.scale() + "f", bg);
+//        return String.valueOf(Double.valueOf(balance)/1000000000000000000d);
+        return fmt.toString();
     }
 
     public void setBalance(String balance) {

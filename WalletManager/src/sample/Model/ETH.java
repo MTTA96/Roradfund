@@ -10,7 +10,8 @@ public class ETH {
     private Double balance;
 
     public Double getBalance() {
-        return Double.valueOf(balance)/100000000000000000d;
+//        return Double.valueOf(balance)/100000000000000000d;
+        return balance;
     }
 
     public void setBalance(Double balance) {

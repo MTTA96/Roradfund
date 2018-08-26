@@ -14,6 +14,18 @@ import javafx.scene.input.MouseButton;
 import javafx.stage.FileChooser;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.bouncycastle.util.encoders.Hex;
+import org.web3j.crypto.*;
+import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.DefaultBlockParameterName;
+import org.web3j.protocol.core.methods.response.EthGetTransactionCount;
+import org.web3j.protocol.core.methods.response.EthSendTransaction;
+import org.web3j.protocol.core.methods.response.TransactionReceipt;
+import org.web3j.protocol.core.methods.response.Web3ClientVersion;
+import org.web3j.protocol.exceptions.TransactionException;
+import org.web3j.protocol.http.HttpService;
+import org.web3j.tx.Transfer;
+import org.web3j.utils.Convert;
 import sample.Interface.RequestWalletEthplorerInfoCallBack;
 import sample.Model.ETHScanner.WalletScan;
 import sample.Model.MainTableModel;
@@ -25,6 +37,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.nio.file.Files;
 import java.util.*;
 import java.util.Timer;
@@ -547,7 +561,10 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
             @Override
             public void run() {
                 lblCountedWallet.setText(countWallet + "/" + addressList.size());
-                lblSum.setText(String.valueOf(sum));
+                BigDecimal bg = new BigDecimal(String.valueOf(sum));
+                Formatter fmt = new Formatter();
+                fmt.format("%." + bg.scale() + "f", bg);
+                lblSum.setText(fmt.toString());
             }
         });
     }
