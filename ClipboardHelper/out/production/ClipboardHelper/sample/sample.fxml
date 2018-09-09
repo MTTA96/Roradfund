@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="299.0" minHeight="700." minWidth="299.0" prefHeight="700.0" prefWidth="299.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <top>
+             <!--Buttons-->
+            <HBox BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="btnMakeOnTop" mnemonicParsing="false" onAction="#bringToFront" text="Move to front" />
+               </children>
+            </HBox>
+         </top>
+         <center>
+             <!--Data table-->
+            <TableView fx:id="tbvData" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="colData" maxWidth="299.0" minWidth="299.0" prefWidth="299.0" text="" />
+              </columns>
+            </TableView>
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>
