@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -19,12 +15,16 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane style="-fx-background-color: E7E6E6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+
+<AnchorPane style="-fx-background-color: E7E6E6;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <children>
       <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
                   <TabPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: E7E6E6;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
                       <tabs>
+
+                          <!-- TAB: CHECK WALLET -->
+
                           <Tab text="Check Wallet">
                               <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -43,6 +43,9 @@
                                              <children>
                                                 <HBox spacing="40.0">
                                                    <children>
+
+                                                       <!--Select file-->
+
                                                       <HBox spacing="10.0">
                                                          <children>
                                                             <Label text="File :" />
@@ -53,30 +56,43 @@
                                                             <Insets />
                                                          </opaqueInsets>
                                                       </HBox>
+
+                                                       <!--Total wallet-->
+
                                                       <HBox spacing="5.0">
                                                          <children>
                                                             <Label text="Số lượng ví :" />
                                                             <Label fx:id="lblCountedWallet" />
                                                          </children>
                                                       </HBox>
+
+                                                       <!--Total ETH-->
+
                                                       <HBox spacing="5.0">
                                                          <children>
                                                             <Label text="Tổng ETH:" textFill="#030303" />
                                                             <Label fx:id="lblSum" />
                                                          </children>
                                                       </HBox>
+
+                                                       <!--Error wallets-->
+
                                                       <HBox spacing="5.0">
                                                          <children>
                                                             <Label text="Ví lỗi address:" textFill="#030303" />
                                                             <Label fx:id="lblErrorWallet" />
                                                          </children>
                                                       </HBox>
+
+                                                       <!--Buttons-->
+
                                                       <HBox alignment="CENTER_RIGHT" spacing="20.0">
                                                          <children>
                                                             <Button fx:id="btnCheck" mnemonicParsing="false" onAction="#checkBalance" prefWidth="70.0" text="Bắt đầu" />
                                                             <Button mnemonicParsing="false" onAction="#delete" prefWidth="70.0" text="Xóa" />
                                                          </children>
                                                       </HBox>
+
                                                    </children>
                                                 </HBox>
                                                 <Pane prefHeight="10.0" />
@@ -89,34 +105,65 @@
                                       <items>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                              <children>
+
+                                                 <!--Main table-->
+
                                                 <TableView fx:id="tbvMain" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                   <columns>
+
+                                                      <!--Serial-->
                                                       <TableColumn fx:id="colSerialMain" maxWidth="750.0" minWidth="50.0" prefWidth="50.0" text="STT" />
+
+                                                      <!--Symbol-->
                                                       <TableColumn fx:id="colSymbolTokenMain" prefWidth="70.0" text="Symbol" />
+
+                                                      <!--Token's name-->
                                                     <TableColumn fx:id="colTokenNameMain" prefWidth="100.0" text="Token" />
+
+                                                      <!--Number of token-->
                                                     <TableColumn fx:id="colNumberOfTokenMain" prefWidth="100.0" text="Số token" />
+
+                                                      <!--Number of wallet-->
                                                       <TableColumn fx:id="colNumberOfWalletMain" prefWidth="50.0" text="Số ví" />
+
+                                                      <!--Total ETH-->
+
                                                       <TableColumn fx:id="colTotalMain" prefWidth="50.0" text="Avg" />
                                                   </columns>
                                                    <columnResizePolicy>
                                                       <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                                    </columnResizePolicy>
                                                 </TableView>
+
                                              </children>
                                           </AnchorPane>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                              <children>
-                                                            <TableView fx:id="tbvDetails" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                                <columns>
-                                                      <TableColumn fx:id="colSerialDetails" editable="false" maxWidth="750.0" minWidth="50.0" prefWidth="50.0" sortable="false" text="STT" />
-                                                                    <TableColumn fx:id="colAddressDetails" editable="false" minWidth="100.0" prefWidth="100.0" sortable="false" text="Địa chỉ" />
-                                                      <TableColumn fx:id="colTokenAmountDetails" editable="false" minWidth="50.0" prefWidth="100.0" sortable="false" text="Token" />
-                                                                    <TableColumn fx:id="colBalanceDetails" editable="false" minWidth="50.0" prefWidth="100.0" sortable="false" text="ETH" />
-                                                                </columns>
-                                                                <columnResizePolicy>
-                                                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                                                </columnResizePolicy>
-                                                            </TableView>
+
+                                                 <!--Details table-->
+
+                                                 <TableView fx:id="tbvDetails" AnchorPane.bottomAnchor="0.0"
+                                                            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                                            AnchorPane.topAnchor="0.0">
+                                                     <columns>
+                                                         <TableColumn fx:id="colSerialDetails" editable="false"
+                                                                      maxWidth="750.0" minWidth="50.0" prefWidth="50.0"
+                                                                      sortable="false" text="STT"/>
+                                                         <TableColumn fx:id="colAddressDetails" editable="false"
+                                                                      minWidth="100.0" prefWidth="100.0"
+                                                                      sortable="false" text="Địa chỉ"/>
+                                                         <TableColumn fx:id="colTokenAmountDetails" editable="false"
+                                                                      minWidth="50.0" prefWidth="100.0" sortable="false"
+                                                                      text="Token"/>
+                                                         <TableColumn fx:id="colBalanceDetails" editable="false"
+                                                                      minWidth="50.0" prefWidth="100.0" sortable="false"
+                                                                      text="ETH"/>
+                                                     </columns>
+                                                     <columnResizePolicy>
+                                                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                                                     </columnResizePolicy>
+                                                 </TableView>
+
                                              </children>
                                           </AnchorPane>
                                       </items>
@@ -127,11 +174,129 @@
                                   </AnchorPane>
                               </content>
                           </Tab>
+
+                          <!-- TAB: TRADING -->
+
                           <Tab text="Trading">
                               <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                      <children>
+                                          <BorderPane layoutX="6.0" prefHeight="225.0" prefWidth="760.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+                                              <padding>
+                                                  <Insets top="10.0" />
+                                              </padding>
+                                              <bottom>
+                                                  <AnchorPane prefHeight="20.0" BorderPane.alignment="CENTER" />
+                                              </bottom>
+                                              <top>
+                                                  <AnchorPane BorderPane.alignment="CENTER" />
+                                              </top>
+                                              <center>
+                                                  <SplitPane dividerPositions="0.4515" BorderPane.alignment="CENTER">
+                                                      <items>
+                                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                              <children>
+                                                                  <VBox spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                      <children>
+
+                                                                          <!-- Select file -->
+
+                                                                          <HBox spacing="10.0">
+                                                                              <children>
+                                                                                  <Label text="File: " />
+                                                                                  <TextField fx:id="txfFilePathTradingTab" />
+                                                                                  <Button fx:id="btnOpenResFileTradingTab" mnemonicParsing="false" onAction="#openWalletFile" style="-fx-background-color: null;" text="Browse" textFill="#6685ff" />
+                                                                              </children>
+                                                                          </HBox>
+
+                                                                          <!--Check keystore-->
+
+                                                                          <HBox spacing="10.0">
+                                                                              <children>
+                                                                                  <Label text="Token đã chọn: " />
+                                                                                  <Label fx:id="lblSelectedTokenTradingTab"/>
+                                                                                  <Button fx:id="btnCheckKeyStoreTradingTab" mnemonicParsing="false" onAction="#openWalletFile" style="-fx-background-color: null;" text="Check" textFill="#6685ff" />
+                                                                              </children>
+                                                                          </HBox>
+
+                                                                          <!--Total wallet-->
+
+                                                                          <HBox spacing="10.0">
+                                                                              <children>
+                                                                                  <Label text="Tổng số ví: " />
+                                                                                  <Label fx:id="lblTotalWalletTradingTab"/>
+                                                                              </children>
+                                                                          </HBox>
+
+                                                                          <!--Total token-->
+
+                                                                          <HBox spacing="10.0">
+                                                                              <children>
+                                                                                  <Label text="Tổng số ví: " />
+                                                                                  <Label fx:id="lblTotalTokenTradingTab"/>
+                                                                              </children>
+                                                                          </HBox>
+
+                                                                          <!--Not enough trade cost-->
+
+                                                                          <HBox spacing="10.0">
+                                                                              <children>
+                                                                                  <Label text="Ví chưa đủ trade cost: " />
+                                                                                  <Label fx:id="lblRequiredTradeCostTradingTab"/>
+                                                                                  <Button fx:id="btnRequiredTradeCostTradingTab" mnemonicParsing="false" onAction="#openWalletFile" style="-fx-background-color: null;" text="Check" textFill="#6685ff" />
+                                                                              </children>
+                                                                          </HBox>
+
+                                                                          <!--Total wallets haven't added token-->
+
+                                                                          <HBox spacing="10.0">
+                                                                              <children>
+                                                                                  <Label text="Số ví chưa thêm token: " />
+                                                                                  <Label fx:id="lblMissingTokenTradingTab"/>
+                                                                                  <Button fx:id="btnMissingTokenTradingTab" mnemonicParsing="false" onAction="#openWalletFile" style="-fx-background-color: null;" text="Check" textFill="#6685ff" />
+                                                                              </children>
+                                                                          </HBox>
+
+                                                                          <!--Send to-->
+
+                                                                          <HBox spacing="10.0">
+                                                                              <children>
+                                                                                  <Label text="Send to: " />
+                                                                                  <TextField fx:id="txfReceivedAddressPathTradingTab" />
+                                                                                  <Button fx:id="btnSendTradingTab" mnemonicParsing="false" onAction="#openWalletFile" style="-fx-background-color: null;" text="Send" textFill="#6685ff" />
+                                                                              </children>
+                                                                          </HBox>
+
+                                                                      </children>
+                                                                  </VBox>
+                                                              </children>
+                                                          </AnchorPane>
+                                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                              <children>
+                                                                  <TableView fx:id="tbv" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                      <columns>
+                                                                          <TableColumn fx:id="colSerial" editable="false" maxWidth="750.0" minWidth="50.0" prefWidth="50.0" sortable="false" text="STT" />
+                                                                          <TableColumn fx:id="colAddress" editable="false" minWidth="100.0" prefWidth="100.0" sortable="false" text="Địa chỉ" />
+                                                                          <TableColumn fx:id="colToken" editable="false" minWidth="100.0" prefWidth="100.0" sortable="false" text="Token" />
+                                                                          <TableColumn fx:id="colAdded" editable="false" minWidth="50.0" prefWidth="100.0" sortable="false" text="Added" />
+                                                                          <TableColumn fx:id="colKeystore" editable="false" minWidth="100.0" prefWidth="100.0" sortable="false" text="Keystore" />
+                                                                          <TableColumn fx:id="colStatus" editable="false" minWidth="50.0" prefWidth="100.0" sortable="false" text="Status" />
+                                                                      </columns>
+                                                                      <columnResizePolicy>
+                                                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                                      </columnResizePolicy>
+                                                                  </TableView>
+                                                              </children>
+                                                          </AnchorPane>
+                                                      </items>
+                                                  </SplitPane>
+                                              </center>
+                                          </BorderPane>
+                                      </children>
+                                  </AnchorPane>
                               </content>
                           </Tab>
+
                       </tabs>
                   </TabPane>
          </center>

@@ -14,18 +14,6 @@ import javafx.scene.input.MouseButton;
 import javafx.stage.FileChooser;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-import org.bouncycastle.util.encoders.Hex;
-import org.web3j.crypto.*;
-import org.web3j.protocol.Web3j;
-import org.web3j.protocol.core.DefaultBlockParameterName;
-import org.web3j.protocol.core.methods.response.EthGetTransactionCount;
-import org.web3j.protocol.core.methods.response.EthSendTransaction;
-import org.web3j.protocol.core.methods.response.TransactionReceipt;
-import org.web3j.protocol.core.methods.response.Web3ClientVersion;
-import org.web3j.protocol.exceptions.TransactionException;
-import org.web3j.protocol.http.HttpService;
-import org.web3j.tx.Transfer;
-import org.web3j.utils.Convert;
 import sample.Interface.RequestWalletEthplorerInfoCallBack;
 import sample.Model.ETHScanner.WalletScan;
 import sample.Model.MainTableModel;
@@ -39,7 +27,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.nio.file.Files;
 import java.util.*;
 import java.util.Timer;
@@ -47,6 +34,8 @@ import java.util.Timer;
 public class Controller implements RequestWalletEthplorerInfoCallBack {
 
     /** ----- VIEW ----- */
+
+    /** CHECKING TAB */
 
     @FXML
     private TextField txfFilePath;
@@ -71,6 +60,14 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
     @FXML
     private TableColumn<WalletScan, Integer> colSerialDetails;
 
+    /** TRADING TAB */
+
+    @FXML
+    private TextField txfFilePathTradingTab;
+//    @FXML
+//    private Button btnOpenResFileTradingTab, btnSendTradingTab;
+
+
     /** ----- PROPS ----- */
 
     private final ObservableList<WalletScan> data = FXCollections.observableArrayList();
@@ -92,6 +89,9 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
 
     //0x3750fC1505ba9a4cA3907b94Cda8e5758d31F3aD
 
+
+    public Controller() {
+    }
 
     /** ----- CONFIG ----- */
 
@@ -191,6 +191,24 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
 
 
     /** ----- ACTIONS ----- */
+
+    /** TRADING TAB */
+
+    @FXML
+    void openWalletFile(ActionEvent event) {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Chọn file");
+        //fileChooser.showOpenDialog(null);
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+            txfFilePathTradingTab.setText(file.getPath());
+            handleFile(file);
+        }
+
+    }
+
+    /** CHECKING TAB */
 
     @FXML
     void openResourceFile(ActionEvent event) {
