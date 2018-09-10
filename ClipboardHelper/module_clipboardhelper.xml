@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_clipboardhelper" default="compile.module.clipboardhelper">
+  <dirname property="module.clipboardhelper.basedir" file="${ant.file.module_clipboardhelper}"/>
+  
+  <property name="module.jdk.home.clipboardhelper" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.clipboardhelper" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.clipboardhelper" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.clipboardhelper" value="-encoding UTF-8 -source 10 -target 10 ${compiler.args}"/>
+  
+  <property name="clipboardhelper.output.dir" value="${module.clipboardhelper.basedir}/out/production/ClipboardHelper"/>
+  <property name="clipboardhelper.testoutput.dir" value="${module.clipboardhelper.basedir}/out/test/ClipboardHelper"/>
+  
+  <path id="clipboardhelper.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="clipboardhelper.module.production.classpath">
+    <path refid="${module.jdk.classpath.clipboardhelper}"/>
+  </path>
+  
+  <path id="clipboardhelper.runtime.production.module.classpath">
+    <pathelement location="${clipboardhelper.output.dir}"/>
+  </path>
+  
+  <path id="clipboardhelper.module.classpath">
+    <path refid="${module.jdk.classpath.clipboardhelper}"/>
+    <pathelement location="${clipboardhelper.output.dir}"/>
+  </path>
+  
+  <path id="clipboardhelper.runtime.module.classpath">
+    <pathelement location="${clipboardhelper.testoutput.dir}"/>
+    <pathelement location="${clipboardhelper.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.clipboardhelper">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.clipboardhelper">
+    <patternset refid="excluded.from.module.clipboardhelper"/>
+  </patternset>
+  
+  <path id="clipboardhelper.module.sourcepath">
+    <dirset dir="${module.clipboardhelper.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.clipboardhelper" depends="compile.module.clipboardhelper.production,compile.module.clipboardhelper.tests" description="Compile module ClipboardHelper"/>
+  
+  <target name="compile.module.clipboardhelper.production" depends="register.custom.compilers" description="Compile module ClipboardHelper; production classes">
+    <mkdir dir="${clipboardhelper.output.dir}"/>
+    <javac2 destdir="${clipboardhelper.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.clipboardhelper}/javac">
+      <compilerarg line="${compiler.args.clipboardhelper}"/>
+      <bootclasspath refid="clipboardhelper.module.bootclasspath"/>
+      <classpath refid="clipboardhelper.module.production.classpath"/>
+      <src refid="clipboardhelper.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.clipboardhelper"/>
+    </javac2>
+    
+    <copy todir="${clipboardhelper.output.dir}">
+      <fileset dir="${module.clipboardhelper.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.clipboardhelper.tests" depends="register.custom.compilers,compile.module.clipboardhelper.production" description="compile module ClipboardHelper; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.clipboardhelper" description="cleanup module">
+    <delete dir="${clipboardhelper.output.dir}"/>
+    <delete dir="${clipboardhelper.testoutput.dir}"/>
+  </target>
+</project>

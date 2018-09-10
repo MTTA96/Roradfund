@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    private AnimationTimer timer;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
 
@@ -18,15 +20,16 @@ public class Main extends Application {
         Parent root = loader.load();
         Controller controller = loader.getController();
         controller.setStage(primaryStage);
+        controller.setActivity(this);
 
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Copy Cat");
         primaryStage.setScene(new Scene(root, 299, 700));
         primaryStage.setResizable(false);
         primaryStage.show();
 
         controller.configColumns();
 
-        configClipboard(controller);
+        //configClipboard(controller);
 
     }
 
@@ -38,7 +41,7 @@ public class Main extends Application {
 
     private void configClipboard(Controller controller) {
 
-        AnimationTimer timer = new AnimationTimer() {
+        timer = new AnimationTimer() {
 
             Clipboard systemClipboard = Clipboard.getSystemClipboard();
 
@@ -49,11 +52,21 @@ public class Main extends Application {
                 if (content != null) {
                     controller.setData(content);
                 }
+
             }
+
         };
 
         timer.start();
 
+    }
+
+    public void shutDownTimer() {
+        timer.stop();
+    }
+
+    public void startTimer() {
+        timer.start();
     }
 
 }

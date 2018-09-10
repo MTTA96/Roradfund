@@ -3,19 +3,27 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="299.0" minHeight="700." minWidth="299.0" prefHeight="700.0" prefWidth="299.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
-             <!--Buttons-->
-            <HBox BorderPane.alignment="CENTER">
-               <children>
-                  <Button fx:id="btnMakeOnTop" mnemonicParsing="false" onAction="#bringToFront" text="Move to front" />
-               </children>
-            </HBox>
+             <VBox BorderPane.alignment="CENTER">
+               <!--<TextArea fx:id="txaData" onInputMethodTextChanged="#onDataChanged" prefHeight="100.0" prefWidth="200.0" />-->
+                 <!--Buttons-->
+                 <HBox BorderPane.alignment="CENTER">
+                     <children>
+                         <Button fx:id="btnPaste" mnemonicParsing="false" onAction="#pasteToTable" text="Paste" />
+                         <Button fx:id="btnMakeOnTop" mnemonicParsing="false" onAction="#bringToFront" text="Move to front" />
+                         <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#delete" text="Delete" />
+                         <Button fx:id="btnTab" mnemonicParsing="false" onAction="#turnOnTab" text="Tab" />
+                     </children>
+                 </HBox>
+             </VBox>
          </top>
          <center>
              <!--Data table-->
