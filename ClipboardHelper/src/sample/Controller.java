@@ -137,23 +137,70 @@ public class Controller {
                                 // Paste
                                 triggerPasteKey();
 
-                                if (isAutoTab) {
-                                    Timer timer = new Timer();
-                                    timer.schedule(new TimerTask() {
-                                        @Override
-                                        public void run() {
-                                            triggerTabKey();
-                                        }
-                                    }, delayTimeForDelete);
-                                }
-
+//                                if (isAutoTab) {
+//                                    Timer timer = new Timer();
+//                                    timer.schedule(new TimerTask() {
+//                                        @Override
+//                                        public void run() {
+//                                            triggerTabKey();
+//                                        }
+//                                    }, delayTimeForDelete);
+//                                }
                             }
                         }, delayTime);
 
                     }
 
                 } else {
+// Copy row's content
 
+                    ObservableList<TablePosition> posList = tbvData.getSelectionModel().getSelectedCells();
+                    int old_r = -1;
+                    StringBuilder clipboardString = new StringBuilder();
+                    for (TablePosition p : posList) {
+                        int r = p.getRow();
+                        int c = p.getColumn();
+                        Object cell = tbvData.getColumns().get(c).getCellData(r);
+                        if (cell == null)
+                            cell = "";
+                        if (old_r == r)
+                            clipboardString.append('\t');
+                        else if (old_r != -1)
+                            clipboardString.append('\n');
+                        clipboardString.append(cell);
+                        old_r = r;
+                    }
+
+//                    btnStart.setText("Stop");
+//                    isStarted = false;
+//                    main.shutDownTimer();
+                    //isCopiedFromTable = true;
+                    saveToClipboard(clipboardString.toString());
+
+                    if (setUpRobot()) {
+
+                        // Alt + Tab
+                        triggerAltTabKeys();
+                        Timer timer = new Timer();
+                        timer.schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+
+                                // Paste
+                                triggerPasteKey();
+
+                                // Tab
+                                Timer timer = new Timer();
+                                timer.schedule(new TimerTask() {
+                                    @Override
+                                    public void run() {
+                                        triggerTabKey();
+                                    }
+                                }, delayTimeForDelete);
+                            }
+                        }, delayTime);
+
+                    }
                 }
             });
             return row;
