@@ -36,8 +36,8 @@
                     <!--Data table-->
                     <TableView fx:id="tbvData" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                         <columns>
-                            <TableColumn fx:id="col1" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="" />
-                            <TableColumn fx:id="colData" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" text="" />
+                            <TableColumn fx:id="col1" minWidth="100.0" prefWidth="100.0" text="" />
+                            <TableColumn fx:id="colData" minWidth="300.0" prefWidth="300.0" text="" />
                         </columns>
                     </TableView>
                 </center>

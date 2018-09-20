@@ -90,7 +90,8 @@ public class Controller {
 
         col1.setSortable(false);
         colData.setSortable(false);
-        col1.setStyle("-fx-font-size:16pt; -fx-font-weight:bold;");
+        col1.setStyle("-fx-font-size:10pt; -fx-font-weight:bold;");
+        colData.setStyle("-fx-font-size:10pt;");
 
         setUpRobot();
         /** Action */
@@ -328,6 +329,8 @@ public class Controller {
         this.stage = stage;
     }
 
+    /** SET DATA COL 1 */
+
     public void setDataCol1(String data) {
 
         String[] tempList = data.split("\r\n");
@@ -337,12 +340,12 @@ public class Controller {
 
         int index = 0;
         for (String line: tempList) {
-            if(!line.equals("") && !line.equals(" ")) {
+            //if(!line.equals("") && !line.equals(" ")) {
                 //System.out.print(line + "\n");
                 dataCol1.add(line.replace("\r\n", ""));
                 dataList.add(new TableData(line.replace("\r\n", ""), index < dataCol2.size() ? dataCol2.get(index) : ""));
                 index += 1;
-            }
+            //}
         }
 
         System.out.print("Update col1: current index " + index + " - Col2 " + dataCol2.size() + "\n");
@@ -359,6 +362,8 @@ public class Controller {
 
     }
 
+    /** SET DATA COL DATA */
+
     public void setData(String data) {
 
         if (!oldData.equals(data)) {
@@ -372,12 +377,12 @@ public class Controller {
             tbvData.getItems().clear();
             int index = 0;
             for (String line : tempList) {
-                if (!line.equals("") && !line.equals(" ")) {
+                //if (!line.equals("") && !line.equals(" ")) {
                     //System.out.print(line + "\n");
                     dataCol2.add(line.replace("\r\n", ""));
                     dataList.add(new TableData(index < dataCol1.size() ? dataCol1.get(index) : "", line.replace("\r\n", "")));
                     index += 1;
-                }
+                //}
             }
 
             System.out.print("Update col2: current index " + index + " - Col1 " + dataCol1.size() + "\n");
