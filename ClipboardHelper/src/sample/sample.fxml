@@ -8,31 +8,41 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="299.0" minHeight="700." minWidth="299.0" prefHeight="700.0" prefWidth="299.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
-   <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <top>
-             <VBox BorderPane.alignment="CENTER">
-               <!--<TextArea fx:id="txaData" onInputMethodTextChanged="#onDataChanged" prefHeight="100.0" prefWidth="200.0" />-->
-                 <!--Buttons-->
-                 <HBox BorderPane.alignment="CENTER">
-                     <children>
-                         <Button fx:id="btnPaste" mnemonicParsing="false" onAction="#pasteToTable" text="Paste" />
-                         <Button fx:id="btnMakeOnTop" mnemonicParsing="false" onAction="#bringToFront" text="Move to front" />
-                         <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#delete" text="Delete" />
-                         <Button fx:id="btnTab" mnemonicParsing="false" onAction="#turnOnTab" text="Tab" />
-                     </children>
-                 </HBox>
-             </VBox>
-         </top>
-         <center>
-             <!--Data table-->
-            <TableView fx:id="tbvData" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-              <columns>
-                <TableColumn fx:id="colData" maxWidth="299.0" minWidth="299.0" prefWidth="299.0" text="" />
-              </columns>
-            </TableView>
-         </center>
-      </BorderPane>
-   </center>
-</BorderPane>
+<?import javafx.scene.control.TabPane?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane style="-fx-background-color: E7E6E6;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<children>
+    <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <center>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                <top>
+                    <VBox BorderPane.alignment="CENTER">
+                        <!--<TextArea fx:id="txaData" onInputMethodTextChanged="#onDataChanged" prefHeight="100.0" prefWidth="200.0" />-->
+                        <!--Buttons-->
+                        <HBox BorderPane.alignment="CENTER">
+                            <children>
+                                <Button fx:id="btnPasteCol1" mnemonicParsing="false" onAction="#pasteToCol1" text="Paste" />
+                                <Button fx:id="btnPaste" mnemonicParsing="false" onAction="#pasteToTable" text="Paste" />
+                                <Button fx:id="btnMakeOnTop" mnemonicParsing="false" onAction="#bringToFront" text="Move to front" />
+                                <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#delete" text="Delete" />
+                                <Button fx:id="btnTab" mnemonicParsing="false" onAction="#turnOnTab" text="Tab" />
+                                <Button fx:id="btnAddComment" mnemonicParsing="false" onAction="#addComment" text="Comment" />
+                            </children>
+                        </HBox>
+                    </VBox>
+                </top>
+                <center>
+                    <!--Data table-->
+                    <TableView fx:id="tbvData" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                        <columns>
+                            <TableColumn fx:id="col1" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="" />
+                            <TableColumn fx:id="colData" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" text="" />
+                        </columns>
+                    </TableView>
+                </center>
+            </BorderPane>
+        </center>
+    </BorderPane>
+</children>
+</AnchorPane>

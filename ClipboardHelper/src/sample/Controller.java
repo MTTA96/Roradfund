@@ -17,8 +17,8 @@ import sample.Model.TableData;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
+import java.util.List;
 
 public class Controller {
 
@@ -28,16 +28,18 @@ public class Controller {
     private TableView<TableData> tbvData;
 
     @FXML
-    private TableColumn<TableData, String> colData;
+    private TableColumn<TableData, String> colData, col1;
 
     @FXML
-    private Button btnMakeOnTop, btnStart, btnTab;
+    private Button btnMakeOnTop, btnStart, btnTab, btnAddComment;
 
     private Stage stage;
     private Main main;
     private boolean isAlwaysOnTop = false;
     private Robot robot = null;
     private String oldData = "";
+    private ArrayList<String> dataCol1 = new ArrayList<>();
+    private ArrayList<String> dataCol2 = new ArrayList<>();
     private final ObservableList<TableData> dataList = FXCollections.observableArrayList();
     private boolean isCopiedFromTable = false;
     private boolean isStarted = true;
@@ -45,18 +47,58 @@ public class Controller {
     private int delayTime = 200;
     private int delayTimeForDelete = 50;
 
+    private List<String> commentList = Arrays.asList(
+            "I'm looking for this",
+            "So awesome man",
+            "This is good project",
+            "I think its really good",
+            "This project is good",
+            "Now its looking for ppl",
+            "I think is good",
+            "I'm done it",
+            "Awesome!",
+            "Whoa, this is a really cool contest!",
+            "Awesome man",
+            "Coolest contest I've ever seen!",
+            "Good guys",
+            "Looking good",
+            "Not bad",
+            "This contest is really awesome. Hope I win!",
+            "So awesome!",
+            "Nice",
+            "Nice Project",
+            "Good Project",
+            "Just signed up to the contest!",
+            "Really nice",
+            "Cool Project",
+            "Not bad guys",
+            "So cool",
+            "Love it",
+            "wow amazing project",
+            "Join it guys",
+            "This so cool",
+            "It's not so bad",
+            "Give me more");
+    private Random rand = new Random();
+
     /** ----- CONFIG ----- */
 
     public void configColumns() {
 
-        colData.setCellValueFactory(new PropertyValueFactory<TableData, String>("data"));
+        colData.setCellValueFactory(new PropertyValueFactory<TableData, String>("data2"));
+        col1.setCellValueFactory(new PropertyValueFactory<TableData, String>("data1"));
 
+        col1.setSortable(false);
+        colData.setSortable(false);
+        col1.setStyle("-fx-font-size:16pt; -fx-font-weight:bold;");
+
+        setUpRobot();
         /** Action */
 
         tbvData.setRowFactory(tv -> {
             TableRow<TableData> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
-                if (!row.isEmpty() && event.getButton()== MouseButton.PRIMARY && event.getClickCount() == 1) {
+                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 1) {
 
                     // Copy row's content
 
@@ -110,6 +152,8 @@ public class Controller {
 
                     }
 
+                } else {
+
                 }
             });
             return row;
@@ -140,6 +184,29 @@ public class Controller {
 //        }
 //
 //        isStarted = !isStarted;
+
+    }
+
+    @FXML
+    void addComment(ActionEvent event) {
+
+        triggerAltTabKeys();
+        int randomIndex = rand.nextInt(commentList.size());
+        saveToClipboard(commentList.get(randomIndex));
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                triggerPasteKey();
+            }
+        }, delayTime);
+
+    }
+
+    @FXML
+    void pasteToCol1(ActionEvent event) {
+
+        setDataCol1(Clipboard.getSystemClipboard().getString());
 
     }
 
@@ -214,25 +281,67 @@ public class Controller {
         this.stage = stage;
     }
 
+    public void setDataCol1(String data) {
+
+        String[] tempList = data.split("\r\n");
+        dataList.clear();
+        dataCol1.clear();
+        tbvData.getItems().clear();
+
+        int index = 0;
+        for (String line: tempList) {
+            if(!line.equals("") && !line.equals(" ")) {
+                //System.out.print(line + "\n");
+                dataCol1.add(line.replace("\r\n", ""));
+                dataList.add(new TableData(line.replace("\r\n", ""), index < dataCol2.size() ? dataCol2.get(index) : ""));
+                index += 1;
+            }
+        }
+
+        System.out.print("Update col1: current index " + index + " - Col2 " + dataCol2.size() + "\n");
+
+        if(index < dataCol2.size()) {
+
+            System.out.print("Update more for col2 \n");
+            for (int i = index; i < dataCol2.size(); i++) {
+                dataList.add(new TableData("", dataCol2.get(i)));
+            }
+        }
+
+        tbvData.setItems(dataList);
+
+    }
+
     public void setData(String data) {
 
         if (!oldData.equals(data)) {
 
             //if (!isCopiedFromTable) {
 
-                oldData = data;
-                String[] tempList = data.split("\n");
-                dataList.clear();
-                tbvData.getItems().clear();
-                for (String line:
-                        tempList) {
-                    if(!line.equals("") && !line.equals(" ")) {
-                        System.out.print(line + "\n");
-                        dataList.add(new TableData(line));
-                    }
+            oldData = data;
+            String[] tempList = data.split("\r\n");
+            dataList.clear();
+            dataCol2.clear();
+            tbvData.getItems().clear();
+            int index = 0;
+            for (String line : tempList) {
+                if (!line.equals("") && !line.equals(" ")) {
+                    //System.out.print(line + "\n");
+                    dataCol2.add(line.replace("\r\n", ""));
+                    dataList.add(new TableData(index < dataCol1.size() ? dataCol1.get(index) : "", line.replace("\r\n", "")));
+                    index += 1;
                 }
+            }
 
-                tbvData.setItems(dataList);
+            System.out.print("Update col2: current index " + index + " - Col1 " + dataCol1.size() + "\n");
+
+            if(index < dataCol1.size()) {
+                System.out.print("Update more for col1 \n");
+                for (int i = index; i < dataCol1.size(); i++) {
+                    dataList.add(new TableData(dataCol1.get(i), ""));
+                }
+            }
+            tbvData.setItems(dataList);
 
             //}
 
