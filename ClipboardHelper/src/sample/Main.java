@@ -23,7 +23,7 @@ public class Main extends Application {
         controller.setActivity(this);
 
         primaryStage.setTitle("Copy Cat");
-        primaryStage.setScene(new Scene(root, 400, 700));
+        primaryStage.setScene(new Scene(root, 410, 700));
 //        primaryStage.setResizable(false);
         primaryStage.show();
 

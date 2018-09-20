@@ -7,8 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ClipboardHelper/sample/Controller$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClipboardHelper/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClipboardHelper/sample/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClipboardHelper/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClipboardHelper/sample/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ClipboardHelper/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ClipboardHelper/sample/sample.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/sample.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -65,7 +70,7 @@
     <session id="-1171120780">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.6" value="2" />
@@ -75,14 +80,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="fxml" value="370" />
-          <entry key="java" value="5975" />
+          <entry key="fxml" value="399" />
+          <entry key="java" value="6049" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="5975" />
-          <entry key="XML" value="370" />
+          <entry key="JAVA" value="6049" />
+          <entry key="XML" value="399" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -107,8 +112,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            <state relative-caret-position="177">
+              <caret line="25" column="48" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -120,8 +125,8 @@
         <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
           <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="34" column="24" lean-forward="true" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
+            <state relative-caret-position="209">
+              <caret line="24" column="125" lean-forward="true" selection-start-line="24" selection-start-column="125" selection-end-line="24" selection-end-column="125" />
             </state>
           </provider>
         </entry>
@@ -129,8 +134,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="254" column="18" selection-start-line="254" selection-start-column="18" selection-end-line="254" selection-end-column="18" />
+            <state relative-caret-position="180">
+              <caret line="92" column="43" selection-start-line="92" selection-start-column="43" selection-end-line="92" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#onDataChanged#0;class#Controller#0" />
@@ -139,6 +144,8 @@
                 <element signature="method#turnOnTab#0;class#Controller#0" />
                 <element signature="method#triggerPasteKey#0;class#Controller#0" />
                 <element signature="method#triggerDelete#0;class#Controller#0" />
+                <element signature="e#13793#13994#0" expanded="true" />
+                <element signature="e#13993#13994#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -183,10 +190,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/sample/Main.java" />
         <option value="$PROJECT_DIR$/src/sample/Model/TableData.java" />
         <option value="$PROJECT_DIR$/src/sample/sample.fxml" />
         <option value="$PROJECT_DIR$/src/sample/Controller.java" />
+        <option value="$PROJECT_DIR$/src/sample/Main.java" />
       </list>
     </option>
   </component>
@@ -383,7 +390,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3287858" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.21360545" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.21360545" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3424284" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -545,16 +552,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Model/TableData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -569,15 +566,25 @@
     <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="34" column="24" lean-forward="true" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
+        <state relative-caret-position="209">
+          <caret line="24" column="125" lean-forward="true" selection-start-line="24" selection-start-column="125" selection-end-line="24" selection-end-column="125" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="25" column="48" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="254" column="18" selection-start-line="254" selection-start-column="18" selection-end-line="254" selection-end-column="18" />
+        <state relative-caret-position="180">
+          <caret line="92" column="43" selection-start-line="92" selection-start-column="43" selection-end-line="92" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#onDataChanged#0;class#Controller#0" />
@@ -586,6 +593,8 @@
             <element signature="method#turnOnTab#0;class#Controller#0" />
             <element signature="method#triggerPasteKey#0;class#Controller#0" />
             <element signature="method#triggerDelete#0;class#Controller#0" />
+            <element signature="e#13793#13994#0" expanded="true" />
+            <element signature="e#13993#13994#0" expanded="true" />
           </folding>
         </state>
       </provider>

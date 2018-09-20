@@ -22,12 +22,12 @@
                         <!--Buttons-->
                         <HBox BorderPane.alignment="CENTER">
                             <children>
-                                <Button fx:id="btnPasteCol1" mnemonicParsing="false" onAction="#pasteToCol1" text="Paste" />
-                                <Button fx:id="btnPaste" mnemonicParsing="false" onAction="#pasteToTable" text="Paste" />
-                                <Button fx:id="btnMakeOnTop" mnemonicParsing="false" onAction="#bringToFront" text="Move to front" />
-                                <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#delete" text="Delete" />
-                                <Button fx:id="btnTab" mnemonicParsing="false" onAction="#turnOnTab" text="Tab" />
-                                <Button fx:id="btnAddComment" mnemonicParsing="false" onAction="#addComment" text="Comment" />
+                                <Button fx:id="btnPasteCol1" mnemonicParsing="false" onAction="#pasteToCol1" text="Paste Col1" prefHeight="50.0"/>
+                                <Button fx:id="btnPaste" mnemonicParsing="false" onAction="#pasteToTable" text="Paste Col2" prefHeight="50.0"/>
+                                <Button fx:id="btnMakeOnTop" mnemonicParsing="false" onAction="#bringToFront" text="Move to front" prefHeight="50.0" />
+                                <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#delete" text="Delete" prefHeight="50.0"/>
+                                <!--<Button fx:id="btnTab" mnemonicParsing="false" onAction="#turnOnTab" text="Tab" prefHeight="100.0"/>-->
+                                <Button fx:id="btnAddComment" mnemonicParsing="false" onAction="#addComment" text="Comment" prefHeight="50.0"/>
                             </children>
                         </HBox>
                     </VBox>

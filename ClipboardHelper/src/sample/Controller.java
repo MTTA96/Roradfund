@@ -90,7 +90,7 @@ public class Controller {
 
         col1.setSortable(false);
         colData.setSortable(false);
-        col1.setStyle("-fx-font-size:10pt; -fx-font-weight:bold;");
+        col1.setStyle("-fx-font-size:10pt; -fx-font-weight: bold");
         colData.setStyle("-fx-font-size:10pt;");
 
         setUpRobot();
