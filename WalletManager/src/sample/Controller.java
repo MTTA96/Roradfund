@@ -12,6 +12,7 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseButton;
 import javafx.stage.FileChooser;
+import jdk.internal.jline.internal.Nullable;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import sample.Interface.RequestWalletEthplorerInfoCallBack;
@@ -323,17 +324,27 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
 
                 default:
                     System.out.print("Failed!");
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    //alert.setTitle("File type warning!!!");
-                    alert.setHeaderText("File type warning!!!");
-                    alert.setContentText("Only handle excel, word or text file");
-
-                    alert.showAndWait();
+//                    showAlert(false, "File type warning!!!", "Only handle excel, word or text file");
                     break;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    }
+
+    private void showAlert(boolean isError, @Nullable String title, String msg) {
+
+        Platform.runLater(new Runnable() {
+            @Override public void run() {
+                Alert alert = new Alert(isError ? Alert.AlertType.ERROR : Alert.AlertType.WARNING);
+                //alert.setTitle("File type warning!!!");
+                alert.setHeaderText(title != null ? "Warning!!!" : title);
+                alert.setContentText(msg);
+
+                alert.showAndWait();
+            }
+        });
 
     }
 
@@ -642,17 +653,20 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
     /** ----- HANDLE RESULTS ----- */
 
     @Override
-    public void walletInfoCallBack(int errorCode, WalletETHplorer wallet) {
-
-        if (errorCode == SupportKeys.FAILED_CODE) {
-            countWallet -= 1;
-            callAPIGetWalletInfo();
-            return;
-        }
+    public void walletInfoCallBack(int errorCode, String msg, WalletETHplorer wallet) {
 
         if (isStopped) {
             System.out.print("Stop plzzz");
             countWallet = showedWallets;
+            return;
+        }
+
+
+        if (errorCode == SupportKeys.FAILED_CODE) {
+            countWallet -= 1;
+            isStopped = true;
+            showAlert(true,null, msg);
+            callAPIGetWalletInfo();
             return;
         }
 

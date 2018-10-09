@@ -7,6 +7,6 @@ import java.util.ArrayList;
 
 public interface RequestWalletEthplorerInfoCallBack {
 
-    void walletInfoCallBack(int errorCode, WalletETHplorer wallet);
+    void walletInfoCallBack(int errorCode, String msg, WalletETHplorer wallet);
 
 }

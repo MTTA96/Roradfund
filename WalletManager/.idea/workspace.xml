@@ -7,10 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Ò“}&quot;|&quot;">
-      <change afterPath="$PROJECT_DIR$/src/sample/View/CheckDetailsTab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample/Model/ETHTrader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample/Model/Ethplorer/Price.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClipboardHelper/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ClipboardHelper/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClipboardHelper/out/production/ClipboardHelper/sample/Controller$1$1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/WalletManager/WalletManager.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/WalletManager/WalletManager.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/WalletManager/WalletManager.jnlp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/WalletManager/WalletManager.jnlp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$4.class" afterDir="false" />
@@ -18,11 +22,13 @@
       <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$6.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$7.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/sample.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Model/Ethplorer/TokenInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Model/Ethplorer/TokenInfo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/sample.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Interface/RequestWalletEthplorerInfoCallBack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Interface/RequestWalletEthplorerInfoCallBack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Model/Ethplorer/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Model/Ethplorer/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Model/Ethplorer/TokenInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Model/Ethplorer/TokenInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Model/Ethplorer/WalletETHplorer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Model/Ethplorer/WalletETHplorer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Network/RetrofitClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Network/RetrofitClient.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -114,44 +120,45 @@
     <session id="-157017211">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="38" />
-          <entry key="project.open.time.1" value="16" />
+          <entry key="project.closed" value="49" />
+          <entry key="project.open.time.1" value="17" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.open.time.6" value="6" />
-          <entry key="project.open.time.7" value="8" />
-          <entry key="project.open.time.8" value="6" />
-          <entry key="project.opened" value="38" />
+          <entry key="project.open.time.6" value="9" />
+          <entry key="project.open.time.7" value="11" />
+          <entry key="project.open.time.8" value="8" />
+          <entry key="project.open.time.9" value="2" />
+          <entry key="project.opened" value="49" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="14" />
           <entry key="fxml" value="813" />
-          <entry key="java" value="3091" />
+          <entry key="java" value="4092" />
           <entry key="txt" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3091" />
+          <entry key="JAVA" value="4092" />
           <entry key="PLAIN_TEXT" value="19" />
           <entry key="XML" value="813" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="class" value="2" />
+          <entry key="class" value="4" />
           <entry key="fxml" value="1" />
-          <entry key="java" value="29" />
+          <entry key="java" value="46" />
           <entry key="properties" value="1" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CLASS" value="2" />
-          <entry key="JAVA" value="29" />
+          <entry key="CLASS" value="4" />
+          <entry key="JAVA" value="46" />
           <entry key="Properties" value="1" />
           <entry key="XML" value="2" />
         </counts>
@@ -163,11 +170,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-20">
-              <caret line="205" column="101" selection-start-line="205" selection-start-column="101" selection-end-line="205" selection-end-column="101" />
+            <state relative-caret-position="2355">
+              <caret line="188" column="69" selection-start-line="188" selection-start-column="69" selection-end-line="188" selection-end-column="69" />
               <folding>
                 <element signature="n#HBox#0;n#children#0;n#HBox#0;n#children#0;n#VBox#0;n#children#0;n#AnchorPane#0;n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
                 <element signature="n#opaqueInsets#0;n#HBox#0;n#children#0;n#HBox#0;n#children#0;n#VBox#0;n#children#0;n#AnchorPane#0;n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
@@ -177,21 +185,96 @@
                 <element signature="n#HBox#4;n#children#0;n#HBox#0;n#children#0;n#VBox#0;n#children#0;n#AnchorPane#0;n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
                 <element signature="n#children#0;n#HBox#4;n#children#0;n#HBox#0;n#children#0;n#VBox#0;n#children#0;n#AnchorPane#0;n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
                 <element signature="n#columnResizePolicy#0;n#TableView#0;n#children#0;n#AnchorPane#0;n#items#0;n#SplitPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
-                <element signature="n#padding#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#1;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
-                <element signature="n#bottom#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#1;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
-                <element signature="n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#1;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
-                <element signature="n#AnchorPane#1;n#items#0;n#SplitPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#1;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
               </folding>
             </state>
           </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1279">
-              <caret line="92" column="25" lean-forward="true" selection-start-line="92" selection-start-column="25" selection-end-line="92" selection-end-column="25" />
+            <state relative-caret-position="332">
+              <caret line="670" column="9" lean-forward="true" selection-start-line="670" selection-start-column="9" selection-end-line="670" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/Model/MainTableModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="52" selection-start-line="52" selection-end-line="52" />
+              <folding>
+                <element signature="e#695#696#0" expanded="true" />
+                <element signature="e#731#732#0" expanded="true" />
+                <element signature="e#1076#1077#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/Model/Ethplorer/TokenInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="388">
+              <caret line="29" column="36" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/Model/Ethplorer/Token.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="158">
+              <caret line="50" column="20" selection-start-line="50" selection-start-column="20" selection-end-line="63" selection-end-column="7" />
+              <folding>
+                <element signature="e#700#701#0" expanded="true" />
+                <element signature="e#732#733#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/Model/Ethplorer/WalletETHplorer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="186">
+              <caret line="70" column="59" selection-start-line="70" selection-start-column="59" selection-end-line="70" selection-end-column="59" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1391#1392#0" expanded="true" />
+                <element signature="e#1420#1421#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/sample/Network/RetrofitClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="151">
+              <caret line="17" column="40" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/Interface/RequestWalletEthplorerInfoCallBack.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/Model/ETHTrader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="40" column="60" selection-start-line="40" selection-start-column="60" selection-end-line="40" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -221,9 +304,11 @@
       <find>reset</find>
       <find>star</find>
       <find>lblSum</find>
-      <find>sum</find>
       <find>walletScan</find>
       <find>callAPIGetWalletInfo</find>
+      <find>main</find>
+      <find>Boo</find>
+      <find>sum</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -248,27 +333,30 @@
         <option value="$PROJECT_DIR$/src/sample/Model/Balance.java" />
         <option value="$PROJECT_DIR$/src/sample/Model/Wallet.java" />
         <option value="$PROJECT_DIR$/src/sample/Util/SupportKeys.java" />
-        <option value="$PROJECT_DIR$/src/sample/Network/RetrofitClient.java" />
         <option value="$PROJECT_DIR$/src/sample/Network/EthScanServicesImp.java" />
         <option value="$PROJECT_DIR$/src/sample/Network/EtherScan/EthScanServicesImp.java" />
         <option value="$PROJECT_DIR$/src/sample/Network/EtherScan/ETHplorer.java" />
         <option value="$PROJECT_DIR$/src/sample/Interface/RequestWalletInfoCallBack.java" />
-        <option value="$PROJECT_DIR$/src/sample/Interface/RequestWalletEthplorerInfoCallBack.java" />
         <option value="$PROJECT_DIR$/src/sample/Model/Symbol.java" />
         <option value="$PROJECT_DIR$/src/sample/Network/EtherScan/ETHplorerImp.java" />
-        <option value="$PROJECT_DIR$/src/sample/Model/Ethplorer/WalletETHplorer.java" />
         <option value="$PROJECT_DIR$/src/sample/Util/ServerUrl.java" />
         <option value="$PROJECT_DIR$/src/sample/Model/Ethplorer/TableWalletEthplorer.java" />
         <option value="$PROJECT_DIR$/src/sample/Model/Ethplorer/MainTableModel.java" />
         <option value="$PROJECT_DIR$/src/sample/Model/MainTableModel.java" />
         <option value="$PROJECT_DIR$/src/sample/Model/Symbol/SymbolList.java" />
         <option value="$PROJECT_DIR$/src/sample/Model/ETH.java" />
-        <option value="$PROJECT_DIR$/src/sample/Model/ETHScanner/WalletScan.java" />
-        <option value="$PROJECT_DIR$/src/sample/Model/Ethplorer/Token.java" />
         <option value="$PROJECT_DIR$/src/sample/View/CheckDetailsTab.java" />
         <option value="$PROJECT_DIR$/src/sample/Main.java" />
-        <option value="$PROJECT_DIR$/src/sample/Controller.java" />
         <option value="$PROJECT_DIR$/src/sample/sample.fxml" />
+        <option value="$PROJECT_DIR$/src/sample/Model/ETHTrader.java" />
+        <option value="$PROJECT_DIR$/src/sample/Model/ETHScanner/WalletScan.java" />
+        <option value="$PROJECT_DIR$/src/sample/Model/Ethplorer/Price.java" />
+        <option value="$PROJECT_DIR$/src/sample/Model/Ethplorer/TokenInfo.java" />
+        <option value="$PROJECT_DIR$/src/sample/Model/Ethplorer/Token.java" />
+        <option value="$PROJECT_DIR$/src/sample/Interface/RequestWalletEthplorerInfoCallBack.java" />
+        <option value="$PROJECT_DIR$/src/sample/Model/Ethplorer/WalletETHplorer.java" />
+        <option value="$PROJECT_DIR$/src/sample/Controller.java" />
+        <option value="$PROJECT_DIR$/src/sample/Network/RetrofitClient.java" />
       </list>
     </option>
   </component>
@@ -289,8 +377,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -311,13 +400,27 @@
             </path>
             <path>
               <item name="WalletManager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WalletManager" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WalletManager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WalletManager" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+              <item name="Ethplorer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WalletManager" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -336,7 +439,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1535958666557" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538585481672" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="SDKs" />
@@ -466,9 +569,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="825" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5702592" visible="true" weight="0.16666667" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5702592" visible="true" weight="0.19027181" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -478,8 +580,8 @@
       <window_info id="Learn" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32876712" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.39427012" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.109140515" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.28785813" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.30013642" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -560,19 +662,7 @@
           <url>file://$PROJECT_DIR$/src/sample/Model/Ethplorer/WalletETHplorer.java</url>
           <line>95</line>
           <properties />
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/Model/Ethplorer/WalletETHplorer.java</url>
-          <line>87</line>
-          <properties />
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/Model/Ethplorer/WalletETHplorer.java</url>
-          <line>81</line>
-          <properties />
-          <option name="timeStamp" value="46" />
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -655,27 +745,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Interface/RequestWalletEthplorerInfoCallBack.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="27" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Network/EtherScan/ETHplorerImp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="12" column="32" lean-forward="true" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Network/RetrofitClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="29" column="27" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Util/ServerUrl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -716,24 +785,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Model/Ethplorer/TokenInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-841">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Model/Symbol/Symbol.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="8" column="26" lean-forward="true" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/web3j/crypto/3.5.0/crypto-3.5.0.jar!/org/web3j/crypto/RawTransaction.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -758,69 +813,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Model/Ethplorer/WalletETHplorer.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="87" selection-start-line="87" selection-end-line="87" />
-          <folding>
-            <element signature="e#1391#1392#0" expanded="true" />
-            <element signature="e#1420#1421#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="270">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/web3j/crypto/3.5.0/crypto-3.5.0.jar!/org/web3j/crypto/RawTransaction.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="34" column="33" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Model/ETH.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="1" selection-start-column="1" selection-end-column="1" />
+        <state relative-caret-position="60">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Model/MainTableModel.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/lib/src.zip!/java.desktop/java/awt/Robot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+        <state relative-caret-position="209">
+          <caret line="354" column="29" selection-start-line="354" selection-start-column="29" selection-end-line="354" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ClipboardHelper/src/sample/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="230" column="18" selection-start-line="230" selection-start-column="14" selection-end-line="230" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Model/ETHScanner/WalletScan.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="72" selection-start-line="72" selection-end-line="72" />
+        <state relative-caret-position="456">
+          <caret line="50" column="52" lean-forward="true" selection-start-line="50" selection-start-column="52" selection-end-line="50" selection-end-column="52" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Model/Ethplorer/Token.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/Model/Ethplorer/Price.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
+        <state relative-caret-position="-236">
+          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/squareup/retrofit2/retrofit/2.4.0/retrofit-2.4.0.jar!/retrofit2/Call.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1279">
-          <caret line="92" column="25" lean-forward="true" selection-start-line="92" selection-start-column="25" selection-end-line="92" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="135">
+          <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-20">
-          <caret line="205" column="101" selection-start-line="205" selection-start-column="101" selection-end-line="205" selection-end-column="101" />
+        <state relative-caret-position="2355">
+          <caret line="188" column="69" selection-start-line="188" selection-start-column="69" selection-end-line="188" selection-end-column="69" />
           <folding>
             <element signature="n#HBox#0;n#children#0;n#HBox#0;n#children#0;n#VBox#0;n#children#0;n#AnchorPane#0;n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
             <element signature="n#opaqueInsets#0;n#HBox#0;n#children#0;n#HBox#0;n#children#0;n#VBox#0;n#children#0;n#AnchorPane#0;n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
@@ -830,14 +883,95 @@
             <element signature="n#HBox#4;n#children#0;n#HBox#0;n#children#0;n#VBox#0;n#children#0;n#AnchorPane#0;n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
             <element signature="n#children#0;n#HBox#4;n#children#0;n#HBox#0;n#children#0;n#VBox#0;n#children#0;n#AnchorPane#0;n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
             <element signature="n#columnResizePolicy#0;n#TableView#0;n#children#0;n#AnchorPane#0;n#items#0;n#SplitPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
-            <element signature="n#padding#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#1;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
-            <element signature="n#bottom#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#1;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
-            <element signature="n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#1;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
-            <element signature="n#AnchorPane#1;n#items#0;n#SplitPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#1;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
           </folding>
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Model/MainTableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="52" selection-start-line="52" selection-end-line="52" />
+          <folding>
+            <element signature="e#695#696#0" expanded="true" />
+            <element signature="e#731#732#0" expanded="true" />
+            <element signature="e#1076#1077#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Model/ETHTrader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="40" column="60" selection-start-line="40" selection-start-column="60" selection-end-line="40" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Model/Ethplorer/TokenInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="29" column="36" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Model/Ethplorer/Token.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="50" column="20" selection-start-line="50" selection-start-column="20" selection-end-line="63" selection-end-column="7" />
+          <folding>
+            <element signature="e#700#701#0" expanded="true" />
+            <element signature="e#732#733#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Interface/RequestWalletEthplorerInfoCallBack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="670" column="9" lean-forward="true" selection-start-line="670" selection-start-column="9" selection-end-line="670" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Network/EtherScan/ETHplorerImp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Model/Ethplorer/WalletETHplorer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="70" column="59" selection-start-line="70" selection-start-column="59" selection-end-line="70" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1391#1392#0" expanded="true" />
+            <element signature="e#1420#1421#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Network/RetrofitClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="17" column="40" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">

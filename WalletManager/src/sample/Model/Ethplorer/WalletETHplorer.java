@@ -79,13 +79,13 @@ public class WalletETHplorer {
                 // Handle errors
                 if(!response.isSuccessful()) {
 //                    System.out.print("Get balance: " + response.body().error.getMessage() + "\n");
-                    requestWalletEthplorerInfoCallBack.walletInfoCallBack(SupportKeys.FAILED_CODE, null);
+                    requestWalletEthplorerInfoCallBack.walletInfoCallBack(SupportKeys.FAILED_CODE, "error", null);
                     return;
                 }
 
                 // Success
                 System.out.print("Get balance: " + String.valueOf(response.body()) + "\n");
-                requestWalletEthplorerInfoCallBack.walletInfoCallBack(SupportKeys.SUCCESS_CODE, response.body());
+                requestWalletEthplorerInfoCallBack.walletInfoCallBack(SupportKeys.SUCCESS_CODE, null, response.body());
 
             }
 
@@ -93,7 +93,7 @@ public class WalletETHplorer {
             public void onFailure(Call<WalletETHplorer> call, Throwable throwable) {
                 System.out.print("Request: " + call.request().toString() + "\n");
                 System.out.print("Get balance: " + throwable.getLocalizedMessage() + "\n");
-                requestWalletEthplorerInfoCallBack.walletInfoCallBack(SupportKeys.FAILED_CODE, null);
+                requestWalletEthplorerInfoCallBack.walletInfoCallBack(SupportKeys.FAILED_CODE, throwable.getLocalizedMessage(), null);
             }
 
         });

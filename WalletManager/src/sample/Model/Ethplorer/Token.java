@@ -12,12 +12,12 @@ public class Token {
     @SerializedName("balance")
     @Expose
     private Double balance;
-    @SerializedName("totalIn")
-    @Expose
-    private Integer totalIn;
-    @SerializedName("totalOut")
-    @Expose
-    private Integer totalOut;
+//    @SerializedName("totalIn")
+//    @Expose
+//    private Integer totalIn;
+//    @SerializedName("totalOut")
+//    @Expose
+//    private Integer totalOut;
 
     public String getWalletAddress() {
         return walletAddress;
@@ -47,20 +47,20 @@ public class Token {
         this.balance = balance;
     }
 
-    public Integer getTotalIn() {
-        return totalIn;
-    }
-
-    public void setTotalIn(Integer totalIn) {
-        this.totalIn = totalIn;
-    }
-
-    public Integer getTotalOut() {
-        return totalOut;
-    }
-
-    public void setTotalOut(Integer totalOut) {
-        this.totalOut = totalOut;
-    }
+//    public Integer getTotalIn() {
+//        return totalIn;
+//    }
+//
+//    public void setTotalIn(Integer totalIn) {
+//        this.totalIn = totalIn;
+//    }
+//
+//    public Integer getTotalOut() {
+//        return totalOut;
+//    }
+//
+//    public void setTotalOut(Integer totalOut) {
+//        this.totalOut = totalOut;
+//    }
 
 }
