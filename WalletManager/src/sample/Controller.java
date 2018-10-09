@@ -558,7 +558,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
                 mainTableModel.setTokenName(symbolList.getTokenName());
                 BigDecimal bg = new BigDecimal(String.valueOf(symbolList.getTotal()));
                 Formatter fmt = new Formatter();
-                fmt.format("%." + bg.scale() + "f", bg);
+                fmt.format("%" + bg.scale() + "f", bg);
                 mainTableModel.setSum(Double.valueOf(fmt.toString()));
                 mainTableModel.setNumberOfWallet(symbolList.getTokenList().size());
 
@@ -596,7 +596,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
                 lblCountedWallet.setText(countWallet + "/" + addressList.size());
                 BigDecimal bg = new BigDecimal(String.valueOf(sum));
                 Formatter fmt = new Formatter();
-                fmt.format("%." + bg.scale() + "f", bg);
+                fmt.format("%" + bg.scale() + "f", bg);
                 lblSum.setText(fmt.toString());
             }
         });

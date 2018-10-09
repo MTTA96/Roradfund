@@ -3,6 +3,11 @@ package sample.Model.Ethplorer;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.math.BigDecimal;
+import java.util.Formatter;
+
+import static java.lang.Math.pow;
+
 public class Token {
 
     private String walletAddress;
@@ -36,9 +41,12 @@ public class Token {
     }
 
     public Double getBalance() {
-        if (balance >=
-                1000000000000000000000d) {
-            return balance/1000000000000000000d;
+        BigDecimal bg = new BigDecimal(String.valueOf(balance));
+        Formatter fmt = new Formatter();
+        fmt.format("%" + bg.scale() + "f", bg);
+        if (balance >= 100000000d) {
+//            System.out.print(balance + " / 10^" + (fmt.toString().length()-11) + " - " + pow(10, fmt.toString().length()-11) + " = " + balance / pow(10, fmt.toString().length()-11) + "\n");
+            return balance / pow(10, fmt.toString().length()-11);
         }
         return balance;
     }
