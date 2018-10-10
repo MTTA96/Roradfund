@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="ClipboardHelper:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/ClipboardHelper_jar</output-path>
-    <root id="archive" name="ClipboardHelper.jar">
-      <element id="module-output" name="ClipboardHelper" />
-    </root>
-  </artifact>
-</component>
