@@ -1,9 +1,11 @@
 package sample;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -12,11 +14,14 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseButton;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import jdk.internal.jline.internal.Nullable;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import sample.Interface.RequestGasCallBack;
 import sample.Interface.RequestWalletEthplorerInfoCallBack;
 import sample.Model.ETHScanner.WalletScan;
+import sample.Model.Gas;
 import sample.Model.MainTableModel;
 import sample.Model.Ethplorer.Token;
 import sample.Model.Ethplorer.WalletETHplorer;
@@ -32,9 +37,12 @@ import java.nio.file.Files;
 import java.util.*;
 import java.util.Timer;
 
-public class Controller implements RequestWalletEthplorerInfoCallBack {
+public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGasCallBack {
 
     /** ----- VIEW ----- */
+
+    @FXML
+    private Tab tradingTab;
 
     /** CHECKING TAB */
 
@@ -65,12 +73,15 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
 
     @FXML
     private TextField txfFilePathTradingTab;
+    @FXML
+    private Label lblSelectedTokenTradingTab, lblGasPriceTradingTab, lblTotalWalletTradingTab, lblFeePerWalletTradingTab, lblTotalFeeTradingTab;
 //    @FXML
 //    private Button btnOpenResFileTradingTab, btnSendTradingTab;
 
 
     /** ----- PROPS ----- */
 
+    private Stage stage;
     private final ObservableList<WalletScan> data = FXCollections.observableArrayList();
     private final ObservableList<MainTableModel> dataResults = FXCollections.observableArrayList();
     private ArrayList<String> addressList = new ArrayList<>();
@@ -88,13 +99,24 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
     
     private long delayTime = 6000;
 
+    /** Trading tab */
+
+    private String selectedToken = "";
     //0x3750fC1505ba9a4cA3907b94Cda8e5758d31F3aD
 
 
-    public Controller() {
-    }
+    public Controller() {}
 
     /** ----- CONFIG ----- */
+
+    void configTabs() {
+        configCheckingTab();
+        configTradingTab();
+    }
+
+    private void configCheckingTab() {
+        configColumns();
+    }
 
     private void configColumns() {
 
@@ -135,6 +157,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
                         }
                         tbvDetails.setItems(data);
                     } else
+
                         for (SymbolList symbolList : symbolLists) {
                             if (symbolList.getSymbolName().equals(rowData.getSymbol())) {
 
@@ -143,10 +166,16 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
                                     data.add(new WalletScan(count, token.getWalletAddress(), token.getBalance().toString(), String.valueOf(0)));
                                     count += 1;
                                 }
+                                lblTotalWalletTradingTab.setText(String.valueOf(count));
                                 tbvDetails.setItems(data);
 
                             }
                         }
+
+                        // Update trading tab data
+
+                        selectedToken = rowData.getSymbol();
+                        lblSelectedTokenTradingTab.setText(rowData.getTokenName() + " - " + rowData.getSymbol());
 
                 }
             });
@@ -190,6 +219,18 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
 
     }
 
+    /** TRADING TAB */
+    private void configTradingTab() {
+
+        tradingTab.setOnSelectionChanged(new EventHandler<Event>() {
+            @Override
+            public void handle(Event event) {
+                System.out.print("openTradingTab");
+                checkGasPrice(null);
+            }
+        });
+
+    }
 
     /** ----- ACTIONS ----- */
 
@@ -209,6 +250,15 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
 
     }
 
+    @FXML
+    void checkGasPrice(ActionEvent event) {
+        requestGasData();
+    }
+
+//    @FXML
+//    void openTradingTab(ActionEvent event) {
+//        System.out.print("Opening trading");
+//    }
     /** CHECKING TAB */
 
     @FXML
@@ -264,8 +314,6 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
             lblCountedWallet.setText(countWallet + "/" + addressList.size());
             lblSum.setText(String.valueOf(sum));
 
-            configColumns();
-
             // Request data
 
             callAPIGetWalletInfo();
@@ -299,6 +347,10 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
 
 
     /** ----- SUPPORTED FUNC ----- */
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 
     private void handleFile(File file) {
 
@@ -650,6 +702,10 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
 
     }
 
+    public void requestGasData() {
+        Gas.getGas(this);
+    }
+
     /** ----- HANDLE RESULTS ----- */
 
     @Override
@@ -673,6 +729,22 @@ public class Controller implements RequestWalletEthplorerInfoCallBack {
         updateDetailsTable(wallet);
         updateMainTable(wallet);
         callAPIGetWalletInfo();
+
+    }
+
+    @Override
+    public void requestGasCallBack(int errorCode, String msg, Double gas) {
+
+        if ( errorCode == SupportKeys.FAILED_CODE ) {
+            showAlert(true,null, msg);
+        }
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                lblGasPriceTradingTab.setText(String.valueOf(gas));
+            }
+        });
 
     }
 

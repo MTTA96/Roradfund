@@ -177,7 +177,7 @@
 
                           <!-- TAB: TRADING -->
 
-                          <Tab text="Trading">
+                          <Tab fx:id="tradingTab" text="Trading" >
                               <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                       <children>
@@ -209,13 +209,33 @@
                                                                               </children>
                                                                           </HBox>
 
-                                                                          <!--Check keystore-->
+                                                                          <!--Selected token-->
 
                                                                           <HBox spacing="10.0">
                                                                               <children>
                                                                                   <Label text="Token đã chọn: " />
                                                                                   <Label fx:id="lblSelectedTokenTradingTab"/>
-                                                                                  <Button fx:id="btnCheckKeyStoreTradingTab" mnemonicParsing="false" onAction="#openWalletFile" style="-fx-background-color: null;" text="Check" textFill="#6685ff" />
+                                                                                  <!--<Button fx:id="btnCheckKeyStoreTradingTab" mnemonicParsing="false" onAction="#openWalletFile" style="-fx-background-color: null;" text="Check" textFill="#6685ff" />-->
+                                                                              </children>
+                                                                          </HBox>
+
+                                                                          <!--Check gas limit-->
+
+                                                                          <HBox spacing="10.0">
+                                                                              <children>
+                                                                                  <Label text="Gas limit: " />
+                                                                                  <TextField fx:id="txfGasLimitTradingTab" text="21000"/>
+                                                                                  <!--<Button fx:id="btnCheckKeyStoreTradingTab" mnemonicParsing="false" onAction="#openWalletFile" style="-fx-background-color: null;" text="Check" textFill="#6685ff" />-->
+                                                                              </children>
+                                                                          </HBox>
+
+                                                                          <!--Check gas price-->
+
+                                                                          <HBox spacing="10.0">
+                                                                              <children>
+                                                                                  <Label text="Gas price: " />
+                                                                                  <Label fx:id="lblGasPriceTradingTab"/>
+                                                                                  <Button fx:id="btnCheckGasPriceTradingTab" mnemonicParsing="false" onAction="#checkGasPrice" style="-fx-background-color: null;" text="Check" textFill="#6685ff" />
                                                                               </children>
                                                                           </HBox>
 
@@ -232,7 +252,7 @@
 
                                                                           <HBox spacing="10.0">
                                                                               <children>
-                                                                                  <Label text="Tổng số ví: " />
+                                                                                  <Label text="Số lượng token: " />
                                                                                   <Label fx:id="lblTotalTokenTradingTab"/>
                                                                               </children>
                                                                           </HBox>

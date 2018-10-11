@@ -9,12 +9,20 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
         Parent root = loader.load();
+
+        Controller controller = loader.getController();
+        controller.setStage(primaryStage);
+
         primaryStage.setTitle("Wallet Manager");
         primaryStage.setScene(new Scene(root, 1200, 600));
         primaryStage.show();
+
+        controller.configTabs();
+
     }
 
 

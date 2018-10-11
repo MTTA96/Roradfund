@@ -14,6 +14,7 @@ public class RetrofitClient {
 
     private static Retrofit retrofitEtherScan = null;
     private static Retrofit retrofitEtherplorer = null;
+    private static Retrofit retrofitGas = null;
 
     private static final int timeOut = 90;
 
@@ -53,6 +54,26 @@ public class RetrofitClient {
         }
 
         return retrofitEtherplorer;
+
+    }
+
+    public static Retrofit getGasClient(String baseUrl) {
+
+        if (retrofitGas == null) {
+            final OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                    .readTimeout(timeOut, TimeUnit.SECONDS)
+                    .connectTimeout(timeOut, TimeUnit.SECONDS)
+                    .build();
+
+            retrofitGas = new Retrofit.Builder()
+                    .baseUrl(baseUrl)
+                    .client(okHttpClient)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+        }
+
+        return retrofitGas;
 
     }
 

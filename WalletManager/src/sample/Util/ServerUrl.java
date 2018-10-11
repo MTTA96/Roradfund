@@ -20,4 +20,7 @@ public class ServerUrl {
     public static final String EthplorerUrl = "http://api.ethplorer.io/";
     public static final String GET_ADDRESS_INFO = EthplorerUrl + "getAddressInfo/";
 
+    public static final String GAS_BASE_URL = "https://www.etherchain.org/api/";
+    public static final String GET_GAS_URL = GAS_BASE_URL + "gasPriceOracle";
+
 }
