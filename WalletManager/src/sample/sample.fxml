@@ -16,6 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
+<?import javafx.scene.control.PasswordField?>
 <AnchorPane style="-fx-background-color: E7E6E6;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <children>
       <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -196,28 +197,53 @@
                                                       <items>
                                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                                               <children>
-                                                                  <VBox spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                  <VBox spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                       <children>
 
                                                                           <!-- Selected file -->
 
+                                                                          <!--Main wallet-->
+
                                                                           <HBox spacing="10.0">
                                                                               <children>
-                                                                                  <Label text="File: " />
-                                                                                  <TextField fx:id="txfFilePathTradingTab" />
-                                                                                  <Button fx:id="btnOpenResFileTradingTab" mnemonicParsing="false" onAction="#openWalletFile" style="-fx-background-color: null;" text="Browse" textFill="#6685ff" />
+                                                                                  <Label text="Main wallet: " />
+                                                                                  <VBox spacing="5.0">
+                                                                                      <HBox spacing="10.0">
+                                                                                          <children>
+                                                                                              <TextField fx:id="txfMainAddressTradingTab" promptText="Address"/>
+                                                                                              <Label fx:id="lblBalanceMainWalletTradingTab">Need address</Label>
+                                                                                          </children>
+                                                                                      </HBox>
+                                                                                      <HBox spacing="10.0">
+                                                                                          <children>
+                                                                                              <TextField fx:id="txfMainWalletFilePathTradingTab" promptText="File path"/>
+                                                                                              <Button fx:id="btnOpenMainWalletResFileTradingTab" mnemonicParsing="false" onAction="#openMainWalletFile" style="-fx-background-color: null;" text="Browse" textFill="#6685ff" />
+                                                                                          </children>
+                                                                                      </HBox>
+                                                                                      <PasswordField fx:id="pwfMainAddressPasswordTradingTab" promptText="Password"/>
+                                                                                  </VBox>
+                                                                              </children>
+                                                                          </HBox>
+
+                                                                          <!--Other wallets-->
+
+                                                                          <HBox spacing="10.0">
+                                                                              <children>
+                                                                                  <Label text="Other wallets: " />
+                                                                                  <TextField fx:id="txfOtherWalletsFilePathTradingTab" promptText="File path"/>
+                                                                                  <Button fx:id="btnOpenOtherWalletsResFileTradingTab" mnemonicParsing="false" onAction="#openOtherWalletFile" style="-fx-background-color: null;" text="Browse" textFill="#6685ff" />
                                                                               </children>
                                                                           </HBox>
 
                                                                           <!--Selected token-->
 
-                                                                          <HBox spacing="10.0">
-                                                                              <children>
-                                                                                  <Label text="Token đã chọn: " />
-                                                                                  <Label fx:id="lblSelectedTokenTradingTab"/>
-                                                                                  <!--<Button fx:id="btnCheckKeyStoreTradingTab" mnemonicParsing="false" onAction="#openWalletFile" style="-fx-background-color: null;" text="Check" textFill="#6685ff" />-->
-                                                                              </children>
-                                                                          </HBox>
+                                                                          <!--<HBox spacing="10.0">-->
+                                                                              <!--<children>-->
+                                                                                  <!--<Label text="Token đã chọn: " />-->
+                                                                                  <!--<Label fx:id="lblSelectedTokenTradingTab"/>-->
+                                                                                  <!--&lt;!&ndash;<Button fx:id="btnCheckKeyStoreTradingTab" mnemonicParsing="false" onAction="#openWalletFile" style="-fx-background-color: null;" text="Check" textFill="#6685ff" />&ndash;&gt;-->
+                                                                              <!--</children>-->
+                                                                          <!--</HBox>-->
 
                                                                           <!--Gas limit-->
 
@@ -234,7 +260,7 @@
                                                                           <HBox spacing="10.0">
                                                                               <children>
                                                                                   <Label text="Gas price: " />
-                                                                                  <Label fx:id="lblGasPriceTradingTab"/>
+                                                                                  <TextField fx:id="txfGasPriceTradingTab"/>
                                                                                   <Button fx:id="btnCheckGasPriceTradingTab" mnemonicParsing="false" onAction="#checkGasPrice" style="-fx-background-color: null;" text="Check" textFill="#6685ff" />
                                                                               </children>
                                                                           </HBox>
@@ -243,17 +269,17 @@
 
                                                                           <HBox spacing="10.0">
                                                                               <children>
-                                                                                  <Label text="Fee/wallet:" />
-                                                                                  <Label fx:id="lblFeePerWalletTradingTab"/>
-                                                                              </children>
-                                                                          </HBox>
+                                                                                  <Label text="Fee:" />
+                                                                                  <HBox>
+                                                                                      <Label fx:id="lblFeePerWalletTradingTab"/>
+                                                                                      <Label text="/wallet"/>
+                                                                                  </HBox>
 
-                                                                          <!--Total fee-->
-
-                                                                          <HBox spacing="10.0">
-                                                                              <children>
-                                                                                  <Label text="Total fee:" />
-                                                                                  <Label fx:id="lblTotalFeeTradingTab"/>
+                                                                                  <HBox>
+                                                                                      <Label text="-  Total:"/>
+                                                                                      <Label fx:id="lblTotalFeeTradingTab"/>
+                                                                                  </HBox>
+                                                                                  <Button fx:id="btnCalculateGasPriceTradingTab" mnemonicParsing="false" onAction="#calculateGasPrice" style="-fx-background-color: null;" text="Calculate" textFill="#6685ff" />
                                                                               </children>
                                                                           </HBox>
 
@@ -268,12 +294,12 @@
 
                                                                           <!--Total token-->
 
-                                                                          <HBox spacing="10.0">
-                                                                              <children>
-                                                                                  <Label text="Số lượng token: " />
-                                                                                  <Label fx:id="lblTotalTokenTradingTab"/>
-                                                                              </children>
-                                                                          </HBox>
+                                                                          <!--<HBox spacing="10.0">-->
+                                                                              <!--<children>-->
+                                                                                  <!--<Label text="Số lượng token: " />-->
+                                                                                  <!--<Label fx:id="lblTotalTokenTradingTab"/>-->
+                                                                              <!--</children>-->
+                                                                          <!--</HBox>-->
 
                                                                           <!--Not enough trade cost-->
 
@@ -299,9 +325,8 @@
 
                                                                           <HBox spacing="10.0">
                                                                               <children>
-                                                                                  <Label text="Send to: " />
-                                                                                  <TextField fx:id="txfReceivedAddressPathTradingTab" />
-                                                                                  <Button fx:id="btnSendTradingTab" mnemonicParsing="false" onAction="#openWalletFile" style="-fx-background-color: null;" text="Send" textFill="#6685ff" />
+                                                                                  <Button fx:id="btnSendToMainWalletTradingTab" mnemonicParsing="false" onAction="#sendToMainWallet" style="-fx-background-color: null;" text="Send to main wallet" textFill="#6685ff" />
+                                                                                  <Button fx:id="btnSendToAllWalletTradingTab" mnemonicParsing="false" onAction="#sendToAllWallet" style="-fx-background-color: null;" text="Send fee to all wallets" textFill="#6685ff" />
                                                                               </children>
                                                                           </HBox>
 

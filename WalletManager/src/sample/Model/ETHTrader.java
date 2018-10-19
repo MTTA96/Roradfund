@@ -10,6 +10,8 @@ import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.protocol.http.HttpService;
 import org.web3j.tx.Transfer;
 import org.web3j.utils.Convert;
+import sample.Interface.SendETHCallBack;
+import sample.Util.SupportKeys;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -21,10 +23,10 @@ public class ETHTrader {
     private Web3j web3j;
     private BigInteger gasLimit;
 
-    public void ETHTrader() {
+    public ETHTrader() {
 
         // Create client
-        web3j = Web3j.build(new HttpService());  // defaults to http://localhost:8545/
+        web3j = Web3j.build(new HttpService("https://ropsten.infura.io/v3/1a50fe4abf44469ea44c05bd38161534"));  // defaults to http://localhost:8545/
 
         // Display client version
         web3j.web3ClientVersion().observable().subscribe(x -> {
@@ -80,5 +82,22 @@ public class ETHTrader {
 
     }
 
+    public void sendETH(String password, String filePath, String toAddress, Double value, SendETHCallBack sendETHCallBack) {
+
+        try {
+            Credentials credentials = WalletUtils.loadCredentials(password, filePath);
+//            TransactionReceipt transactionReceipt = Transfer.sendFunds(
+//                    web3j,
+//                    credentials,
+//                    toAddress,
+//                    BigDecimal.valueOf(value),
+//                    Convert.Unit.ETHER).send();
+            sendETHCallBack.sendETHResult(SupportKeys.SUCCESS_CODE, "Success");
+        } catch (Exception e) {
+            e.printStackTrace();
+            sendETHCallBack.sendETHResult(SupportKeys.FAILED_CODE, e.getLocalizedMessage());
+        }
+
+    }
 
 }

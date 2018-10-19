@@ -2,6 +2,7 @@ package sample;
 
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,24 +21,28 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import sample.Interface.RequestGasCallBack;
 import sample.Interface.RequestWalletEthplorerInfoCallBack;
+import sample.Interface.SendETHCallBack;
 import sample.Model.ETHScanner.WalletScan;
+import sample.Model.ETHTrader;
 import sample.Model.Gas;
 import sample.Model.MainTableModel;
 import sample.Model.Ethplorer.Token;
 import sample.Model.Ethplorer.WalletETHplorer;
 import sample.Model.Symbol.SymbolList;
 import sample.Util.SupportKeys;
+import sample.View.LoadingAlert;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.nio.file.Files;
 import java.util.*;
 import java.util.Timer;
 
-public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGasCallBack {
+public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGasCallBack, SendETHCallBack {
 
     /** ----- VIEW ----- */
 
@@ -72,9 +77,15 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
     /** TRADING TAB */
 
     @FXML
-    private TextField txfFilePathTradingTab;
+    private TextField txfMainWalletFilePathTradingTab,
+            txfOtherWalletsFilePathTradingTab,
+            txfGasLimitTradingTab,
+            txfGasPriceTradingTab,
+            txfMainAddressTradingTab;
     @FXML
-    private Label lblSelectedTokenTradingTab, lblGasPriceTradingTab, lblTotalWalletTradingTab, lblFeePerWalletTradingTab, lblTotalFeeTradingTab;
+    private PasswordField pwfMainAddressPasswordTradingTab;
+    @FXML
+    private Label lblSelectedTokenTradingTab, lblBalanceMainWalletTradingTab, lblTotalWalletTradingTab, lblFeePerWalletTradingTab, lblTotalFeeTradingTab;
 //    @FXML
 //    private Button btnOpenResFileTradingTab, btnSendTradingTab;
 
@@ -91,17 +102,25 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
     /** Supported props */
 
+    private int totalWallet = 0;
     private int countWallet = 0;
     private int showedWallets = 0;
     private Double sum = 0d;
     private boolean isChecking = false;
     private boolean isStopped = false;
+    private boolean chekingSingleWallet = false;
     
     private long delayTime = 6000;
 
     /** Trading tab */
 
+    private ETHTrader trader;
+    private WalletETHplorer mainWallet = null;
     private String selectedToken = "";
+    private Double fee = 0d;
+    private Double gasPrice = 0d;
+    private int gasLimit = 21000;
+
     //0x3750fC1505ba9a4cA3907b94Cda8e5758d31F3aD
 
 
@@ -220,13 +239,58 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
     }
 
     /** TRADING TAB */
+
     private void configTradingTab() {
+
+        trader = new ETHTrader();
 
         tradingTab.setOnSelectionChanged(new EventHandler<Event>() {
             @Override
             public void handle(Event event) {
                 System.out.print("openTradingTab");
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        totalWallet = addressList.size();
+                        lblTotalWalletTradingTab.setText(String.valueOf(totalWallet));
+                    }
+                });
                 checkGasPrice(null);
+            }
+        });
+
+        /// ----- Need to be optimized
+
+//        txfGasPriceTradingTab.textProperty().addListener(new ChangeListener<String>() {
+//            @Override
+//            public void changed(ObservableValue<? extends String> observable,
+//                                String oldValue, String newValue) {
+//                if (!newValue.matches("\\d*")) {
+//                    txfGasPriceTradingTab.setText(newValue.replaceAll("[^\\d]", ""));
+//
+//                    gasPrice = Float.valueOf(newValue);
+//                    updateFee(Float.valueOf(newValue));
+//                }
+//            }
+//        });
+//
+//        txfGasLimitTradingTab.textProperty().addListener(new ChangeListener<String>() {
+//            @Override
+//            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+//                gasLimit = Integer.valueOf(newValue);
+//                updateFee(gasPrice);
+//            }
+//        });
+        txfMainAddressTradingTab.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        lblBalanceMainWalletTradingTab.setText("Loading...");
+                        requestSingleWalletInfo(newValue);
+                    }
+                });
             }
         });
 
@@ -237,14 +301,28 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
     /** TRADING TAB */
 
     @FXML
-    void openWalletFile(ActionEvent event) {
+    void openMainWalletFile(ActionEvent event) {
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Chọn file");
         //fileChooser.showOpenDialog(null);
         File file = fileChooser.showOpenDialog(null);
         if (file != null) {
-            txfFilePathTradingTab.setText(file.getPath());
+            txfMainWalletFilePathTradingTab.setText(file.getPath());
+//            handleFile(file);
+        }
+
+    }
+
+    @FXML
+    void openOtherWalletFile(ActionEvent event) {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Chọn file");
+        //fileChooser.showOpenDialog(null);
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+            txfOtherWalletsFilePathTradingTab.setText(file.getPath());
             handleFile(file);
         }
 
@@ -252,13 +330,43 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
     @FXML
     void checkGasPrice(ActionEvent event) {
+
+        txfGasPriceTradingTab.setText("Loading...");
+        lblFeePerWalletTradingTab.setText("Loading...");
+        lblTotalFeeTradingTab.setText("Loading...");
         requestGasData();
     }
 
-//    @FXML
-//    void openTradingTab(ActionEvent event) {
-//        System.out.print("Opening trading");
-//    }
+    @FXML
+    void calculateGasPrice(ActionEvent event) {
+
+        gasLimit = Integer.valueOf(txfGasLimitTradingTab.getText());
+        gasPrice = Double.valueOf(txfGasPriceTradingTab.getText());
+        updateFee(gasPrice);
+
+    }
+
+    @FXML
+    void sendToMainWallet(ActionEvent event) {
+        String toAddress = txfMainAddressTradingTab.getText();
+        String password = pwfMainAddressPasswordTradingTab.getText();
+        String filePath = "";
+        float value = 0;
+        trader.sendETH(password, filePath, toAddress, 2.0, this);
+    }
+
+    @FXML
+    void sendToAllWallet(ActionEvent event) {
+
+        if (!isValidInfo()) {
+            showAlert(false, "MissingInfo", "Main address, filepath, password field is missing or couldn't get data from main wallet");
+            return;
+        }
+
+        sendToAllWallets();
+
+    }
+
     /** CHECKING TAB */
 
     @FXML
@@ -345,13 +453,21 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
     }
 
-
     /** ----- SUPPORTED FUNC ----- */
 
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
+    public String formatNumber(Double amount) {
+
+        BigDecimal bg = new BigDecimal(String.valueOf(amount));
+//        Formatter fmt = new Formatter();
+//        fmt.format("%" + bg.scale() + "d", bg);
+
+        return String.valueOf(bg);
+
+    }
     private void handleFile(File file) {
 
         resetState();
@@ -376,7 +492,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
                 default:
                     System.out.print("Failed!");
-//                    showAlert(false, "File type warning!!!", "Only handle excel, word or text file");
+                    showAlert(false, "File type warning!!!", "Only handle excel, word or text file");
                     break;
             }
         } catch (IOException e) {
@@ -654,11 +770,63 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
         });
     }
 
+    /** TRADING TAB */
+
+    private void sendToAllWallets() {
+//        String toAddress = "0x8bf3202fAf3bB46460353FC7C8b8494fb4de5BE6";
+        String password = pwfMainAddressPasswordTradingTab.getText();
+        String filePath = txfMainWalletFilePathTradingTab.getText();
+
+        for (String toAddress :
+                addressList) {
+
+            Double value = (mainWallet.getETH().getBalance() - fee);
+            trader.sendETH(password, filePath, toAddress, value, this);
+
+        }
+
+    }
+
+    private boolean isValidInfo() {
+
+        if (txfMainAddressTradingTab.getText().isEmpty() ||
+                txfMainWalletFilePathTradingTab.getText().isEmpty() ||
+                pwfMainAddressPasswordTradingTab.getText().isEmpty() || mainWallet == null) {
+            return false;
+        }
+
+        return true;
+
+    }
+
+    private void updateFee(Double gas) {
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                txfGasPriceTradingTab.setText(String.valueOf(gas));
+
+                fee = gas * gasLimit / 1000000000;
+                lblFeePerWalletTradingTab.setText(formatNumber((double) fee));
+                lblTotalFeeTradingTab.setText(formatNumber((double) (fee * totalWallet)));
+            }
+        });
+
+    }
 
     /** ----- API SERVICES ----- */
 
+    private void requestSingleWalletInfo(String address) {
+
+        //LoadingAlert.getInstance().show();
+        chekingSingleWallet = true;
+        WalletETHplorer.getWalletInfo(address, Controller.this);
+
+    }
+
     private void callAPIGetWalletInfo() {
 
+        //LoadingAlert.getInstance().show();
         // Send request immediately if list is empty
 
         if (countWallet == 0) {
@@ -703,6 +871,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
     }
 
     public void requestGasData() {
+        //LoadingAlert.getInstance().show();
         Gas.getGas(this);
     }
 
@@ -711,12 +880,31 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
     @Override
     public void walletInfoCallBack(int errorCode, String msg, WalletETHplorer wallet) {
 
+        //LoadingAlert.getInstance().dismiss();
+
+        if (chekingSingleWallet) {
+            if (errorCode == SupportKeys.FAILED_CODE) {
+                showAlert(true,null, msg);
+                return;
+            }
+
+            mainWallet = wallet;
+
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    lblBalanceMainWalletTradingTab.setText(formatNumber(wallet.getETH().getBalance()));
+                }
+            });
+
+            return;
+        }
+
         if (isStopped) {
             System.out.print("Stop plzzz");
             countWallet = showedWallets;
             return;
         }
-
 
         if (errorCode == SupportKeys.FAILED_CODE) {
             countWallet -= 1;
@@ -735,16 +923,29 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
     @Override
     public void requestGasCallBack(int errorCode, String msg, Double gas) {
 
+        //LoadingAlert.getInstance().dismiss();
         if ( errorCode == SupportKeys.FAILED_CODE ) {
             showAlert(true,null, msg);
+            return;
         }
 
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                lblGasPriceTradingTab.setText(String.valueOf(gas));
-            }
-        });
+        gas += 0.1;
+        gasPrice = gas;
+        updateFee(gas);
+
+    }
+
+    @Override
+    public void sendETHResult(int errorCode, String msg) {
+
+        //LoadingAlert.getInstance().dismiss();
+//        if (errorCode == SupportKeys.FAILED_CODE) {
+//            showAlert(true, "Send token", msg);
+//            return;
+//        }
+
+//        showAlert(false, "Send token", msg);
+        System.out.print(msg);
 
     }
 
