@@ -19,6 +19,9 @@ import javafx.stage.Stage;
 import jdk.internal.jline.internal.Nullable;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.web3j.protocol.core.DefaultBlockParameter;
+import org.web3j.protocol.core.DefaultBlockParameterName;
+import org.web3j.utils.Convert;
 import sample.Interface.RequestGasCallBack;
 import sample.Interface.RequestWalletEthplorerInfoCallBack;
 import sample.Interface.SendETHCallBack;
@@ -29,8 +32,8 @@ import sample.Model.MainTableModel;
 import sample.Model.Ethplorer.Token;
 import sample.Model.Ethplorer.WalletETHplorer;
 import sample.Model.Symbol.SymbolList;
+import sample.Model.Wallet;
 import sample.Util.SupportKeys;
-import sample.View.LoadingAlert;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -39,8 +42,12 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.Timer;
+import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
 
 public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGasCallBack, SendETHCallBack {
 
@@ -86,8 +93,8 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
     private PasswordField pwfMainAddressPasswordTradingTab;
     @FXML
     private Label lblSelectedTokenTradingTab, lblBalanceMainWalletTradingTab, lblTotalWalletTradingTab, lblFeePerWalletTradingTab, lblTotalFeeTradingTab;
-//    @FXML
-//    private Button btnOpenResFileTradingTab, btnSendTradingTab;
+    @FXML
+    private Button btnOpenResFileTradingTab, btnSendTradingTab, btnSendToAllWalletTradingTab;
 
 
     /** ----- PROPS ----- */
@@ -95,8 +102,8 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
     private Stage stage;
     private final ObservableList<WalletScan> data = FXCollections.observableArrayList();
     private final ObservableList<MainTableModel> dataResults = FXCollections.observableArrayList();
-    private ArrayList<String> addressList = new ArrayList<>();
-    private ArrayList<WalletScan> walletList = new ArrayList<>();
+    private ArrayList<Wallet> walletList = new ArrayList<>();
+    private ArrayList<WalletScan> walletScans = new ArrayList<>();
     private ArrayList<SymbolList> symbolLists = new ArrayList<>();
     private Timer timer = new Timer();
 
@@ -116,13 +123,15 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
     private ETHTrader trader;
     private WalletETHplorer mainWallet = null;
+    private List<Path> othersWalletPathList;
     private String selectedToken = "";
-    private Double fee = 0d;
-    private Double gasPrice = 0d;
+    private BigDecimal fee = BigDecimal.valueOf(0);
+    private BigDecimal gasPrice = BigDecimal.valueOf(0);
+    private boolean isSendingToAll = false;
     private int gasLimit = 21000;
+    private int countingTransaction = 0;
 
     //0x3750fC1505ba9a4cA3907b94Cda8e5758d31F3aD
-
 
     public Controller() {}
 
@@ -170,7 +179,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
                     if (rowData.getSymbol().equals("All")) {
                         int count = 1;
-                        for (WalletScan wallet : walletList) {
+                        for (WalletScan wallet : walletScans) {
                             data.add(new WalletScan(count, wallet.getAccount(), wallet.getTokenAmount(), wallet.getBalance()));
                             count += 1;
                         }
@@ -242,7 +251,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
     private void configTradingTab() {
 
-        trader = new ETHTrader();
+        trader =  ETHTrader.getInstance();
 
         tradingTab.setOnSelectionChanged(new EventHandler<Event>() {
             @Override
@@ -251,7 +260,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        totalWallet = addressList.size();
+                        totalWallet = walletList.size();
                         lblTotalWalletTradingTab.setText(String.valueOf(totalWallet));
                     }
                 });
@@ -284,11 +293,21 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
         txfMainAddressTradingTab.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        lblBalanceMainWalletTradingTab.setText("Loading...");
-                        requestSingleWalletInfo(newValue);
+                        if(!newValue.isEmpty()) {
+                            lblBalanceMainWalletTradingTab.setText("Loading...");
+//                            try {
+//                                trader.web3j.ethGetBalance(newValue, DefaultBlockParameterName.LATEST).sendAsync().get();
+//                            } catch (InterruptedException | ExecutionException e) {
+//                                e.printStackTrace();
+//                            }
+                            requestSingleWalletInfo(newValue);
+                        } else {
+                            lblBalanceMainWalletTradingTab.setText("NaN");
+                        }
                     }
                 });
             }
@@ -309,7 +328,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
         File file = fileChooser.showOpenDialog(null);
         if (file != null) {
             txfMainWalletFilePathTradingTab.setText(file.getPath());
-//            handleFile(file);
+            txfMainAddressTradingTab.setText("0x" + file.getPath().split("--")[2]);
         }
 
     }
@@ -323,7 +342,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
         File file = fileChooser.showOpenDialog(null);
         if (file != null) {
             txfOtherWalletsFilePathTradingTab.setText(file.getPath());
-            handleFile(file);
+            handleFolderWallets(file.getPath());
         }
 
     }
@@ -341,28 +360,29 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
     void calculateGasPrice(ActionEvent event) {
 
         gasLimit = Integer.valueOf(txfGasLimitTradingTab.getText());
-        gasPrice = Double.valueOf(txfGasPriceTradingTab.getText());
+        gasPrice = BigDecimal.valueOf(Double.valueOf(txfGasPriceTradingTab.getText()));
         updateFee(gasPrice);
 
     }
 
     @FXML
     void sendToMainWallet(ActionEvent event) {
-        String toAddress = txfMainAddressTradingTab.getText();
-        String password = pwfMainAddressPasswordTradingTab.getText();
-        String filePath = "";
-        float value = 0;
-        trader.sendETH(password, filePath, toAddress, 2.0, this);
+//        String toAddress = txfMainAddressTradingTab.getText();
+//        String password = pwfMainAddressPasswordTradingTab.getText();
+//        String filePath = "";
+//        BigDecimal value = BigDecimal.valueOf(2.0);
+//        trader.sendETH(password, filePath, toAddress, value, this);
     }
 
     @FXML
     void sendToAllWallet(ActionEvent event) {
 
         if (!isValidInfo()) {
-            showAlert(false, "MissingInfo", "Main address, filepath, password field is missing or couldn't get data from main wallet");
+            showAlert(false, "MissingInfo", "Main address, filepath, password field is missing or couldn't get balance info from main wallet");
             return;
         }
 
+        btnSendToAllWalletTradingTab.setText("Sending");
         sendToAllWallets();
 
     }
@@ -404,7 +424,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
         // Prepare data
 
-        if (addressList.size() != 0) {
+        if (walletList.size() != 0) {
 
             System.out.print("Start\n");
 
@@ -419,7 +439,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
             //  UI
 
             btnCheck.setText("Dừng");
-            lblCountedWallet.setText(countWallet + "/" + addressList.size());
+            lblCountedWallet.setText(countWallet + "/" + walletList.size());
             lblSum.setText(String.valueOf(sum));
 
             // Request data
@@ -468,6 +488,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
         return String.valueOf(bg);
 
     }
+    
     private void handleFile(File file) {
 
         resetState();
@@ -532,14 +553,20 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
             // Handle wallet list
 
+            String[] splitedContent;
             for (XWPFParagraph para : paragraphs) {
 
                 if (!para.getText().isEmpty()) {
-                    addressList.add(para.getText());
+                    splitedContent = para.getText().split("--");
+                    if (splitedContent.length >= 2) {
+                        walletList.add(new Wallet(splitedContent[0], splitedContent[1]));
+                    } else {
+                        walletList.add(new Wallet(splitedContent[0], ""));
+                    }
                 }
 
             }
-            lblCountedWallet.setText(String.valueOf(addressList.size()));
+            lblCountedWallet.setText(String.valueOf(walletList.size()));
 
             fis.close();
 
@@ -554,11 +581,17 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
     private void handleTxt(File file) {
 
         try (Scanner scanner = new Scanner(file)) {
+            String[] splitedContent;
             int i = 0;
             while (scanner.hasNext()) {
                 String walletAddress = scanner.next();
-                //System.out.println(walletAddress);
-                addressList.add(walletAddress);
+                splitedContent = walletAddress.split("--");
+
+                if (splitedContent.length >= 2) {
+                    walletList.add(new Wallet(splitedContent[0], splitedContent[1]));
+                } else {
+                    walletList.add(new Wallet(splitedContent[0], ""));
+                }
                 i++;
             }
 
@@ -585,8 +618,8 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
         countWallet = 0;
         showedWallets = 0;
         sum = 0d;
+        walletScans.clear();
         walletList.clear();
-        addressList.clear();
         symbolLists.clear();
         data.clear();
 
@@ -644,7 +677,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
         // Handle when finish checking
 
-        if (countWallet == addressList.size()) {
+        if (countWallet == walletList.size()) {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
@@ -658,7 +691,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
         sum += Double.parseDouble(walletScan.getBalance());
 
-        walletList.add(walletScan);
+        walletScans.add(walletScan);
         data.add(walletScan);
 
         // Update UI
@@ -713,7 +746,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
             mainTableModel.setTokenName("");
             mainTableModel.setSum(0.0);
             mainTableModel.setNumberOfToken(symbolLists.size());
-            mainTableModel.setNumberOfWallet(addressList.size());
+            mainTableModel.setNumberOfWallet(walletList.size());
 
             dataResults.add(mainTableModel);
             count += 1;
@@ -743,7 +776,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
         // Handle when finished checking
 
-        if (countWallet > addressList.size()) {
+        if (countWallet > walletList.size()) {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
@@ -761,7 +794,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                lblCountedWallet.setText(countWallet + "/" + addressList.size());
+                lblCountedWallet.setText(countWallet + "/" + walletList.size());
                 BigDecimal bg = new BigDecimal(String.valueOf(sum));
                 Formatter fmt = new Formatter();
                 fmt.format("%" + bg.scale() + "f", bg);
@@ -772,21 +805,95 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
     /** TRADING TAB */
 
+    /**
+     * Sending Steps:
+     * 1. Calculate sending value (main balance - fee)
+     * 2. Send fee to each wallet
+     * 3. Recalculate main balance (main balance - sent value)
+     * */
+
     private void sendToAllWallets() {
-//        String toAddress = "0x8bf3202fAf3bB46460353FC7C8b8494fb4de5BE6";
+
         String password = pwfMainAddressPasswordTradingTab.getText();
         String filePath = txfMainWalletFilePathTradingTab.getText();
 
-        for (String toAddress :
-                addressList) {
+        isSendingToAll = true;
+        if (countingTransaction < walletList.size()) {
 
-            Double value = (mainWallet.getETH().getBalance() - fee);
-            trader.sendETH(password, filePath, toAddress, value, this);
+            System.out.println("\npw: " + password
+                    + "\nFilepath: " + filePath
+                    + "\nTo address: " + walletList.get(countingTransaction).getAddress()
+                    + "\nMain balance: " + BigDecimal.valueOf(mainWallet.getETH().getBalance()) + " - *wei: " + BigDecimal.valueOf(mainWallet.getETH().getBalance()).multiply(BigDecimal.valueOf(1_000_000_000_000_000_000L))
+                    + "\nFee: " + fee
+                    + "\nGas price: " + gasPrice
+                    // Gas * price + value
+                    + "\nSending balance: " + gasPrice.multiply(BigDecimal.valueOf(gasLimit)).add(fee.multiply(BigDecimal.valueOf(1_000_000_000))).multiply(BigDecimal.valueOf(1_000_000_000L)));
 
+            mainWallet.getETH().setBalance(BigDecimal.valueOf(mainWallet.getETH().getBalance()).subtract(fee).doubleValue()); /// 3
+            countingTransaction += 1;
+
+            trader.sendETH(mainWallet.getAddress(), // Main address
+                    password, // Password
+                    filePath, // Filepath
+                    walletList.get(countingTransaction - 1).getAddress(), // To address
+                    BigInteger.valueOf(gasPrice.multiply(BigDecimal.valueOf(1_000_000_000)).longValue()), // Gas price
+                    BigInteger.valueOf(gasLimit), // Gas limit
+                    BigInteger.valueOf(fee.multiply(BigDecimal.valueOf(1_000_000_000_000_000_000L)).longValue()), // Value
+                    this);
+
+        } else {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    btnSendToAllWalletTradingTab.setText("Send fee to all wallets");
+                }
+            });
         }
 
     }
 
+    /**
+     * Sending Steps:
+     * 1. Compare file name and address
+     * 2. Calculate fee (gas * gas limit / 1000000000)
+     * 3. Calculate sending value (
+     * 3. Recalculate main balance (main balance - sent value)
+     * */
+
+    private void sendToMainWallet() {
+//        String toAddress = txfMainAddressTradingTab.getText();
+//        String password = pwfMainAddressPasswordTradingTab.getText();
+//
+//        BigDecimal mainBalance = BigDecimal.valueOf(mainWallet.getETH().getBalance());
+//        BigDecimal sendingValue = BigDecimal.valueOf(0);
+//
+//        isSendingToAll = false;
+//
+//        for (Wallet wallet : walletList) {
+//
+//            for (Path walletPath : othersWalletPathList) {
+//                if (walletPath.getFileName().toString().contains(wallet.getAddress())) {
+//                    sendingValue = mainBalance.subtract(fee);
+//                    mainBalance = mainBalance.subtract(sendingValue);
+//
+//                    trader.sendETH(wallet.getPassword(), walletPath.toString(), wallet.getAddress(), sendingValue, this);
+//
+//                }
+//            }
+//
+//        }
+    }
+    
+    private void handleFolderWallets(String path) {
+        try {
+            othersWalletPathList = Files.walk(Paths.get(path))
+                    .filter(Files::isRegularFile)
+                    .collect(Collectors.toList());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     private boolean isValidInfo() {
 
         if (txfMainAddressTradingTab.getText().isEmpty() ||
@@ -799,16 +906,16 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
     }
 
-    private void updateFee(Double gas) {
+    private void updateFee(BigDecimal gas) {
 
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 txfGasPriceTradingTab.setText(String.valueOf(gas));
 
-                fee = gas * gasLimit / 1000000000;
-                lblFeePerWalletTradingTab.setText(formatNumber((double) fee));
-                lblTotalFeeTradingTab.setText(formatNumber((double) (fee * totalWallet)));
+                fee = gas.multiply(BigDecimal.valueOf(gasLimit)).divide(BigDecimal.valueOf(1_000_000_000));
+                lblFeePerWalletTradingTab.setText(fee.toString());
+                lblTotalFeeTradingTab.setText((totalWallet == 0 ? 0 : fee.multiply(BigDecimal.valueOf(totalWallet))).toString());
             }
         });
 
@@ -833,9 +940,9 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
             // Format address list
 
-            String address = addressList.get(countWallet);
+            String address = walletList.get(countWallet).getAddress();
             countWallet += 1;
-            //countWallet += countWallet + 1 < addressList.size() ? 1 : addressList.size() - countWallet;
+            //countWallet += countWallet + 1 < walletList.size() ? 1 : walletList.size() - countWallet;
 
             // Call API
             WalletETHplorer.getWalletInfo(address, Controller.this);
@@ -852,13 +959,13 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
                 // If reach the last wallet then cancel request
 
-                if (countWallet < addressList.size()) {
+                if (countWallet < walletList.size()) {
 
                     // Format address list
 
-                    String address = addressList.get(countWallet);
+                    String address = walletList.get(countWallet).getAddress();
                     countWallet += 1;
-                    //countWallet += countWallet + 1 < addressList.size() ? 1 : addressList.size() - countWallet;
+                    //countWallet += countWallet + 1 < walletList.size() ? 1 : walletList.size() - countWallet;
 
                     // Call API
                     WalletETHplorer.getWalletInfo(address, Controller.this);
@@ -888,14 +995,17 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
                 return;
             }
 
-            mainWallet = wallet;
+            if(wallet != null) {
+                mainWallet = wallet;
 
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    lblBalanceMainWalletTradingTab.setText(formatNumber(wallet.getETH().getBalance()));
-                }
-            });
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        mainWallet = wallet;
+                        lblBalanceMainWalletTradingTab.setText(formatNumber(wallet.getETH() != null ? wallet.getETH().getBalance() != null ? wallet.getETH().getBalance() : -1 : -1));
+                    }
+                });
+            }
 
             return;
         }
@@ -929,9 +1039,9 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
             return;
         }
 
-        gas += 0.1;
-        gasPrice = gas;
-        updateFee(gas);
+        gas += 0.1d;
+        gasPrice = BigDecimal.valueOf(gas);
+        updateFee(gasPrice);
 
     }
 
@@ -939,13 +1049,25 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
     public void sendETHResult(int errorCode, String msg) {
 
         //LoadingAlert.getInstance().dismiss();
-//        if (errorCode == SupportKeys.FAILED_CODE) {
-//            showAlert(true, "Send token", msg);
-//            return;
-//        }
+        if (errorCode == SupportKeys.FAILED_CODE) {
+            //showAlert(true, "Send token", msg);
+            System.out.println(msg);
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    btnSendToAllWalletTradingTab.setText("Send fee to all wallets");
+                }
+            });
+            return;
+        }
 
-//        showAlert(false, "Send token", msg);
-        System.out.print(msg);
+        if(isSendingToAll) {
+            sendToAllWallets();
+        } else {
+            sendToMainWallet();
+        }
+
+        //showAlert(false, "Send token", msg);
 
     }
 
