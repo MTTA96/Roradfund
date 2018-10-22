@@ -4,12 +4,14 @@ import org.bouncycastle.util.encoders.Hex;
 import org.web3j.crypto.*;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.DefaultBlockParameterName;
+import org.web3j.protocol.core.methods.response.EthGetBalance;
 import org.web3j.protocol.core.methods.response.EthGetTransactionCount;
 import org.web3j.protocol.core.methods.response.EthSendTransaction;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.protocol.http.HttpService;
 import org.web3j.tx.Transfer;
 import org.web3j.utils.Convert;
+import sample.Interface.GetBalanceCallBack;
 import sample.Interface.SendETHCallBack;
 import sample.Util.SupportKeys;
 
@@ -47,6 +49,22 @@ public class ETHTrader {
         });
 
     }
+
+    /** ----- GET BALANCE ------ */
+
+    public void getBalance(String address, GetBalanceCallBack getBalanceCallback) {
+
+        try {
+            EthGetBalance balanceGetter = web3j.ethGetBalance(address, DefaultBlockParameterName.LATEST).sendAsync().get();
+            getBalanceCallback.getBalanceCallBack("", BigDecimal.valueOf(balanceGetter.getBalance().longValue()).divide(BigDecimal.valueOf(1_000_000_000_000_000_000L)).doubleValue());
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+            getBalanceCallback.getBalanceCallBack(e.getLocalizedMessage(), null);
+        }
+
+    }
+
+    /** ----- SEND ----- */
 
     // Sending arbitrary token
 
@@ -95,44 +113,47 @@ public class ETHTrader {
 
     }
 
-    public void sendETH(String fromAddress, String password, String filePath, String toAddress, BigInteger gasPrice, BigInteger gasLimit, BigInteger value, SendETHCallBack sendETHCallBack) {
+    public void sendETH(String fromAddress, String password, String filePath, String toAddress, BigInteger gasPrice, BigInteger gasLimit, BigInteger value, SendETHCallBack sendETHCallBack, boolean increaseNonce) {
 
         try {
 
-//            Credentials credentials = WalletUtils.loadCredentials(password, filePath);
-//
-//            /// 1: Get the next available nonce
-//
-//            EthGetTransactionCount ethGetTransactionCount = web3j.ethGetTransactionCount(fromAddress, DefaultBlockParameterName.LATEST).sendAsync().get();
-//            BigInteger nonce = ethGetTransactionCount.getTransactionCount();
-//
-//            /// 2: Create our transaction
-//            System.out.println("Gas price: "
-//                    + gasPrice // Gas * price + value
-//                    + " - value: "
-//                    + value); // Main balance
-//            RawTransaction rawTransaction = RawTransaction.createEtherTransaction(nonce,
-//                    gasPrice,
-//                    gasLimit,
-//                    toAddress,
-//                    value);
-//
-//            /// 3: Sign & send our transaction
-//
-//            byte[] signedMessage = TransactionEncoder.signMessage(rawTransaction, credentials);
-//            String hexValue = "0x" + Hex.toHexString(signedMessage);
-//            EthSendTransaction ethSendTransaction = web3j.ethSendRawTransaction(hexValue).send();
-//
-//            /// 4: Handle result
-//
-//            if(ethSendTransaction.getError() != null) {
-//                System.out.println(ethSendTransaction.getError().getMessage());
-//                sendETHCallBack.sendETHResult(SupportKeys.FAILED_CODE, ethSendTransaction.getError().getMessage());
-//            } else {
-//                sendETHCallBack.sendETHResult(SupportKeys.SUCCESS_CODE, "Success");
-//            }
+            Credentials credentials = WalletUtils.loadCredentials(password, filePath);
 
-            sendETHCallBack.sendETHResult(SupportKeys.SUCCESS_CODE, "Success");
+            /// 1: Get the next available nonce
+
+            EthGetTransactionCount ethGetTransactionCount = web3j.ethGetTransactionCount(fromAddress, DefaultBlockParameterName.LATEST).sendAsync().get();
+            BigInteger nonce = ethGetTransactionCount.getTransactionCount();
+
+//            nonce = increaseNonce ? nonce.add(BigInteger.ONE) : nonce;
+
+            /// 2: Create our transaction
+            System.out.println("Nonce: " + nonce
+                    + " - Gas price: " + gasPrice // Gas * price + value
+                    + " - value: " + value + "\n"); // Main balance
+            RawTransaction rawTransaction = RawTransaction.createEtherTransaction(nonce,
+                    gasPrice,
+                    gasLimit,
+                    toAddress,
+                    value);
+
+            /// 3: Sign & send our transaction
+
+            byte[] signedMessage = TransactionEncoder.signMessage(rawTransaction, credentials);
+            String hexValue = "0x" + Hex.toHexString(signedMessage);
+            EthSendTransaction ethSendTransaction = web3j.ethSendRawTransaction(hexValue).send();
+
+            /// 4: Handle result
+
+            if(ethSendTransaction.getError() != null) {
+                if(ethSendTransaction.getError().getCode() == -32000) {
+                    this.sendETH(fromAddress, password, filePath, toAddress, gasPrice, gasLimit, value, sendETHCallBack, true);
+                } else {
+                    sendETHCallBack.sendETHResult(SupportKeys.FAILED_CODE, ethSendTransaction.getError().getCode() + " - " + ethSendTransaction.getError().getMessage());
+                }
+            } else {
+                sendETHCallBack.sendETHResult(SupportKeys.SUCCESS_CODE, "Success");
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
             sendETHCallBack.sendETHResult(SupportKeys.FAILED_CODE, e.getLocalizedMessage());

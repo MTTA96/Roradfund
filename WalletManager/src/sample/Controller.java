@@ -22,6 +22,7 @@ import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.web3j.protocol.core.DefaultBlockParameter;
 import org.web3j.protocol.core.DefaultBlockParameterName;
 import org.web3j.utils.Convert;
+import sample.Interface.GetBalanceCallBack;
 import sample.Interface.RequestGasCallBack;
 import sample.Interface.RequestWalletEthplorerInfoCallBack;
 import sample.Interface.SendETHCallBack;
@@ -49,7 +50,7 @@ import java.util.Timer;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
-public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGasCallBack, SendETHCallBack {
+public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGasCallBack, SendETHCallBack, GetBalanceCallBack {
 
     /** ----- VIEW ----- */
 
@@ -299,12 +300,8 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
                     public void run() {
                         if(!newValue.isEmpty()) {
                             lblBalanceMainWalletTradingTab.setText("Loading...");
-//                            try {
-//                                trader.web3j.ethGetBalance(newValue, DefaultBlockParameterName.LATEST).sendAsync().get();
-//                            } catch (InterruptedException | ExecutionException e) {
-//                                e.printStackTrace();
-//                            }
                             requestSingleWalletInfo(newValue);
+//                            trader.getBalance(newValue, Controller.this);
                         } else {
                             lblBalanceMainWalletTradingTab.setText("NaN");
                         }
@@ -463,7 +460,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
                     timer = null;
                 } else {
                     System.out.print("Continue\n");
-                    //callAPICheckBalance();
+//                    callAPICheckBalance();
                     callAPIGetWalletInfo();
                 }
 
@@ -828,18 +825,38 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
                     + "\nGas price: " + gasPrice
                     // Gas * price + value
                     + "\nSending balance: " + gasPrice.multiply(BigDecimal.valueOf(gasLimit)).add(fee.multiply(BigDecimal.valueOf(1_000_000_000))).multiply(BigDecimal.valueOf(1_000_000_000L)));
+            new java.util.Timer().schedule(
+                    new java.util.TimerTask() {
+                        @Override
+                        public void run() {
+                            mainWallet.getETH().setBalance(BigDecimal.valueOf(mainWallet.getETH().getBalance()).subtract(fee).doubleValue()); /// 3
+                            countingTransaction += 1;
 
-            mainWallet.getETH().setBalance(BigDecimal.valueOf(mainWallet.getETH().getBalance()).subtract(fee).doubleValue()); /// 3
-            countingTransaction += 1;
-
-            trader.sendETH(mainWallet.getAddress(), // Main address
-                    password, // Password
-                    filePath, // Filepath
-                    walletList.get(countingTransaction - 1).getAddress(), // To address
-                    BigInteger.valueOf(gasPrice.multiply(BigDecimal.valueOf(1_000_000_000)).longValue()), // Gas price
-                    BigInteger.valueOf(gasLimit), // Gas limit
-                    BigInteger.valueOf(fee.multiply(BigDecimal.valueOf(1_000_000_000_000_000_000L)).longValue()), // Value
-                    this);
+                            trader.sendETH(mainWallet.getAddress(), // Main address
+                                    password, // Password
+                                    filePath, // Filepath
+                                    walletList.get(countingTransaction - 1).getAddress(), // To address
+                                    BigInteger.valueOf(gasPrice.multiply(BigDecimal.valueOf(1_000_000_000)).longValue()), // Gas price
+                                    BigInteger.valueOf(gasLimit), // Gas limit
+                                    BigInteger.valueOf(fee.multiply(BigDecimal.valueOf(1_000_000_000_000_000_000L)).longValue()), // Value
+                                    Controller.this,
+                                    countingTransaction > 0);
+                            this.cancel();
+                        }
+                    },
+                    3000
+            );
+//            mainWallet.getETH().setBalance(BigDecimal.valueOf(mainWallet.getETH().getBalance()).subtract(fee).doubleValue()); /// 3
+//            countingTransaction += 1;
+//
+//            trader.sendETH(mainWallet.getAddress(), // Main address
+//                    password, // Password
+//                    filePath, // Filepath
+//                    walletList.get(countingTransaction - 1).getAddress(), // To address
+//                    BigInteger.valueOf(gasPrice.multiply(BigDecimal.valueOf(1_000_000_000)).longValue()), // Gas price
+//                    BigInteger.valueOf(gasLimit), // Gas limit
+//                    BigInteger.valueOf(fee.multiply(BigDecimal.valueOf(1_000_000_000_000_000_000L)).longValue()), // Value
+//                    this);
 
         } else {
             Platform.runLater(new Runnable() {
@@ -995,16 +1012,40 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
                 return;
             }
 
-            if(wallet != null) {
-                mainWallet = wallet;
+            mainWallet = wallet;
 
-                Platform.runLater(new Runnable() {
+            if(wallet != null) {
+
+                /// Using server test to check balance: -----
+
+                trader.getBalance(wallet.getAddress(), new GetBalanceCallBack() {
                     @Override
-                    public void run() {
-                        mainWallet = wallet;
-                        lblBalanceMainWalletTradingTab.setText(formatNumber(wallet.getETH() != null ? wallet.getETH().getBalance() != null ? wallet.getETH().getBalance() : -1 : -1));
+                    public void getBalanceCallBack(String errorMSG, Double balance) {
+                        if (!errorMSG.equals("")) {
+                            showAlert(true,null, errorMSG);
+                            return;
+                        }
+
+                        if(balance != null) {
+                            mainWallet.getETH().setBalance(balance);
+                            Platform.runLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    lblBalanceMainWalletTradingTab.setText(formatNumber(balance));
+                                }
+                            });
+                        }
                     }
                 });
+
+                /// ------
+
+//                Platform.runLater(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        lblBalanceMainWalletTradingTab.setText(formatNumber(wallet.getETH() != null ? wallet.getETH().getBalance() != null ? wallet.getETH().getBalance() : -1 : -1));
+//                    }
+//                });
             }
 
             return;
@@ -1023,10 +1064,31 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
             callAPIGetWalletInfo();
             return;
         }
+        /// Using server test to check balance: -----
 
-        updateDetailsTable(wallet);
-        updateMainTable(wallet);
-        callAPIGetWalletInfo();
+        trader.getBalance(wallet.getAddress(), new GetBalanceCallBack() {
+            @Override
+            public void getBalanceCallBack(String errorMSG, Double balance) {
+                if (!errorMSG.equals("")) {
+                    showAlert(true,null, errorMSG);
+                    return;
+                }
+
+                if(balance != null) {
+                    wallet.getETH().setBalance(balance);
+
+                    updateDetailsTable(wallet);
+                    updateMainTable(wallet);
+                    callAPIGetWalletInfo();
+                }
+            }
+        });
+
+        /// ------
+
+//        updateDetailsTable(wallet);
+//        updateMainTable(wallet);
+//        callAPIGetWalletInfo();
 
     }
 
@@ -1069,6 +1131,26 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
         //showAlert(false, "Send token", msg);
 
+    }
+
+    @Override
+    public void getBalanceCallBack(String errorMSG, Double balance) {
+        if (!errorMSG.equals("")) {
+            showAlert(true,null, errorMSG);
+            return;
+        }
+
+        if(balance != null) {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    mainWallet = new WalletETHplorer();
+                    lblBalanceMainWalletTradingTab.setText(formatNumber(balance));
+                }
+            });
+        }
+
+        return;
     }
 
 }
