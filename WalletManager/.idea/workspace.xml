@@ -7,40 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Ò“}&quot;|&quot;">
-      <change afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Model/TableModels/TradingProgressTableModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Model/TableModels/TradingProgressTableModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/module_walletmanager.xml" beforeDir="false" afterPath="$PROJECT_DIR$/module_walletmanager.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$10.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$11.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$12.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$13.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$14$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$14$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$14.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$15.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$16.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$16.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$17.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$17.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$2$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$3$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$3$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$9.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Model/MainTableModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Model/TableModels/MainTableModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/View/CheckDetailsTab.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/View/CheckDetailsTab.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/sample.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Model/MainTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Model/TableModels/MainTableModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/View/CheckDetailsTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/View/CheckDetailsTab.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/sample.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/walletmanager.properties" beforeDir="false" afterPath="$PROJECT_DIR$/walletmanager.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/walletmanager.xml" beforeDir="false" afterPath="$PROJECT_DIR$/walletmanager.xml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -132,31 +101,31 @@
     <session id="-157017211">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="70" />
+          <entry key="project.closed" value="72" />
           <entry key="project.open.time.1" value="17" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="11" />
           <entry key="project.open.time.7" value="19" />
-          <entry key="project.open.time.8" value="16" />
+          <entry key="project.open.time.8" value="17" />
           <entry key="project.open.time.9" value="5" />
-          <entry key="project.opened" value="71" />
+          <entry key="project.opened" value="72" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="14" />
-          <entry key="fxml" value="1617" />
-          <entry key="java" value="15848" />
+          <entry key="fxml" value="1656" />
+          <entry key="java" value="16268" />
           <entry key="txt" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="15848" />
+          <entry key="JAVA" value="16268" />
           <entry key="PLAIN_TEXT" value="19" />
-          <entry key="XML" value="1617" />
+          <entry key="XML" value="1656" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -207,8 +176,8 @@
         <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
           <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="222" column="136" selection-start-line="222" selection-start-column="104" selection-end-line="222" selection-end-column="136" />
+            <state relative-caret-position="232">
+              <caret line="329" column="171" selection-start-line="329" selection-start-column="152" selection-end-line="329" selection-end-column="171" />
               <folding>
                 <element signature="n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
                 <element signature="n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
@@ -231,58 +200,34 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="471">
-              <caret line="872" column="22" selection-start-line="872" selection-start-column="22" selection-end-line="872" selection-end-column="22" />
+            <state relative-caret-position="315">
+              <caret line="276" selection-start-line="276" selection-end-line="276" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#12789#13260#0" />
-                <element signature="e#13266#13681#0" />
-                <element signature="e#13687#13932#0" />
-                <element signature="e#13938#14185#0" />
-                <element signature="e#14191#14542#0" />
-                <element signature="e#15647#15719#0" />
-                <element signature="e#15725#16307#0" />
-                <element signature="e#16313#16910#0" />
-                <element signature="e#17030#17274#0" />
-                <element signature="e#17284#18214#0" />
-                <element signature="e#18220#18730#0" />
-                <element signature="class#18329:18721" />
-                <element signature="e#18736#19834#0" />
-                <element signature="e#19840#20581#0" />
-                <element signature="e#20587#21269#0" />
-                <element signature="e#21275#21519#0" />
-                <element signature="e#21525#22010#0" />
-                <element signature="e#22016#23207#0" />
-                <element signature="e#23213#26048#0" />
-                <element signature="e#26054#26522#0" />
-                <element signature="e#26552#26739#0" />
-                <element signature="e#28086#29257#0" expanded="true" />
-                <element signature="e#29256#29257#0" expanded="true" />
-                <element signature="e#29567#29796#0" />
-                <element signature="e#29567#30686#0" />
-                <element signature="e#30696#31004#0" />
-                <element signature="e#31014#31336#0" />
-                <element signature="e#31342#31887#0" />
-                <element signature="e#31893#32244#0" />
-                <element signature="e#32250#32495#0" />
-                <element signature="e#32501#33733#0" />
-                <element signature="e#33093#33713#0" expanded="true" />
-                <element signature="e#33712#33713#0" expanded="true" />
-                <element signature="e#33739#33846#0" />
-                <element signature="e#33852#36795#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Model/TableModels/MainTableModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-              <folding>
-                <element signature="e#1062#1063#0" expanded="true" />
-                <element signature="e#1088#1089#0" expanded="true" />
+                <element signature="e#5144#5145#0" expanded="true" />
+                <element signature="e#5175#5176#0" expanded="true" />
+                <element signature="e#5182#9788#0" />
+                <element signature="e#6405#8279#0" />
+                <element signature="e#13242#13657#0" />
+                <element signature="e#13914#14161#0" />
+                <element signature="e#14167#14518#0" />
+                <element signature="e#15090#15486#0" />
+                <element signature="e#15492#15627#0" />
+                <element signature="e#15633#15705#0" />
+                <element signature="e#15711#16293#0" />
+                <element signature="e#18292#18293#0" expanded="true" />
+                <element signature="e#18326#18327#0" expanded="true" />
+                <element signature="e#20697#20698#0" expanded="true" />
+                <element signature="e#20743#20744#0" expanded="true" />
+                <element signature="e#22002#23193#0" />
+                <element signature="e#23199#26034#0" />
+                <element signature="e#28078#29249#0" expanded="true" />
+                <element signature="e#29248#29249#0" expanded="true" />
+                <element signature="e#29416#29417#0" expanded="true" />
+                <element signature="e#29519#29520#0" expanded="true" />
+                <element signature="e#34978#34979#0" expanded="true" />
+                <element signature="e#35111#35112#0" expanded="true" />
+                <element signature="e#37520#37521#0" expanded="true" />
+                <element signature="e#37623#37624#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -291,7 +236,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Model/TableModels/TradingProgressTableModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
+            <state relative-caret-position="135">
               <caret line="9" column="25" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="25" />
               <folding>
                 <element signature="e#495#496#0" expanded="true" />
@@ -318,8 +263,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Model/ETHTrader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="43" column="32" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="32" />
+            <state relative-caret-position="50">
+              <caret line="124" selection-start-line="124" selection-end-line="124" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#sendToken#0;class#ETHTrader#0" />
@@ -330,9 +275,36 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/web3j/core/3.5.0/core-3.5.0.jar!/org/web3j/tx/Transfer.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="28" column="50" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/web3j/core/3.5.0/core-3.5.0.jar!/org/web3j/tx/ManagedTransaction.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="36" column="22" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/web3j/utils/3.5.0/utils-3.5.0.jar!/org/web3j/utils/Convert.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="25" column="29" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Interface/SendETHCallBack.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
+            <state relative-caret-position="45">
               <caret line="3" column="22" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="22" />
             </state>
           </provider>
@@ -463,6 +435,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -516,7 +489,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -668,9 +641,10 @@
     <option name="totallyTimeSpent" value="3118000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="825" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.56439394" visible="true" weight="0.21334068" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.56439394" visible="true" weight="0.21387696" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -678,10 +652,9 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Image Layers" order="6" />
       <window_info id="Learn" order="7" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3265306" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49944875" visible="true" weight="0.30114228" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49944875" weight="0.30013642" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.29604366" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -694,6 +667,7 @@
       <window_info anchor="bottom" id="Version Control" order="12" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.29387754" />
       <window_info anchor="bottom" id="Terminal" order="14" />
+      <window_info anchor="bottom" id="Database Changes" order="15" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24963397" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -782,15 +756,39 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
-          <line>1170</line>
+          <line>1210</line>
           <properties />
           <option name="timeStamp" value="111" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
-          <line>1164</line>
+          <line>1204</line>
           <properties />
           <option name="timeStamp" value="112" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
+          <line>875</line>
+          <properties />
+          <option name="timeStamp" value="113" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
+          <line>878</line>
+          <properties />
+          <option name="timeStamp" value="114" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
+          <line>426</line>
+          <properties />
+          <option name="timeStamp" value="115" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
+          <line>416</line>
+          <properties />
+          <option name="timeStamp" value="116" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -982,12 +980,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/web3j/core/3.5.0/core-3.5.0.jar!/org/web3j/tx/Transfer.class" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/web3j/core/3.5.0/core-3.5.0.jar!/org/web3j/tx/ManagedTransaction.class" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/web3j/utils/3.5.0/utils-3.5.0.jar!/org/web3j/utils/Convert.class" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/web3j/core/3.5.0/core-3.5.0.jar!/org/web3j/tx/Transfer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="28" column="50" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/web3j/core/3.5.0/core-3.5.0.jar!/org/web3j/tx/ManagedTransaction.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="36" column="22" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/web3j/utils/3.5.0/utils-3.5.0.jar!/org/web3j/utils/Convert.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="25" column="29" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Interface/SendETHCallBack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="22" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="329" column="171" selection-start-line="329" selection-start-column="152" selection-end-line="329" selection-end-column="171" />
+          <folding>
+            <element signature="n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
+            <element signature="n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
+            <element signature="n#HBox#0;n#children#0;n#HBox#0;n#children#0;n#VBox#0;n#children#0;n#AnchorPane#0;n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
+            <element signature="n#opaqueInsets#0;n#HBox#0;n#children#0;n#HBox#0;n#children#0;n#VBox#0;n#children#0;n#AnchorPane#0;n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
+            <element signature="n#HBox#1;n#children#0;n#HBox#0;n#children#0;n#VBox#0;n#children#0;n#AnchorPane#0;n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
+            <element signature="n#HBox#2;n#children#0;n#HBox#0;n#children#0;n#VBox#0;n#children#0;n#AnchorPane#0;n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
+            <element signature="n#HBox#3;n#children#0;n#HBox#0;n#children#0;n#VBox#0;n#children#0;n#AnchorPane#0;n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
+            <element signature="n#HBox#4;n#children#0;n#HBox#0;n#children#0;n#VBox#0;n#children#0;n#AnchorPane#0;n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
+            <element signature="n#children#0;n#HBox#4;n#children#0;n#HBox#0;n#children#0;n#VBox#0;n#children#0;n#AnchorPane#0;n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
+            <element signature="n#columnResizePolicy#0;n#TableView#0;n#children#0;n#AnchorPane#0;n#items#0;n#SplitPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
+            <element signature="n#padding#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#1;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
+            <element signature="n#bottom#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#1;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
+            <element signature="n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#1;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Model/TableModels/MainTableModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
+        <state relative-caret-position="30">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           <folding>
             <element signature="e#1062#1063#0" expanded="true" />
@@ -998,7 +1044,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Model/TableModels/TradingProgressTableModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
+        <state relative-caret-position="135">
           <caret line="9" column="25" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="25" />
           <folding>
             <element signature="e#495#496#0" expanded="true" />
@@ -1021,40 +1067,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Interface/SendETHCallBack.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="22" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="222" column="136" selection-start-line="222" selection-start-column="104" selection-end-line="222" selection-end-column="136" />
-          <folding>
-            <element signature="n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
-            <element signature="n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
-            <element signature="n#HBox#0;n#children#0;n#HBox#0;n#children#0;n#VBox#0;n#children#0;n#AnchorPane#0;n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
-            <element signature="n#opaqueInsets#0;n#HBox#0;n#children#0;n#HBox#0;n#children#0;n#VBox#0;n#children#0;n#AnchorPane#0;n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
-            <element signature="n#HBox#1;n#children#0;n#HBox#0;n#children#0;n#VBox#0;n#children#0;n#AnchorPane#0;n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
-            <element signature="n#HBox#2;n#children#0;n#HBox#0;n#children#0;n#VBox#0;n#children#0;n#AnchorPane#0;n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
-            <element signature="n#HBox#3;n#children#0;n#HBox#0;n#children#0;n#VBox#0;n#children#0;n#AnchorPane#0;n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
-            <element signature="n#HBox#4;n#children#0;n#HBox#0;n#children#0;n#VBox#0;n#children#0;n#AnchorPane#0;n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
-            <element signature="n#children#0;n#HBox#4;n#children#0;n#HBox#0;n#children#0;n#VBox#0;n#children#0;n#AnchorPane#0;n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
-            <element signature="n#columnResizePolicy#0;n#TableView#0;n#children#0;n#AnchorPane#0;n#items#0;n#SplitPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#0;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
-            <element signature="n#padding#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#1;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
-            <element signature="n#bottom#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#1;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
-            <element signature="n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#1;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Model/ETHTrader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="43" column="32" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="32" />
+        <state relative-caret-position="50">
+          <caret line="124" selection-start-line="124" selection-end-line="124" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#sendToken#0;class#ETHTrader#0" />
@@ -1065,45 +1081,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="872" column="22" selection-start-line="872" selection-start-column="22" selection-end-line="872" selection-end-column="22" />
+        <state relative-caret-position="315">
+          <caret line="276" selection-start-line="276" selection-end-line="276" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#12789#13260#0" />
-            <element signature="e#13266#13681#0" />
-            <element signature="e#13687#13932#0" />
-            <element signature="e#13938#14185#0" />
-            <element signature="e#14191#14542#0" />
-            <element signature="e#15647#15719#0" />
-            <element signature="e#15725#16307#0" />
-            <element signature="e#16313#16910#0" />
-            <element signature="e#17030#17274#0" />
-            <element signature="e#17284#18214#0" />
-            <element signature="e#18220#18730#0" />
-            <element signature="class#18329:18721" />
-            <element signature="e#18736#19834#0" />
-            <element signature="e#19840#20581#0" />
-            <element signature="e#20587#21269#0" />
-            <element signature="e#21275#21519#0" />
-            <element signature="e#21525#22010#0" />
-            <element signature="e#22016#23207#0" />
-            <element signature="e#23213#26048#0" />
-            <element signature="e#26054#26522#0" />
-            <element signature="e#26552#26739#0" />
-            <element signature="e#28086#29257#0" expanded="true" />
-            <element signature="e#29256#29257#0" expanded="true" />
-            <element signature="e#29567#29796#0" />
-            <element signature="e#29567#30686#0" />
-            <element signature="e#30696#31004#0" />
-            <element signature="e#31014#31336#0" />
-            <element signature="e#31342#31887#0" />
-            <element signature="e#31893#32244#0" />
-            <element signature="e#32250#32495#0" />
-            <element signature="e#32501#33733#0" />
-            <element signature="e#33093#33713#0" expanded="true" />
-            <element signature="e#33712#33713#0" expanded="true" />
-            <element signature="e#33739#33846#0" />
-            <element signature="e#33852#36795#0" />
+            <element signature="e#5144#5145#0" expanded="true" />
+            <element signature="e#5175#5176#0" expanded="true" />
+            <element signature="e#5182#9788#0" />
+            <element signature="e#6405#8279#0" />
+            <element signature="e#13242#13657#0" />
+            <element signature="e#13914#14161#0" />
+            <element signature="e#14167#14518#0" />
+            <element signature="e#15090#15486#0" />
+            <element signature="e#15492#15627#0" />
+            <element signature="e#15633#15705#0" />
+            <element signature="e#15711#16293#0" />
+            <element signature="e#18292#18293#0" expanded="true" />
+            <element signature="e#18326#18327#0" expanded="true" />
+            <element signature="e#20697#20698#0" expanded="true" />
+            <element signature="e#20743#20744#0" expanded="true" />
+            <element signature="e#22002#23193#0" />
+            <element signature="e#23199#26034#0" />
+            <element signature="e#28078#29249#0" expanded="true" />
+            <element signature="e#29248#29249#0" expanded="true" />
+            <element signature="e#29416#29417#0" expanded="true" />
+            <element signature="e#29519#29520#0" expanded="true" />
+            <element signature="e#34978#34979#0" expanded="true" />
+            <element signature="e#35111#35112#0" expanded="true" />
+            <element signature="e#37520#37521#0" expanded="true" />
+            <element signature="e#37623#37624#0" expanded="true" />
           </folding>
         </state>
       </provider>

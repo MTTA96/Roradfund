@@ -327,6 +327,7 @@
                                                                               <children>
                                                                                   <!--<Button fx:id="btnSendToMainWalletTradingTab" mnemonicParsing="false" onAction="#sendToMainWallet" style="-fx-background-color: null;" text="Send to main wallet" textFill="#6685ff" />-->
                                                                                   <Button fx:id="btnSendToAllWalletTradingTab" mnemonicParsing="false" onAction="#sendToAllWallet" style="-fx-background-color: null;" text="Send fee to all wallets" textFill="#6685ff" />
+                                                                                  <Button fx:id="btnResetTradingTab" mnemonicParsing="false" onAction="#resetDataTradingTab" style="-fx-background-color: null;" text="Reset data" textFill="#6685ff" />
                                                                               </children>
                                                                           </HBox>
 

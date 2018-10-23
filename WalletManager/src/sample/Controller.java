@@ -134,6 +134,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
     private int gasLimit = 21000;
     private int countingTransaction = 0;
     private boolean shouldPauseTrading = false;
+    private boolean isTrading = false;
 
     private final ObservableList<TradingProgressTableModel> tradingProgressTableModel = FXCollections.observableArrayList();
 
@@ -272,7 +273,9 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
                         lblTotalWalletTradingTab.setText(String.valueOf(totalWallet));
                     }
                 });
-                checkGasPrice(null);
+                if(gasPrice.equals(BigDecimal.ZERO)) {
+                    checkGasPrice(null);
+                }
             }
         });
         /// ----- Need to be optimized
@@ -339,7 +342,11 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
         File file = fileChooser.showOpenDialog(null);
         if (file != null) {
             txfMainWalletFilePathTradingTab.setText(file.getPath());
-            txfMainAddressTradingTab.setText("0x" + file.getPath().split("--")[2]);
+            if(file.getPath().split("--").length > 1) {
+                txfMainAddressTradingTab.setText("0x" + file.getPath().split("--")[2]);
+            } else {
+                showAlert(true, "Invalid filename!!!", "Filename isn't in the correct format");
+            }
         }
 
     }
@@ -393,15 +400,48 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 //            btnSendToAllWalletTradingTab.setText("Continue");
 //            return;
 //        }
+//
+//        if (!isValidInfo()) {
+//            showAlert(false, "MissingInfo", "Main address, filepath, password field is missing or couldn't get balance info from main wallet");
+//            return;
+//        }
+//
+//        btnSendToAllWalletTradingTab.setText("Pause");
+//        sendToAllWallets();
+////        shouldPauseTrading = true;
 
-        if (!isValidInfo()) {
-            showAlert(false, "MissingInfo", "Main address, filepath, password field is missing or couldn't get balance info from main wallet");
-            return;
+
+        btnSendToAllWalletTradingTab.setText(isTrading ? "Continue" : "Pause");
+
+        if (isTrading) {
+            System.out.print("Stop\n");
+            shouldPauseTrading = true;
+        } else {
+            System.out.print("Continue\n");
+            if (!isValidInfo()) {
+                showAlert(false, "MissingInfo", "Main address, filepath, password field is missing or couldn't get balance info from main wallet");
+                return;
+            }
+
+            shouldPauseTrading = false;
+            sendToAllWallets();
         }
 
-        btnSendToAllWalletTradingTab.setText("Pause");
-        sendToAllWallets();
-//        shouldPauseTrading = true;
+        isTrading = !isTrading;
+    }
+
+    @FXML
+    void resetDataTradingTab(ActionEvent event) {
+
+        mainWallet = null;
+        countingTransaction = 0;
+        isTrading = false;
+        shouldPauseTrading = true;
+
+        tbvTradingProgress.getItems().clear();
+        txfMainAddressTradingTab.setText("");
+        txfMainWalletFilePathTradingTab.setText("");
+        txfMainAddressPasswordTradingTab.setText("");
 
     }
 
@@ -832,9 +872,9 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
     private void sendToAllWallets() {
 
-//        if(shouldPauseTrading) {
-//            return;
-//        }
+        if(shouldPauseTrading) {
+            return;
+        }
         String password = txfMainAddressPasswordTradingTab.getText();
         String filePath = txfMainWalletFilePathTradingTab.getText();
 
