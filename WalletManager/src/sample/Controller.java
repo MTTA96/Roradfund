@@ -86,9 +86,8 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
             txfOtherWalletsFilePathTradingTab,
             txfGasLimitTradingTab,
             txfGasPriceTradingTab,
-            txfMainAddressTradingTab;
-    @FXML
-    private PasswordField pwfMainAddressPasswordTradingTab;
+            txfMainAddressTradingTab,
+            txfMainAddressPasswordTradingTab;
     @FXML
     private Label lblSelectedTokenTradingTab, lblBalanceMainWalletTradingTab, lblTotalWalletTradingTab, lblFeePerWalletTradingTab, lblTotalFeeTradingTab;
     @FXML
@@ -389,11 +388,11 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
     @FXML
     void sendToAllWallet(ActionEvent event) {
 
-        if(shouldPauseTrading) {
-            shouldPauseTrading = false;
-            btnSendToAllWalletTradingTab.setText("Continue");
-            return;
-        }
+//        if(shouldPauseTrading) {
+//            shouldPauseTrading = false;
+//            btnSendToAllWalletTradingTab.setText("Continue");
+//            return;
+//        }
 
         if (!isValidInfo()) {
             showAlert(false, "MissingInfo", "Main address, filepath, password field is missing or couldn't get balance info from main wallet");
@@ -401,8 +400,8 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
         }
 
         btnSendToAllWalletTradingTab.setText("Pause");
-//        sendToAllWallets();
-        shouldPauseTrading = true;
+        sendToAllWallets();
+//        shouldPauseTrading = true;
 
     }
 
@@ -833,10 +832,10 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
     private void sendToAllWallets() {
 
-        if(shouldPauseTrading) {
-            return;
-        }
-        String password = pwfMainAddressPasswordTradingTab.getText();
+//        if(shouldPauseTrading) {
+//            return;
+//        }
+        String password = txfMainAddressPasswordTradingTab.getText();
         String filePath = txfMainWalletFilePathTradingTab.getText();
 
         isSendingToAll = true;
@@ -871,7 +870,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
                             this.cancel();
                         }
                     },
-                    3000
+                    1000
             );
 
         } else {
@@ -931,7 +930,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
         if (txfMainAddressTradingTab.getText().isEmpty() ||
                 txfMainWalletFilePathTradingTab.getText().isEmpty() ||
-                pwfMainAddressPasswordTradingTab.getText().isEmpty() || mainWallet == null) {
+                txfMainAddressPasswordTradingTab.getText().isEmpty() || mainWallet == null) {
             return false;
         }
 
@@ -1135,7 +1134,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
         //LoadingAlert.getInstance().dismiss();
         if (errorCode == SupportKeys.FAILED_CODE) {
-            //showAlert(true, "Send token", msg);
+            showAlert(true, "Send token", msg);
             System.out.println(msg);
             Platform.runLater(new Runnable() {
                 @Override
@@ -1152,7 +1151,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
             sendToMainWallet();
         }
 
-        //showAlert(false, "Send token", msg);
+//        showAlert(false, "Send token", msg);
 
     }
 

@@ -220,7 +220,7 @@
                                                                                               <Button fx:id="btnOpenMainWalletResFileTradingTab" mnemonicParsing="false" onAction="#openMainWalletFile" style="-fx-background-color: null;" text="Browse" textFill="#6685ff" />
                                                                                           </children>
                                                                                       </HBox>
-                                                                                      <PasswordField fx:id="pwfMainAddressPasswordTradingTab" promptText="Password"/>
+                                                                                      <TextField fx:id="txfMainAddressPasswordTradingTab" promptText="Password"/>
                                                                                   </VBox>
                                                                               </children>
                                                                           </HBox>
