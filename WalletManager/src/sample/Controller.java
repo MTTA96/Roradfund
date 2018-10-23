@@ -825,6 +825,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
                     + "\nGas price: " + gasPrice
                     // Gas * price + value
                     + "\nSending balance: " + gasPrice.multiply(BigDecimal.valueOf(gasLimit)).add(fee.multiply(BigDecimal.valueOf(1_000_000_000))).multiply(BigDecimal.valueOf(1_000_000_000L)));
+
             new java.util.Timer().schedule(
                     new java.util.TimerTask() {
                         @Override
@@ -839,24 +840,13 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
                                     BigInteger.valueOf(gasPrice.multiply(BigDecimal.valueOf(1_000_000_000)).longValue()), // Gas price
                                     BigInteger.valueOf(gasLimit), // Gas limit
                                     BigInteger.valueOf(fee.multiply(BigDecimal.valueOf(1_000_000_000_000_000_000L)).longValue()), // Value
-                                    Controller.this,
-                                    countingTransaction > 0);
+                                    countingTransaction - 1,
+                                    Controller.this);
                             this.cancel();
                         }
                     },
                     3000
             );
-//            mainWallet.getETH().setBalance(BigDecimal.valueOf(mainWallet.getETH().getBalance()).subtract(fee).doubleValue()); /// 3
-//            countingTransaction += 1;
-//
-//            trader.sendETH(mainWallet.getAddress(), // Main address
-//                    password, // Password
-//                    filePath, // Filepath
-//                    walletList.get(countingTransaction - 1).getAddress(), // To address
-//                    BigInteger.valueOf(gasPrice.multiply(BigDecimal.valueOf(1_000_000_000)).longValue()), // Gas price
-//                    BigInteger.valueOf(gasLimit), // Gas limit
-//                    BigInteger.valueOf(fee.multiply(BigDecimal.valueOf(1_000_000_000_000_000_000L)).longValue()), // Value
-//                    this);
 
         } else {
             Platform.runLater(new Runnable() {

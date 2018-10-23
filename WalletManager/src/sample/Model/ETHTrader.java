@@ -25,6 +25,7 @@ public class ETHTrader {
     public static ETHTrader instance = null;
     public Web3j web3j;
     private BigInteger gasLimit;
+    private BigInteger nonce = null;
 
     public static ETHTrader getInstance() {
 
@@ -113,7 +114,7 @@ public class ETHTrader {
 
     }
 
-    public void sendETH(String fromAddress, String password, String filePath, String toAddress, BigInteger gasPrice, BigInteger gasLimit, BigInteger value, SendETHCallBack sendETHCallBack, boolean increaseNonce) {
+    public void sendETH(String fromAddress, String password, String filePath, String toAddress, BigInteger gasPrice, BigInteger gasLimit, BigInteger value, int nonceNumber, SendETHCallBack sendETHCallBack) {
 
         try {
 
@@ -122,7 +123,13 @@ public class ETHTrader {
             /// 1: Get the next available nonce
 
             EthGetTransactionCount ethGetTransactionCount = web3j.ethGetTransactionCount(fromAddress, DefaultBlockParameterName.LATEST).sendAsync().get();
-            BigInteger nonce = ethGetTransactionCount.getTransactionCount();
+
+            if(nonce == null) {
+                nonce = ethGetTransactionCount.getTransactionCount();
+            } else {
+                nonce = nonce.add(BigInteger.ONE);
+            }
+
 
 //            nonce = increaseNonce ? nonce.add(BigInteger.ONE) : nonce;
 
@@ -146,7 +153,7 @@ public class ETHTrader {
 
             if(ethSendTransaction.getError() != null) {
                 if(ethSendTransaction.getError().getCode() == -32000) {
-                    this.sendETH(fromAddress, password, filePath, toAddress, gasPrice, gasLimit, value, sendETHCallBack, true);
+                    this.sendETH(fromAddress, password, filePath, toAddress, gasPrice, gasLimit, value, nonceNumber + 1, sendETHCallBack);
                 } else {
                     sendETHCallBack.sendETHResult(SupportKeys.FAILED_CODE, ethSendTransaction.getError().getCode() + " - " + ethSendTransaction.getError().getMessage());
                 }
