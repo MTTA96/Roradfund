@@ -6,7 +6,7 @@
   <property name="module.jdk.bin.walletmanager" value="${project.jdk.bin}"/>
   <property name="module.jdk.classpath.walletmanager" value="${project.jdk.classpath}"/>
   
-  <property name="compiler.args.walletmanager" value="-encoding UTF-8 -source 8 -target 10 ${compiler.args}"/>
+  <property name="compiler.args.walletmanager" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
   
   <property name="walletmanager.output.dir" value="${module.walletmanager.basedir}/out/production/WalletManager"/>
   <property name="walletmanager.testoutput.dir" value="${module.walletmanager.basedir}/out/test/WalletManager"/>
@@ -21,10 +21,6 @@
     <path refid="library.com.squareup.retrofit2:converter-gson:2.4.0.classpath"/>
     <path refid="library.com.squareup.okhttp3:logging-interceptor:3.3.0.classpath"/>
     <path refid="library.com.squareup.retrofit2:retrofit:2.4.0.classpath"/>
-    <path refid="library.org.apache.poi:poi:3.17.classpath"/>
-    <path refid="library.org.apache.poi:poi-ooxml:3.17.classpath"/>
-    <path refid="library.org.apache.poi:poi-scratchpad:3.17.classpath"/>
-    <path refid="library.org.web3j:core:3.5.0.classpath"/>
   </path>
   
   <path id="walletmanager.runtime.production.module.classpath">
@@ -33,10 +29,6 @@
     <path refid="library.com.squareup.retrofit2:converter-gson:2.4.0.classpath"/>
     <path refid="library.com.squareup.okhttp3:logging-interceptor:3.3.0.classpath"/>
     <path refid="library.com.squareup.retrofit2:retrofit:2.4.0.classpath"/>
-    <path refid="library.org.apache.poi:poi:3.17.classpath"/>
-    <path refid="library.org.apache.poi:poi-ooxml:3.17.classpath"/>
-    <path refid="library.org.apache.poi:poi-scratchpad:3.17.classpath"/>
-    <path refid="library.org.web3j:core:3.5.0.classpath"/>
   </path>
   
   <path id="walletmanager.module.classpath">
@@ -46,10 +38,6 @@
     <path refid="library.com.squareup.retrofit2:converter-gson:2.4.0.classpath"/>
     <path refid="library.com.squareup.okhttp3:logging-interceptor:3.3.0.classpath"/>
     <path refid="library.com.squareup.retrofit2:retrofit:2.4.0.classpath"/>
-    <path refid="library.org.apache.poi:poi:3.17.classpath"/>
-    <path refid="library.org.apache.poi:poi-ooxml:3.17.classpath"/>
-    <path refid="library.org.apache.poi:poi-scratchpad:3.17.classpath"/>
-    <path refid="library.org.web3j:core:3.5.0.classpath"/>
   </path>
   
   <path id="walletmanager.runtime.module.classpath">
@@ -59,10 +47,6 @@
     <path refid="library.com.squareup.retrofit2:converter-gson:2.4.0.classpath"/>
     <path refid="library.com.squareup.okhttp3:logging-interceptor:3.3.0.classpath"/>
     <path refid="library.com.squareup.retrofit2:retrofit:2.4.0.classpath"/>
-    <path refid="library.org.apache.poi:poi:3.17.classpath"/>
-    <path refid="library.org.apache.poi:poi-ooxml:3.17.classpath"/>
-    <path refid="library.org.apache.poi:poi-scratchpad:3.17.classpath"/>
-    <path refid="library.org.web3j:core:3.5.0.classpath"/>
   </path>
   
   

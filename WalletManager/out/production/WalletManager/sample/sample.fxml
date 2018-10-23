@@ -325,7 +325,7 @@
 
                                                                           <HBox spacing="10.0">
                                                                               <children>
-                                                                                  <Button fx:id="btnSendToMainWalletTradingTab" mnemonicParsing="false" onAction="#sendToMainWallet" style="-fx-background-color: null;" text="Send to main wallet" textFill="#6685ff" />
+                                                                                  <!--<Button fx:id="btnSendToMainWalletTradingTab" mnemonicParsing="false" onAction="#sendToMainWallet" style="-fx-background-color: null;" text="Send to main wallet" textFill="#6685ff" />-->
                                                                                   <Button fx:id="btnSendToAllWalletTradingTab" mnemonicParsing="false" onAction="#sendToAllWallet" style="-fx-background-color: null;" text="Send fee to all wallets" textFill="#6685ff" />
                                                                               </children>
                                                                           </HBox>
@@ -336,14 +336,14 @@
                                                           </AnchorPane>
                                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                                               <children>
-                                                                  <TableView fx:id="tbv" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                  <TableView fx:id="tbvTradingProgress" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                       <columns>
-                                                                          <TableColumn fx:id="colSerial" editable="false" maxWidth="750.0" minWidth="50.0" prefWidth="50.0" sortable="false" text="STT" />
-                                                                          <TableColumn fx:id="colAddress" editable="false" minWidth="100.0" prefWidth="100.0" sortable="false" text="Địa chỉ" />
-                                                                          <TableColumn fx:id="colToken" editable="false" minWidth="100.0" prefWidth="100.0" sortable="false" text="Token" />
-                                                                          <TableColumn fx:id="colAdded" editable="false" minWidth="50.0" prefWidth="100.0" sortable="false" text="Added" />
-                                                                          <TableColumn fx:id="colKeystore" editable="false" minWidth="100.0" prefWidth="100.0" sortable="false" text="Keystore" />
-                                                                          <TableColumn fx:id="colStatus" editable="false" minWidth="50.0" prefWidth="100.0" sortable="false" text="Status" />
+                                                                          <TableColumn fx:id="colSerialTradingProgress" editable="false" maxWidth="750.0" minWidth="50.0" prefWidth="50.0" sortable="false" text="STT" />
+                                                                          <TableColumn fx:id="colAddressTradingProgress" editable="false" minWidth="100.0" prefWidth="100.0" sortable="false" text="Địa chỉ" />
+                                                                          <TableColumn fx:id="colTokenTradingProgress" editable="false" minWidth="100.0" prefWidth="100.0" sortable="false" text="Token" />
+                                                                          <TableColumn fx:id="colAddedTradingProgress" editable="false" minWidth="50.0" prefWidth="100.0" sortable="false" text="Added" />
+                                                                          <TableColumn fx:id="colKeystoreTradingProgress" editable="false" minWidth="100.0" prefWidth="100.0" sortable="false" text="Keystore" />
+                                                                          <TableColumn fx:id="colStatusTradingProgress" editable="false" minWidth="50.0" prefWidth="100.0" sortable="false" text="Status" />
                                                                       </columns>
                                                                       <columnResizePolicy>
                                                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

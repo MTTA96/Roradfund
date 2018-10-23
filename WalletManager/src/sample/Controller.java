@@ -19,9 +19,6 @@ import javafx.stage.Stage;
 import jdk.internal.jline.internal.Nullable;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-import org.web3j.protocol.core.DefaultBlockParameter;
-import org.web3j.protocol.core.DefaultBlockParameterName;
-import org.web3j.utils.Convert;
 import sample.Interface.GetBalanceCallBack;
 import sample.Interface.RequestGasCallBack;
 import sample.Interface.RequestWalletEthplorerInfoCallBack;
@@ -29,10 +26,11 @@ import sample.Interface.SendETHCallBack;
 import sample.Model.ETHScanner.WalletScan;
 import sample.Model.ETHTrader;
 import sample.Model.Gas;
-import sample.Model.MainTableModel;
+import sample.Model.TableModels.MainTableModel;
 import sample.Model.Ethplorer.Token;
 import sample.Model.Ethplorer.WalletETHplorer;
 import sample.Model.Symbol.SymbolList;
+import sample.Model.TableModels.TradingProgressTableModel;
 import sample.Model.Wallet;
 import sample.Util.SupportKeys;
 
@@ -47,7 +45,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.Timer;
-import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
 public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGasCallBack, SendETHCallBack, GetBalanceCallBack {
@@ -97,6 +94,12 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
     @FXML
     private Button btnOpenResFileTradingTab, btnSendTradingTab, btnSendToAllWalletTradingTab;
 
+    @FXML
+    private TableView<TradingProgressTableModel> tbvTradingProgress;
+    @FXML
+    private TableColumn<TradingProgressTableModel, String> colAddressTradingProgress, colStatusTradingProgress;
+    @FXML
+    private TableColumn<TradingProgressTableModel, Integer> colSerialTradingProgress;
 
     /** ----- PROPS ----- */
 
@@ -131,6 +134,9 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
     private boolean isSendingToAll = false;
     private int gasLimit = 21000;
     private int countingTransaction = 0;
+    private boolean shouldPauseTrading = false;
+
+    private final ObservableList<TradingProgressTableModel> tradingProgressTableModel = FXCollections.observableArrayList();
 
     //0x3750fC1505ba9a4cA3907b94Cda8e5758d31F3aD
 
@@ -252,6 +258,8 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
     private void configTradingTab() {
 
+        configTradingProgressTable();
+
         trader =  ETHTrader.getInstance();
 
         tradingTab.setOnSelectionChanged(new EventHandler<Event>() {
@@ -268,7 +276,6 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
                 checkGasPrice(null);
             }
         });
-
         /// ----- Need to be optimized
 
 //        txfGasPriceTradingTab.textProperty().addListener(new ChangeListener<String>() {
@@ -309,6 +316,14 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
                 });
             }
         });
+
+    }
+
+    private void configTradingProgressTable() {
+
+        colSerialTradingProgress.setCellValueFactory(new PropertyValueFactory<TradingProgressTableModel, Integer>("serial"));
+        colAddressTradingProgress.setCellValueFactory(new PropertyValueFactory<TradingProgressTableModel, String>("adress"));
+        colStatusTradingProgress.setCellValueFactory(new PropertyValueFactory<TradingProgressTableModel, String>("status"));
 
     }
 
@@ -374,13 +389,20 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
     @FXML
     void sendToAllWallet(ActionEvent event) {
 
+        if(shouldPauseTrading) {
+            shouldPauseTrading = false;
+            btnSendToAllWalletTradingTab.setText("Continue");
+            return;
+        }
+
         if (!isValidInfo()) {
             showAlert(false, "MissingInfo", "Main address, filepath, password field is missing or couldn't get balance info from main wallet");
             return;
         }
 
-        btnSendToAllWalletTradingTab.setText("Sending");
-        sendToAllWallets();
+        btnSendToAllWalletTradingTab.setText("Pause");
+//        sendToAllWallets();
+        shouldPauseTrading = true;
 
     }
 
@@ -811,6 +833,9 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
     private void sendToAllWallets() {
 
+        if(shouldPauseTrading) {
+            return;
+        }
         String password = pwfMainAddressPasswordTradingTab.getText();
         String filePath = txfMainWalletFilePathTradingTab.getText();
 
@@ -826,6 +851,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
                     // Gas * price + value
                     + "\nSending balance: " + gasPrice.multiply(BigDecimal.valueOf(gasLimit)).add(fee.multiply(BigDecimal.valueOf(1_000_000_000))).multiply(BigDecimal.valueOf(1_000_000_000L)));
 
+            updateTradingProgressTable(countingTransaction, walletList.get(countingTransaction).getAddress(), BigInteger.valueOf(fee.multiply(BigDecimal.valueOf(1_000_000_000_000_000_000L)).longValue()), "pending");
             new java.util.Timer().schedule(
                     new java.util.TimerTask() {
                         @Override
@@ -925,6 +951,13 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
                 lblTotalFeeTradingTab.setText((totalWallet == 0 ? 0 : fee.multiply(BigDecimal.valueOf(totalWallet))).toString());
             }
         });
+
+    }
+
+    private void updateTradingProgressTable(int serial, String address, BigInteger sendingValue, String status) {
+
+        tradingProgressTableModel.add(new TradingProgressTableModel(serial, address, BigDecimal.valueOf(sendingValue.doubleValue()/1_000_000_000_000_000_000L), status));
+        tbvTradingProgress.setItems(tradingProgressTableModel);
 
     }
 

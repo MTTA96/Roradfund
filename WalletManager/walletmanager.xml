@@ -53,38 +53,113 @@
   
   <!-- JDK definitions -->
   
-  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
-  <path id="jdk.classpath.1.8">
-    <fileset dir="${jdk.home.1.8}">
-      <include name="jre/lib/charsets.jar"/>
-      <include name="jre/lib/deploy.jar"/>
-      <include name="jre/lib/ext/access-bridge-64.jar"/>
-      <include name="jre/lib/ext/cldrdata.jar"/>
-      <include name="jre/lib/ext/dnsns.jar"/>
-      <include name="jre/lib/ext/jaccess.jar"/>
-      <include name="jre/lib/ext/jfxrt.jar"/>
-      <include name="jre/lib/ext/localedata.jar"/>
-      <include name="jre/lib/ext/nashorn.jar"/>
-      <include name="jre/lib/ext/sunec.jar"/>
-      <include name="jre/lib/ext/sunjce_provider.jar"/>
-      <include name="jre/lib/ext/sunmscapi.jar"/>
-      <include name="jre/lib/ext/sunpkcs11.jar"/>
-      <include name="jre/lib/ext/zipfs.jar"/>
-      <include name="jre/lib/javaws.jar"/>
-      <include name="jre/lib/jce.jar"/>
-      <include name="jre/lib/jfr.jar"/>
-      <include name="jre/lib/jfxswt.jar"/>
-      <include name="jre/lib/jsse.jar"/>
-      <include name="jre/lib/management-agent.jar"/>
-      <include name="jre/lib/plugin.jar"/>
-      <include name="jre/lib/resources.jar"/>
-      <include name="jre/lib/rt.jar"/>
+  <property name="jdk.bin.10" value="${jdk.home.10}/bin"/>
+  <path id="jdk.classpath.10">
+    <fileset dir="${jdk.home.10}">
+      <include name="../Home!/java.activation"/>
+      <include name="../Home!/java.base"/>
+      <include name="../Home!/java.compiler"/>
+      <include name="../Home!/java.corba"/>
+      <include name="../Home!/java.datatransfer"/>
+      <include name="../Home!/java.desktop"/>
+      <include name="../Home!/java.instrument"/>
+      <include name="../Home!/java.jnlp"/>
+      <include name="../Home!/java.logging"/>
+      <include name="../Home!/java.management"/>
+      <include name="../Home!/java.management.rmi"/>
+      <include name="../Home!/java.naming"/>
+      <include name="../Home!/java.prefs"/>
+      <include name="../Home!/java.rmi"/>
+      <include name="../Home!/java.scripting"/>
+      <include name="../Home!/java.se"/>
+      <include name="../Home!/java.se.ee"/>
+      <include name="../Home!/java.security.jgss"/>
+      <include name="../Home!/java.security.sasl"/>
+      <include name="../Home!/java.smartcardio"/>
+      <include name="../Home!/java.sql"/>
+      <include name="../Home!/java.sql.rowset"/>
+      <include name="../Home!/java.transaction"/>
+      <include name="../Home!/java.xml"/>
+      <include name="../Home!/java.xml.bind"/>
+      <include name="../Home!/java.xml.crypto"/>
+      <include name="../Home!/java.xml.ws"/>
+      <include name="../Home!/java.xml.ws.annotation"/>
+      <include name="../Home!/javafx.base"/>
+      <include name="../Home!/javafx.controls"/>
+      <include name="../Home!/javafx.deploy"/>
+      <include name="../Home!/javafx.fxml"/>
+      <include name="../Home!/javafx.graphics"/>
+      <include name="../Home!/javafx.media"/>
+      <include name="../Home!/javafx.swing"/>
+      <include name="../Home!/javafx.web"/>
+      <include name="../Home!/jdk.accessibility"/>
+      <include name="../Home!/jdk.aot"/>
+      <include name="../Home!/jdk.attach"/>
+      <include name="../Home!/jdk.charsets"/>
+      <include name="../Home!/jdk.compiler"/>
+      <include name="../Home!/jdk.crypto.cryptoki"/>
+      <include name="../Home!/jdk.crypto.ec"/>
+      <include name="../Home!/jdk.deploy"/>
+      <include name="../Home!/jdk.deploy.controlpanel"/>
+      <include name="../Home!/jdk.dynalink"/>
+      <include name="../Home!/jdk.editpad"/>
+      <include name="../Home!/jdk.hotspot.agent"/>
+      <include name="../Home!/jdk.httpserver"/>
+      <include name="../Home!/jdk.incubator.httpclient"/>
+      <include name="../Home!/jdk.internal.ed"/>
+      <include name="../Home!/jdk.internal.jvmstat"/>
+      <include name="../Home!/jdk.internal.le"/>
+      <include name="../Home!/jdk.internal.opt"/>
+      <include name="../Home!/jdk.internal.vm.ci"/>
+      <include name="../Home!/jdk.internal.vm.compiler"/>
+      <include name="../Home!/jdk.internal.vm.compiler.management"/>
+      <include name="../Home!/jdk.jartool"/>
+      <include name="../Home!/jdk.javadoc"/>
+      <include name="../Home!/jdk.javaws"/>
+      <include name="../Home!/jdk.jcmd"/>
+      <include name="../Home!/jdk.jconsole"/>
+      <include name="../Home!/jdk.jdeps"/>
+      <include name="../Home!/jdk.jdi"/>
+      <include name="../Home!/jdk.jdwp.agent"/>
+      <include name="../Home!/jdk.jfr"/>
+      <include name="../Home!/jdk.jlink"/>
+      <include name="../Home!/jdk.jshell"/>
+      <include name="../Home!/jdk.jsobject"/>
+      <include name="../Home!/jdk.jstatd"/>
+      <include name="../Home!/jdk.localedata"/>
+      <include name="../Home!/jdk.management"/>
+      <include name="../Home!/jdk.management.agent"/>
+      <include name="../Home!/jdk.management.cmm"/>
+      <include name="../Home!/jdk.management.jfr"/>
+      <include name="../Home!/jdk.management.resource"/>
+      <include name="../Home!/jdk.naming.dns"/>
+      <include name="../Home!/jdk.naming.rmi"/>
+      <include name="../Home!/jdk.net"/>
+      <include name="../Home!/jdk.pack"/>
+      <include name="../Home!/jdk.packager"/>
+      <include name="../Home!/jdk.packager.services"/>
+      <include name="../Home!/jdk.plugin"/>
+      <include name="../Home!/jdk.plugin.server"/>
+      <include name="../Home!/jdk.rmic"/>
+      <include name="../Home!/jdk.scripting.nashorn"/>
+      <include name="../Home!/jdk.scripting.nashorn.shell"/>
+      <include name="../Home!/jdk.sctp"/>
+      <include name="../Home!/jdk.security.auth"/>
+      <include name="../Home!/jdk.security.jgss"/>
+      <include name="../Home!/jdk.snmp"/>
+      <include name="../Home!/jdk.unsupported"/>
+      <include name="../Home!/jdk.xml.bind"/>
+      <include name="../Home!/jdk.xml.dom"/>
+      <include name="../Home!/jdk.xml.ws"/>
+      <include name="../Home!/jdk.zipfs"/>
+      <include name="../Home!/oracle.desktop"/>
+      <include name="../Home!/oracle.net"/>
     </fileset>
   </path>
   
-  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
-  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
-  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  <property name="project.jdk.home" value="${jdk.home.10}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.10}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.10"/>
   
   
   <!-- Project Libraries -->
@@ -112,6 +187,61 @@
     <pathelement location="${path.variable.maven_repository}/com/squareup/okio/okio/1.14.0/okio-1.14.0.jar"/>
     <pathelement location="${path.variable.maven_repository}/com/squareup/retrofit2/retrofit/2.4.0/retrofit-2.4.0.jar"/>
   </path>
+  
+  <path id="library.org.apache.poi:poi-ooxml:3.17.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/virtuald/curvesapi/1.04/curvesapi-1.04.jar"/>
+    <pathelement location="${path.variable.maven_repository}/commons-codec/commons-codec/1.10/commons-codec-1.10.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/commons/commons-collections4/4.1/commons-collections4-4.1.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/poi/poi-ooxml-schemas/3.17/poi-ooxml-schemas-3.17.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/poi/poi-ooxml/3.17/poi-ooxml-3.17.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/poi/poi/3.17/poi-3.17.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/xmlbeans/xmlbeans/2.6.0/xmlbeans-2.6.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/stax/stax-api/1.0.1/stax-api-1.0.1.jar"/>
+  </path>
+  
+  <path id="library.org.apache.poi:poi-scratchpad:3.17.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-codec/commons-codec/1.10/commons-codec-1.10.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/commons/commons-collections4/4.1/commons-collections4-4.1.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/poi/poi-scratchpad/3.17/poi-scratchpad-3.17.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/poi/poi/3.17/poi-3.17.jar"/>
+  </path>
+  
+  <path id="library.org.apache.poi:poi:3.17.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-codec/commons-codec/1.10/commons-codec-1.10.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/commons/commons-collections4/4.1/commons-collections4-4.1.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/poi/poi/3.17/poi-3.17.jar"/>
+  </path>
+  
+  <path id="library.org.web3j:core:3.5.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/fasterxml/jackson/core/jackson-annotations/2.8.0/jackson-annotations-2.8.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/com/fasterxml/jackson/core/jackson-core/2.8.5/jackson-core-2.8.5.jar"/>
+    <pathelement location="${path.variable.maven_repository}/com/fasterxml/jackson/core/jackson-databind/2.8.5/jackson-databind-2.8.5.jar"/>
+    <pathelement location="${path.variable.maven_repository}/com/github/jnr/jffi/1.2.14/jffi-1.2.14.jar"/>
+    <pathelement location="${path.variable.maven_repository}/com/github/jnr/jnr-constants/0.9.6/jnr-constants-0.9.6.jar"/>
+    <pathelement location="${path.variable.maven_repository}/com/github/jnr/jnr-enxio/0.14/jnr-enxio-0.14.jar"/>
+    <pathelement location="${path.variable.maven_repository}/com/github/jnr/jnr-ffi/2.1.2/jnr-ffi-2.1.2.jar"/>
+    <pathelement location="${path.variable.maven_repository}/com/github/jnr/jnr-posix/3.0.33/jnr-posix-3.0.33.jar"/>
+    <pathelement location="${path.variable.maven_repository}/com/github/jnr/jnr-unixsocket/0.15/jnr-unixsocket-0.15.jar"/>
+    <pathelement location="${path.variable.maven_repository}/com/github/jnr/jnr-x86asm/1.0.2/jnr-x86asm-1.0.2.jar"/>
+    <pathelement location="${path.variable.maven_repository}/com/squareup/okhttp3/logging-interceptor/3.8.1/logging-interceptor-3.8.1.jar"/>
+    <pathelement location="${path.variable.maven_repository}/com/squareup/okhttp3/okhttp/3.8.1/okhttp-3.8.1.jar"/>
+    <pathelement location="${path.variable.maven_repository}/com/squareup/okio/okio/1.13.0/okio-1.13.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/io/reactivex/rxjava/1.2.4/rxjava-1.2.4.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/bouncycastle/bcprov-jdk15on/1.54/bcprov-jdk15on-1.54.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/java-websocket/Java-WebSocket/1.3.8/Java-WebSocket-1.3.8.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/ow2/asm/asm-analysis/5.0.3/asm-analysis-5.0.3.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/ow2/asm/asm-commons/5.0.3/asm-commons-5.0.3.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/ow2/asm/asm-tree/5.0.3/asm-tree-5.0.3.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/ow2/asm/asm-util/5.0.3/asm-util-5.0.3.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/ow2/asm/asm/5.0.3/asm-5.0.3.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/web3j/abi/3.5.0/abi-3.5.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/web3j/core/3.5.0/core-3.5.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/web3j/crypto/3.5.0/crypto-3.5.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/web3j/rlp/3.5.0/rlp-3.5.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/web3j/tuples/3.5.0/tuples-3.5.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/web3j/utils/3.5.0/utils-3.5.0.jar"/>
+  </path>
   <!-- Register Custom Compiler Taskdefs -->
   <property name="javac2.home" value="${idea.home}/lib"/>
   <path id="javac2.classpath">
@@ -119,7 +249,7 @@
       <include name="javac2.jar"/>
       <include name="jdom.jar"/>
       <include name="asm-all*.jar"/>
-      <include name="jgoodies-forms.jar"/>
+      <include name="forms-*.jar"/>
     </fileset>
   </path>
   <target name="register.custom.compilers">
@@ -144,7 +274,7 @@
     <property name="artifact.output.walletmanager" value="${basedir}/out/artifacts/WalletManager"/>
     <mkdir dir="${artifacts.temp.dir}"/>
     <property name="artifact.temp.output.WalletManager" value="${artifacts.temp.dir}/WalletManager.jar"/>
-    <taskdef resource="com/sun/javafx/tools/ant/antlib.xml" uri="javafx:com.sun.javafx.tools.ant" classpath="${jdk.home.1.8}/lib/ant-javafx.jar"/>
+    <taskdef resource="com/sun/javafx/tools/ant/antlib.xml" uri="javafx:com.sun.javafx.tools.ant" classpath="${jdk.home.10}/lib/ant-javafx.jar"/>
   </target>
   
   <target name="clean.artifact.walletmanager" description="clean WalletManager artifact output">
@@ -156,6 +286,27 @@
     <copy todir="${artifact.temp.output.WalletManager}">
       <fileset dir="${walletmanager.output.dir}"/>
     </copy>
+    <copy file="${path.variable.maven_repository}/com/google/code/gson/gson/2.8.5/gson-2.8.5.jar" tofile="${artifact.temp.output.WalletManager}/gson-2.8.5.jar"/>
+    <copy file="${path.variable.maven_repository}/com/squareup/okhttp3/logging-interceptor/3.3.0/logging-interceptor-3.3.0.jar" tofile="${artifact.temp.output.WalletManager}/logging-interceptor-3.3.0.jar"/>
+    <copy file="${path.variable.maven_repository}/com/squareup/okhttp3/okhttp/3.3.0/okhttp-3.3.0.jar" tofile="${artifact.temp.output.WalletManager}/okhttp-3.3.0.jar"/>
+    <copy file="${path.variable.maven_repository}/com/squareup/okio/okio/1.8.0/okio-1.8.0.jar" tofile="${artifact.temp.output.WalletManager}/okio-1.8.0.jar"/>
+    <copy file="${path.variable.maven_repository}/com/squareup/retrofit2/converter-gson/2.4.0/converter-gson-2.4.0.jar" tofile="${artifact.temp.output.WalletManager}/converter-gson-2.4.0.jar"/>
+    <copy file="${path.variable.maven_repository}/com/squareup/retrofit2/retrofit/2.4.0/retrofit-2.4.0.jar" tofile="${artifact.temp.output.WalletManager}/retrofit-2.4.0.jar"/>
+    <copy file="${path.variable.maven_repository}/com/squareup/okhttp3/okhttp/3.10.0/okhttp-3.10.0.jar" tofile="${artifact.temp.output.WalletManager}/okhttp-3.10.0.jar"/>
+    <copy file="${path.variable.maven_repository}/com/squareup/okio/okio/1.14.0/okio-1.14.0.jar" tofile="${artifact.temp.output.WalletManager}/okio-1.14.0.jar"/>
+    <copy file="${path.variable.maven_repository}/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar" tofile="${artifact.temp.output.WalletManager}/gson-2.8.2.jar"/>
+    <copy file="${path.variable.maven_repository}/org/apache/poi/poi-ooxml/3.17/poi-ooxml-3.17.jar" tofile="${artifact.temp.output.WalletManager}/poi-ooxml-3.17.jar"/>
+    <copy file="${path.variable.maven_repository}/org/apache/poi/poi/3.17/poi-3.17.jar" tofile="${artifact.temp.output.WalletManager}/poi-3.17.jar"/>
+    <copy file="${path.variable.maven_repository}/commons-codec/commons-codec/1.10/commons-codec-1.10.jar" tofile="${artifact.temp.output.WalletManager}/commons-codec-1.10.jar"/>
+    <copy file="${path.variable.maven_repository}/org/apache/commons/commons-collections4/4.1/commons-collections4-4.1.jar" tofile="${artifact.temp.output.WalletManager}/commons-collections4-4.1.jar"/>
+    <copy file="${path.variable.maven_repository}/org/apache/poi/poi-ooxml-schemas/3.17/poi-ooxml-schemas-3.17.jar" tofile="${artifact.temp.output.WalletManager}/poi-ooxml-schemas-3.17.jar"/>
+    <copy file="${path.variable.maven_repository}/org/apache/xmlbeans/xmlbeans/2.6.0/xmlbeans-2.6.0.jar" tofile="${artifact.temp.output.WalletManager}/xmlbeans-2.6.0.jar"/>
+    <copy file="${path.variable.maven_repository}/stax/stax-api/1.0.1/stax-api-1.0.1.jar" tofile="${artifact.temp.output.WalletManager}/stax-api-1.0.1.jar"/>
+    <copy file="${path.variable.maven_repository}/com/github/virtuald/curvesapi/1.04/curvesapi-1.04.jar" tofile="${artifact.temp.output.WalletManager}/curvesapi-1.04.jar"/>
+    <copy file="${path.variable.maven_repository}/org/apache/poi/poi-scratchpad/3.17/poi-scratchpad-3.17.jar" tofile="${artifact.temp.output.WalletManager}/poi-scratchpad-3.17.jar"/>
+    <copy file="${path.variable.maven_repository}/org/apache/poi/poi/3.17/poi-3.17.jar" tofile="${artifact.temp.output.WalletManager}/poi-3.17.jar"/>
+    <copy file="${path.variable.maven_repository}/commons-codec/commons-codec/1.10/commons-codec-1.10.jar" tofile="${artifact.temp.output.WalletManager}/commons-codec-1.10.jar"/>
+    <copy file="${path.variable.maven_repository}/org/apache/commons/commons-collections4/4.1/commons-collections4-4.1.jar" tofile="${artifact.temp.output.WalletManager}/commons-collections4-4.1.jar"/>
     <fx:fileset id="all_but_WalletManager" dir="${artifact.temp.output.WalletManager}" includes="**/*.jar">
       <exclude name="WalletManager.jar"/>
     </fx:fileset>

@@ -1,4 +1,4 @@
-package sample.Model;
+package sample.Model.TableModels;
 
 public class MainTableModel {
 
