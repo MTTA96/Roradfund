@@ -411,10 +411,10 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 ////        shouldPauseTrading = true;
 
 
-        btnSendToAllWalletTradingTab.setText(isTrading ? "Continue" : "Pause");
-
         if (isTrading) {
             System.out.print("Stop\n");
+
+            btnSendToAllWalletTradingTab.setText("Continue");
             shouldPauseTrading = true;
         } else {
             System.out.print("Continue\n");
@@ -423,6 +423,8 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
                 return;
             }
 
+
+            btnSendToAllWalletTradingTab.setText("Pause");
             shouldPauseTrading = false;
             sendToAllWallets();
         }
@@ -437,8 +439,10 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
         countingTransaction = 0;
         isTrading = false;
         shouldPauseTrading = true;
-
         tbvTradingProgress.getItems().clear();
+        tradingProgressTableModel.clear();
+
+        btnSendToAllWalletTradingTab.setText("Send fee to all wallet");
         txfMainAddressTradingTab.setText("");
         txfMainWalletFilePathTradingTab.setText("");
         txfMainAddressPasswordTradingTab.setText("");
@@ -890,14 +894,13 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
                     // Gas * price + value
                     + "\nSending balance: " + gasPrice.multiply(BigDecimal.valueOf(gasLimit)).add(fee.multiply(BigDecimal.valueOf(1_000_000_000))).multiply(BigDecimal.valueOf(1_000_000_000L)));
 
-            updateTradingProgressTable(countingTransaction, walletList.get(countingTransaction).getAddress(), BigInteger.valueOf(fee.multiply(BigDecimal.valueOf(1_000_000_000_000_000_000L)).longValue()), "pending");
             new java.util.Timer().schedule(
                     new java.util.TimerTask() {
                         @Override
                         public void run() {
+
                             mainWallet.getETH().setBalance(BigDecimal.valueOf(mainWallet.getETH().getBalance()).subtract(fee).doubleValue()); /// 3
                             countingTransaction += 1;
-
                             trader.sendETH(mainWallet.getAddress(), // Main address
                                     password, // Password
                                     filePath, // Filepath
@@ -905,7 +908,6 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
                                     BigInteger.valueOf(gasPrice.multiply(BigDecimal.valueOf(1_000_000_000)).longValue()), // Gas price
                                     BigInteger.valueOf(gasLimit), // Gas limit
                                     BigInteger.valueOf(fee.multiply(BigDecimal.valueOf(1_000_000_000_000_000_000L)).longValue()), // Value
-                                    countingTransaction - 1,
                                     Controller.this);
                             this.cancel();
                         }
@@ -1176,6 +1178,10 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
         if (errorCode == SupportKeys.FAILED_CODE) {
             showAlert(true, "Send token", msg);
             System.out.println(msg);
+
+
+            updateTradingProgressTable(countingTransaction, walletList.get(countingTransaction - 1).getAddress(), BigInteger.valueOf(fee.multiply(BigDecimal.valueOf(1_000_000_000_000_000_000L)).longValue()), "failed");
+
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
@@ -1190,10 +1196,11 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
         } else {
             sendToMainWallet();
         }
-
-//        showAlert(false, "Send token", msg);
+        updateTradingProgressTable(countingTransaction, walletList.get(countingTransaction - 1).getAddress(), BigInteger.valueOf(fee.multiply(BigDecimal.valueOf(1_000_000_000_000_000_000L)).longValue()), "sent");
 
     }
+
+    /// For server test only
 
     @Override
     public void getBalanceCallBack(String errorMSG, Double balance) {

@@ -21,6 +21,7 @@
         <element id="library" level="project" name="com.squareup.retrofit2:converter-gson:2.4.0" />
         <element id="library" level="project" name="org.apache.poi:poi-ooxml:3.17" />
         <element id="library" level="project" name="org.apache.poi:poi-scratchpad:3.17" />
+        <element id="library" level="project" name="org.web3j:core:3.5.0" />
       </element>
     </root>
   </artifact>

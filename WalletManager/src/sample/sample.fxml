@@ -340,10 +340,10 @@
                                                                   <TableView fx:id="tbvTradingProgress" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                       <columns>
                                                                           <TableColumn fx:id="colSerialTradingProgress" editable="false" maxWidth="750.0" minWidth="50.0" prefWidth="50.0" sortable="false" text="STT" />
-                                                                          <TableColumn fx:id="colAddressTradingProgress" editable="false" minWidth="100.0" prefWidth="100.0" sortable="false" text="Địa chỉ" />
+                                                                          <TableColumn fx:id="colAddressTradingProgress" editable="false" minWidth="150.0" prefWidth="100.0" sortable="false" text="Địa chỉ" />
                                                                           <TableColumn fx:id="colTokenTradingProgress" editable="false" minWidth="100.0" prefWidth="100.0" sortable="false" text="Token" />
                                                                           <TableColumn fx:id="colAddedTradingProgress" editable="false" minWidth="50.0" prefWidth="100.0" sortable="false" text="Added" />
-                                                                          <TableColumn fx:id="colKeystoreTradingProgress" editable="false" minWidth="100.0" prefWidth="100.0" sortable="false" text="Keystore" />
+                                                                          <TableColumn fx:id="colKeystoreTradingProgress" editable="false" minWidth="50.0" prefWidth="100.0" sortable="false" text="Keystore" />
                                                                           <TableColumn fx:id="colStatusTradingProgress" editable="false" minWidth="50.0" prefWidth="100.0" sortable="false" text="Status" />
                                                                       </columns>
                                                                       <columnResizePolicy>

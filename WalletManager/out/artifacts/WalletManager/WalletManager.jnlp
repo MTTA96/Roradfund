@@ -8,16 +8,39 @@
     <update check="background"/>
     <resources>
         <j2se version="10.0.2+" href="http://java.sun.com/products/autodl/j2se"/>
-        <jar href="WalletManager.jar" size="65703" download="eager"/>
+        <jar href="Java-WebSocket-1.3.8.jar" size="117158" download="eager"/>
+        <jar href="WalletManager.jar" size="65923" download="eager"/>
+        <jar href="abi-3.5.0.jar" size="115719" download="eager"/>
+        <jar href="asm-5.0.3.jar" size="53231" download="eager"/>
+        <jar href="asm-analysis-5.0.3.jar" size="20443" download="eager"/>
+        <jar href="asm-commons-5.0.3.jar" size="41717" download="eager"/>
+        <jar href="asm-tree-5.0.3.jar" size="29036" download="eager"/>
+        <jar href="asm-util-5.0.3.jar" size="43296" download="eager"/>
+        <jar href="bcprov-jdk15on-1.54.jar" size="3277268" download="eager"/>
         <jar href="commons-codec-1.10.jar" size="284184" download="eager"/>
         <jar href="commons-collections4-4.1.jar" size="751238" download="eager"/>
         <jar href="converter-gson-2.4.0.jar" size="6202" download="eager"/>
+        <jar href="core-3.5.0.jar" size="266911" download="eager"/>
+        <jar href="crypto-3.5.0.jar" size="48434" download="eager"/>
         <jar href="curvesapi-1.04.jar" size="98365" download="eager"/>
         <jar href="gson-2.8.2.jar" size="232932" download="eager"/>
         <jar href="gson-2.8.5.jar" size="241622" download="eager"/>
+        <jar href="jackson-annotations-2.8.0.jar" size="55784" download="eager"/>
+        <jar href="jackson-core-2.8.5.jar" size="281079" download="eager"/>
+        <jar href="jackson-databind-2.8.5.jar" size="1236315" download="eager"/>
+        <jar href="jffi-1.2.14.jar" size="149659" download="eager"/>
+        <jar href="jnr-constants-0.9.6.jar" size="346364" download="eager"/>
+        <jar href="jnr-enxio-0.14.jar" size="27713" download="eager"/>
+        <jar href="jnr-ffi-2.1.2.jar" size="678077" download="eager"/>
+        <jar href="jnr-posix-3.0.33.jar" size="226126" download="eager"/>
+        <jar href="jnr-unixsocket-0.15.jar" size="44889" download="eager"/>
+        <jar href="jnr-x86asm-1.0.2.jar" size="219943" download="eager"/>
         <jar href="logging-interceptor-3.3.0.jar" size="8043" download="eager"/>
+        <jar href="logging-interceptor-3.8.1.jar" size="8268" download="eager"/>
         <jar href="okhttp-3.10.0.jar" size="412117" download="eager"/>
         <jar href="okhttp-3.3.0.jar" size="343528" download="eager"/>
+        <jar href="okhttp-3.8.1.jar" size="398122" download="eager"/>
+        <jar href="okio-1.13.0.jar" size="81811" download="eager"/>
         <jar href="okio-1.14.0.jar" size="85756" download="eager"/>
         <jar href="okio-1.8.0.jar" size="72016" download="eager"/>
         <jar href="poi-3.17.jar" size="2701171" download="eager"/>
@@ -25,7 +48,12 @@
         <jar href="poi-ooxml-schemas-3.17.jar" size="5924600" download="eager"/>
         <jar href="poi-scratchpad-3.17.jar" size="1390360" download="eager"/>
         <jar href="retrofit-2.4.0.jar" size="91002" download="eager"/>
+        <jar href="rlp-3.5.0.jar" size="5714" download="eager"/>
+        <jar href="rxjava-1.2.4.jar" size="1140498" download="eager"/>
+        <jar href="slf4j-api-1.7.25.jar" size="41203" download="eager"/>
         <jar href="stax-api-1.0.1.jar" size="26514" download="eager"/>
+        <jar href="tuples-3.5.0.jar" size="40556" download="eager"/>
+        <jar href="utils-3.5.0.jar" size="10290" download="eager"/>
         <jar href="xmlbeans-2.6.0.jar" size="2730866" download="eager"/>
     </resources>
     <jfx:javafx-desc width="800" height="600" main-class="sample.Main" name="Main"/>

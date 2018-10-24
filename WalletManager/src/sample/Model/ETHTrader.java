@@ -114,7 +114,7 @@ public class ETHTrader {
 
     }
 
-    public void sendETH(String fromAddress, String password, String filePath, String toAddress, BigInteger gasPrice, BigInteger gasLimit, BigInteger value, int nonceNumber, SendETHCallBack sendETHCallBack) {
+    public void sendETH(String fromAddress, String password, String filePath, String toAddress, BigInteger gasPrice, BigInteger gasLimit, BigInteger value, SendETHCallBack sendETHCallBack) {
 
         try {
 
@@ -153,7 +153,7 @@ public class ETHTrader {
 
             if(ethSendTransaction.getError() != null) {
                 if(ethSendTransaction.getError().getCode() == -32000) {
-                    this.sendETH(fromAddress, password, filePath, toAddress, gasPrice, gasLimit, value, nonceNumber + 1, sendETHCallBack);
+                    this.sendETH(fromAddress, password, filePath, toAddress, gasPrice, gasLimit, value, sendETHCallBack);
                 } else {
                     sendETHCallBack.sendETHResult(SupportKeys.FAILED_CODE, ethSendTransaction.getError().getCode() + " - " + ethSendTransaction.getError().getMessage());
                 }
