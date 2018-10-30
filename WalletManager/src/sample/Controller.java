@@ -419,10 +419,14 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
         } else {
             System.out.print("Continue\n");
             if (!isValidInfo()) {
-                showAlert(false, "MissingInfo", "Main address, filepath, password field is missing or couldn't get balance info from main wallet");
+                showAlert(false, "Missing info", "Main address, filepath, password field is missing or couldn't get balance info from main wallet");
                 return;
             }
 
+            if(walletList.size() == 0) {
+                showAlert(false, "Missing info", "No wallet to send");
+                return;
+            }
 
             btnSendToAllWalletTradingTab.setText("Pause");
             shouldPauseTrading = false;
@@ -1082,34 +1086,34 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
                 /// Using server test to check balance: -----
 
-                trader.getBalance(wallet.getAddress(), new GetBalanceCallBack() {
-                    @Override
-                    public void getBalanceCallBack(String errorMSG, Double balance) {
-                        if (!errorMSG.equals("")) {
-                            showAlert(true,null, errorMSG);
-                            return;
-                        }
-
-                        if(balance != null) {
-                            mainWallet.getETH().setBalance(balance);
-                            Platform.runLater(new Runnable() {
-                                @Override
-                                public void run() {
-                                    lblBalanceMainWalletTradingTab.setText(formatNumber(balance));
-                                }
-                            });
-                        }
-                    }
-                });
+//                trader.getBalance(wallet.getAddress(), new GetBalanceCallBack() {
+//                    @Override
+//                    public void getBalanceCallBack(String errorMSG, Double balance) {
+//                        if (!errorMSG.equals("")) {
+//                            showAlert(true,null, errorMSG);
+//                            return;
+//                        }
+//
+//                        if(balance != null) {
+//                            mainWallet.getETH().setBalance(balance);
+//                            Platform.runLater(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    lblBalanceMainWalletTradingTab.setText(formatNumber(balance));
+//                                }
+//                            });
+//                        }
+//                    }
+//                });
 
                 /// ------
 
-//                Platform.runLater(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        lblBalanceMainWalletTradingTab.setText(formatNumber(wallet.getETH() != null ? wallet.getETH().getBalance() != null ? wallet.getETH().getBalance() : -1 : -1));
-//                    }
-//                });
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        lblBalanceMainWalletTradingTab.setText(formatNumber(wallet.getETH() != null ? wallet.getETH().getBalance() != null ? wallet.getETH().getBalance() : -1 : -1));
+                    }
+                });
             }
 
             return;
@@ -1130,29 +1134,29 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
         }
         /// Using server test to check balance: -----
 
-        trader.getBalance(wallet.getAddress(), new GetBalanceCallBack() {
-            @Override
-            public void getBalanceCallBack(String errorMSG, Double balance) {
-                if (!errorMSG.equals("")) {
-                    showAlert(true,null, errorMSG);
-                    return;
-                }
-
-                if(balance != null) {
-                    wallet.getETH().setBalance(balance);
-
-                    updateDetailsTable(wallet);
-                    updateMainTable(wallet);
-                    callAPIGetWalletInfo();
-                }
-            }
-        });
+//        trader.getBalance(wallet.getAddress(), new GetBalanceCallBack() {
+//            @Override
+//            public void getBalanceCallBack(String errorMSG, Double balance) {
+//                if (!errorMSG.equals("")) {
+//                    showAlert(true,null, errorMSG);
+//                    return;
+//                }
+//
+//                if(balance != null) {
+//                    wallet.getETH().setBalance(balance);
+//
+//                    updateDetailsTable(wallet);
+//                    updateMainTable(wallet);
+//                    callAPIGetWalletInfo();
+//                }
+//            }
+//        });
 
         /// ------
 
-//        updateDetailsTable(wallet);
-//        updateMainTable(wallet);
-//        callAPIGetWalletInfo();
+        updateDetailsTable(wallet);
+        updateMainTable(wallet);
+        callAPIGetWalletInfo();
 
     }
 

@@ -42,7 +42,7 @@ public class ETHTrader {
         // Dev: https://ropsten.infura.io/v3/1a50fe4abf44469ea44c05bd38161534
         //              rinkeby
         // Live: https://mainnet.infura.io/v3/1a50fe4abf44469ea44c05bd38161534
-        web3j = Web3j.build(new HttpService("https://rinkeby.infura.io/v3/1a50fe4abf44469ea44c05bd38161534"));  // defaults to http://localhost:8545/
+        web3j = Web3j.build(new HttpService("https://mainnet.infura.io/v3/1a50fe4abf44469ea44c05bd38161534"));  // defaults to http://localhost:8545/
 
         // Display client version
         web3j.web3ClientVersion().observable().subscribe(x -> {
@@ -153,7 +153,11 @@ public class ETHTrader {
 
             if(ethSendTransaction.getError() != null) {
                 if(ethSendTransaction.getError().getCode() == -32000) {
-                    this.sendETH(fromAddress, password, filePath, toAddress, gasPrice, gasLimit, value, sendETHCallBack);
+                    if(ethSendTransaction.getError().getMessage().equals("insufficient funds for gas * price + value")) {
+                        sendETHCallBack.sendETHResult(SupportKeys.FAILED_CODE, "Code: " + ethSendTransaction.getError().getCode() + "\n" + ethSendTransaction.getError().getMessage());
+                    } else {
+                        this.sendETH(fromAddress, password, filePath, toAddress, gasPrice, gasLimit, value, sendETHCallBack);
+                    }
                 } else {
                     sendETHCallBack.sendETHResult(SupportKeys.FAILED_CODE, ethSendTransaction.getError().getCode() + " - " + ethSendTransaction.getError().getMessage());
                 }
