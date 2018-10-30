@@ -8,8 +8,13 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Ò“}&quot;|&quot;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/WalletManager.zip" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/WalletManager/WalletManager.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/WalletManager/WalletManager.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/WalletManager/WalletManager.jnlp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/WalletManager/WalletManager.jnlp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$15.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$16.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller$16.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/WalletManager/sample/Model/ETHTrader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WalletManager/sample/Model/ETHTrader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Model/ETHTrader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Model/ETHTrader.java" afterDir="false" />
     </list>
@@ -103,29 +108,30 @@
     <session id="-157017211">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="75" />
-          <entry key="project.open.time.1" value="17" />
+          <entry key="project.closed" value="80" />
+          <entry key="project.open.time.1" value="18" />
+          <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="12" />
           <entry key="project.open.time.7" value="19" />
-          <entry key="project.open.time.8" value="19" />
-          <entry key="project.open.time.9" value="5" />
-          <entry key="project.opened" value="75" />
+          <entry key="project.open.time.8" value="21" />
+          <entry key="project.open.time.9" value="6" />
+          <entry key="project.opened" value="80" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="14" />
           <entry key="fxml" value="1658" />
-          <entry key="java" value="16791" />
+          <entry key="java" value="16925" />
           <entry key="txt" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="16791" />
+          <entry key="JAVA" value="16925" />
           <entry key="PLAIN_TEXT" value="19" />
           <entry key="XML" value="1658" />
         </counts>
@@ -134,7 +140,7 @@
         <counts>
           <entry key="class" value="38" />
           <entry key="fxml" value="1" />
-          <entry key="java" value="96" />
+          <entry key="java" value="97" />
           <entry key="properties" value="1" />
           <entry key="xml" value="1" />
         </counts>
@@ -142,7 +148,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="38" />
-          <entry key="JAVA" value="96" />
+          <entry key="JAVA" value="97" />
           <entry key="Properties" value="1" />
           <entry key="XML" value="2" />
         </counts>
@@ -176,7 +182,6 @@
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2865">
               <caret line="345" column="150" selection-start-line="345" selection-start-column="150" selection-end-line="345" selection-end-column="150" />
@@ -197,17 +202,40 @@
               </folding>
             </state>
           </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="423" column="13" lean-forward="true" selection-start-line="423" selection-start-column="13" selection-end-line="423" selection-end-column="13" />
+            <state relative-caret-position="322">
+              <caret line="1202" column="12" lean-forward="true" selection-start-line="1202" selection-start-column="12" selection-end-line="1202" selection-end-column="12" />
               <folding>
                 <element signature="e#5221#9827#0" />
                 <element signature="e#9833#12409#0" />
                 <element signature="e#12415#12843#0" />
+                <element signature="e#22305#22306#0" expanded="true" />
+                <element signature="e#22351#22352#0" expanded="true" />
+                <element signature="e#30741#30742#0" expanded="true" />
+                <element signature="e#30844#30845#0" expanded="true" />
+                <element signature="e#35609#35610#0" expanded="true" />
+                <element signature="e#35704#35705#0" expanded="true" />
+                <element signature="e#39489#39490#0" expanded="true" />
+                <element signature="e#39592#39593#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/Model/Ethplorer/WalletETHplorer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="329">
+              <caret line="95" selection-start-line="95" selection-end-line="95" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1391#1392#0" expanded="true" />
+                <element signature="e#1420#1421#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -216,8 +244,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Model/ETHTrader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1470">
-              <caret line="153" column="55" lean-forward="true" selection-start-line="153" selection-start-column="55" selection-end-line="153" selection-end-column="55" />
+            <state relative-caret-position="1785">
+              <caret line="162" column="32" selection-start-line="162" selection-start-column="32" selection-end-line="162" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#sendToken#0;class#ETHTrader#0" />
@@ -276,7 +304,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>star</find>
       <find>lblSum</find>
       <find>walletScan</find>
       <find>callAPIGetWalletInfo</find>
@@ -306,6 +333,7 @@
       <find>reset</find>
       <find>countingTransaction</find>
       <find>sendToAllWallets</find>
+      <find>isTrading</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -372,10 +400,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="828" />
+    <option name="height" value="827" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -388,7 +416,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -441,8 +469,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -594,10 +622,10 @@
     <option name="totallyTimeSpent" value="3118000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="824" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="827" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.56439394" visible="true" weight="0.22246066" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.56439394" visible="true" weight="0.23676682" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -608,7 +636,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3265306" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49944875" weight="0.29781422" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.29508197" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.29387754" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -684,12 +712,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/Model/Ethplorer/WalletETHplorer.java</url>
-          <line>95</line>
-          <properties />
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/View/LoadingAlert.java</url>
           <line>32</line>
           <properties />
@@ -703,9 +725,21 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/Model/ETHTrader.java</url>
-          <line>203</line>
+          <line>210</line>
           <properties />
           <option name="timeStamp" value="101" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
+          <line>417</line>
+          <properties />
+          <option name="timeStamp" value="103" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
+          <line>431</line>
+          <properties />
+          <option name="timeStamp" value="104" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -885,18 +919,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Model/Ethplorer/WalletETHplorer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-243">
-          <caret line="32" column="38" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1391#1392#0" expanded="true" />
-            <element signature="e#1420#1421#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Model/TableModels/MainTableModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -912,7 +934,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2865">
           <caret line="345" column="150" selection-start-line="345" selection-start-column="150" selection-end-line="345" selection-end-column="150" />
@@ -930,6 +951,19 @@
             <element signature="n#padding#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#1;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
             <element signature="n#bottom#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#1;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
             <element signature="n#top#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#content#0;n#Tab#1;n#tabs#0;n#TabPane#0;n#center#0;n#BorderPane#0;n#children#0;n#AnchorPane#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Model/ETHTrader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1785">
+          <caret line="162" column="32" selection-start-line="162" selection-start-column="32" selection-end-line="162" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#sendToken#0;class#ETHTrader#0" />
+            <element signature="method#sendETH#1;class#ETHTrader#0" />
           </folding>
         </state>
       </provider>
@@ -962,26 +996,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Model/ETHTrader.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/Model/Ethplorer/WalletETHplorer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1470">
-          <caret line="153" column="55" lean-forward="true" selection-start-line="153" selection-start-column="55" selection-end-line="153" selection-end-column="55" />
+        <state relative-caret-position="329">
+          <caret line="95" selection-start-line="95" selection-end-line="95" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#sendToken#0;class#ETHTrader#0" />
-            <element signature="method#sendETH#1;class#ETHTrader#0" />
+            <element signature="e#1391#1392#0" expanded="true" />
+            <element signature="e#1420#1421#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="423" column="13" lean-forward="true" selection-start-line="423" selection-start-column="13" selection-end-line="423" selection-end-column="13" />
+        <state relative-caret-position="322">
+          <caret line="1202" column="12" lean-forward="true" selection-start-line="1202" selection-start-column="12" selection-end-line="1202" selection-end-column="12" />
           <folding>
             <element signature="e#5221#9827#0" />
             <element signature="e#9833#12409#0" />
             <element signature="e#12415#12843#0" />
+            <element signature="e#22305#22306#0" expanded="true" />
+            <element signature="e#22351#22352#0" expanded="true" />
+            <element signature="e#30741#30742#0" expanded="true" />
+            <element signature="e#30844#30845#0" expanded="true" />
+            <element signature="e#35609#35610#0" expanded="true" />
+            <element signature="e#35704#35705#0" expanded="true" />
+            <element signature="e#39489#39490#0" expanded="true" />
+            <element signature="e#39592#39593#0" expanded="true" />
           </folding>
         </state>
       </provider>

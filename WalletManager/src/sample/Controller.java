@@ -1077,6 +1077,12 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
         if (chekingSingleWallet) {
             if (errorCode == SupportKeys.FAILED_CODE) {
                 showAlert(true,null, msg);
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        lblBalanceMainWalletTradingTab.setText("Error");
+                    }
+                });
                 return;
             }
 
@@ -1180,11 +1186,13 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
 
         //LoadingAlert.getInstance().dismiss();
         if (errorCode == SupportKeys.FAILED_CODE) {
-            showAlert(true, "Send token", msg);
             System.out.println(msg);
 
 
             updateTradingProgressTable(countingTransaction, walletList.get(countingTransaction - 1).getAddress(), BigInteger.valueOf(fee.multiply(BigDecimal.valueOf(1_000_000_000_000_000_000L)).longValue()), "failed");
+
+            countingTransaction -= 1;
+            isTrading = false;
 
             Platform.runLater(new Runnable() {
                 @Override
@@ -1192,6 +1200,7 @@ public class Controller implements RequestWalletEthplorerInfoCallBack, RequestGa
                     btnSendToAllWalletTradingTab.setText("Send fee to all wallets");
                 }
             });
+            showAlert(true, "Send token", msg);
             return;
         }
 

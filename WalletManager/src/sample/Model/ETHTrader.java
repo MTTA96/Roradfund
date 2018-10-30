@@ -26,6 +26,7 @@ public class ETHTrader {
     public Web3j web3j;
     private BigInteger gasLimit;
     private BigInteger nonce = null;
+    private int countingError = 0;
 
     public static ETHTrader getInstance() {
 
@@ -156,7 +157,13 @@ public class ETHTrader {
                     if(ethSendTransaction.getError().getMessage().equals("insufficient funds for gas * price + value")) {
                         sendETHCallBack.sendETHResult(SupportKeys.FAILED_CODE, "Code: " + ethSendTransaction.getError().getCode() + "\n" + ethSendTransaction.getError().getMessage());
                     } else {
-                        this.sendETH(fromAddress, password, filePath, toAddress, gasPrice, gasLimit, value, sendETHCallBack);
+                        if(countingError >= 3) {
+                            sendETHCallBack.sendETHResult(SupportKeys.FAILED_CODE, "Code: " + ethSendTransaction.getError().getCode() + "\n" + ethSendTransaction.getError().getMessage());
+                            countingError = 0;
+                        } else {
+                            countingError++;
+                            this.sendETH(fromAddress, password, filePath, toAddress, gasPrice, gasLimit, value, sendETHCallBack);
+                        }
                     }
                 } else {
                     sendETHCallBack.sendETHResult(SupportKeys.FAILED_CODE, ethSendTransaction.getError().getCode() + " - " + ethSendTransaction.getError().getMessage());
